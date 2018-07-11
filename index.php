@@ -1,5 +1,5 @@
 <?php
-  include_once 'connect.php';
+  include_once 'php/connect.php';
 
   $get_prof = mysqli_query($connect, "SELECT * FROM professor ") or die("Error: ".mysqli_error());
   $get_profs = mysqli_query($connect, "SELECT * FROM professor ") or die("Error: ".mysqli_error());
@@ -14,8 +14,8 @@
 <html>
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css" integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
-<link href="main.css" rel="stylesheet" type="text/css"/>
+<link rel="stylesheet" href="css/all.css">
+<link href="css/main.css" rel="stylesheet" type="text/css"/>
 <link rel="icon" href="bucs-logo.png">
 <title>CSIT Schedule</title>
 </head>
@@ -31,7 +31,7 @@
   <a href="#rooms" onclick="popRooms()"><i class="fas fa-map-marker"></i>&ensp;&ensp;Room Designation</a>
   <a href="#addsched" onclick="popAddSched()"><i class="fas fa-plus"></i>&ensp;&ensp;Add Class Schedule</a> <br>
 
-  <form class="schedform" id="adsched" action="add.php" method="POST"><br>
+  <form class="schedform" id="adsched" action="php/add.php" method="POST"><br>
     <label>Select Course Code:
     <select name="subj">
       <option disabled selected value> - select an option - </option>
@@ -130,7 +130,7 @@ echo"
 <h3> B2-101 </h3>
 <center>
 <canvas id='timetable'></canvas>
-<script type='text/javascript' src='scheda.js'></script>
+<script type='text/javascript' src='js/scheda.js'></script>
 <script>
     scheda.init('timetable');
 

@@ -1,0 +1,111 @@
+body {
+    font-family: "Lato", sans-serif;
+    background-color: #f5f5f5;
+}
+form{
+  background-color: #fff;
+  color: #5eb2d1;
+  font-size: 16px;
+  font-weight: bold;
+  display: block;
+}
+label:hover{
+  color: #186dae;
+}
+select{
+  margin: 10px 3px;
+  padding: 3px ;
+  font-size: 16px;
+}
+form input[type=submit] {
+    text-transform: uppercase;
+    border: none;
+    color: #fff;
+    padding: 8px 35px;
+    font-size: 14px;
+    cursor: pointer;
+    margin: 0 0 32px 0;
+    background-color: #FF8247;
+    border-radius: 10px;
+    outline: none;
+}
+form input[type=submit]:hover {
+  font-weight: bold;
+  background-color:tomato;
+}
+.topnav {
+    width: 100%;
+    height: 50px;
+    position: fixed;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    background-color: #fff;
+    border-bottom: 1.5px solid #5eb2d1;
+}
+
+.topnav p {
+  font-family: "Poppins";
+  justify-content: center;
+  color: #5eb2d1;
+  text-align: center;
+  text-decoration: none;
+  margin-top: 10px;
+  font-size: 28px;
+}
+
+.topnav a:hover {
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #4CAF50;
+  color: white;
+}
+
+.sidenav {
+    height: 100%;
+    width: 360px;
+    position: fixed;
+    z-index: 1;
+    top: 50px;
+    left: 0;
+    background-color: #5eb2d1;
+    overflow-x: hidden;
+    padding-top: 20px;
+}
+
+.sidenav a {
+    padding: 6px 8px 6px 25px;
+    text-decoration: none;
+    font-size: 17px;
+    color: #fff;
+    display: block;
+}
+
+.sidenav a:hover {
+    color: #186dae;
+    font-weight: bold;
+    background-color: #fff;
+    text-decoration: none;
+}
+
+.main {
+    background-color :#fff;
+    width: 72%;
+    margin-left: 385px; /* Same as the width of the sidenav */
+    margin-top:70px;
+    font-size: 16px; /* Increased text to enable scrolling */
+    padding: 10px 10px;
+    display: none;
+    
+}
+.schedform{
+  padding: 6px 8px 6px 25px;
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {padding-top: 15px;}
+    .sidenav a {font-size: 18px;}
+}
