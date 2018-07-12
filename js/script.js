@@ -121,3 +121,38 @@
     };
 
 }(this));
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+
+
+$(document).ready(function() {
+
+        e.preventDefault();
+        $.ajax({
+          type: "POST",
+          url: "php/checker.php",
+          data: {
+            file: $("#file").val()           
+          },
+          success: function(result) {
+            // if no file return error
+            if(result == 0){
+              document.getElementById('error_msg').innerHTML = "no such file exist!";
+              $("#check").text('Check Speed');           
+            }
+            
+          },
+          error: function(result) {
+             // return error if Web page containes error
+             $("#check").text('Check Speed');
+             document.getElementById("result").style.color = "red";
+             document.getElementById('result').innerHTML = "Opss... Something's wrong with your Web page! details <a href='http://localhost/Web-Page-Speed-Checker/guide.html#wrong'> here </a>";
+          }
+        });
+  
+  });
