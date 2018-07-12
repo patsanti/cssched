@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>CSIT Schedule</title>
+     <meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1"> 
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+</head>
+<body>
+	<!-- top bar -->
+	<nav class="navbar navbar-default">
+	  <div class="container-fluid">
+	    <div class="navbar-header">
+	      <a class="navbar-brand" href="#">CSIT SCHEDULER</a>
+	    </div>
+	    <ul class="nav navbar-nav">
+	      <li class="active"><a href="#">Faculty Workload</a></li>
+	      <li><a href="#">Weakly Schedule</a></li>
+	      <li><a href="#">Room Designation</a></li>
+	    </ul>
+	  </div>
+	</nav>
+
+	<div class="container-fluid">
+		<div class="row">
+
+			<!-- SIDEBAR -->
+			<div class="col-md-3">
+				<div id="add-schedule">
+					<h3>Add Class Schedule</h3>
+
+					<label>Select Course code:</label>
+					<div id="select-course"></div>
+					
+					<label>Select Professor</label>
+					<div id='select-prof' class="select-prof"></div>
+
+					<label>Select Class</label>
+					<div id="select-class"></div>
+
+
+					<div class="col-md-2">
+						<label>Day</label>						
+						<select class="form-control" id="select-day">
+							<option value="M">M</option>
+							<option value="T">T</option>
+							<option value="W">W</option>
+							<option value="Th">Th</option>
+							<option value="F">F</option>
+						</select>
+					</div>
+
+					<div class="col-md-5">
+						<label>Start Time</label>
+						<input type="time" id="select-start-time" class="form-control">
+					</div>
+
+					<div class="col-md-5">
+						<label>End Time</label>
+						<input type="time" id="select-start-time" class="form-control">
+					</div>
+
+					<label>Select Room</label>
+					<div id="select-room"></div>
+
+					<button type="submit" class="form-control" id="add">Submit</button>
+
+				</div>
+			</div>
+
+
+			<!-- THE TABLE -->
+			<div class="col-md-9">
+				<!-- WILL BE DISPLAYED BY PHP CODE IN A FORM OF TABLE -->        
+				<div id="schedule-data">
+					<table class="table">
+					    <thead>
+					      <tr>
+					        <th>Course Code</th>
+					        <th>Descriptive Title</th>
+					        <th>Course Yr. & Block</th>
+					        <th>Time</th>
+					        <th>Day</th>
+					        <th>Room</th>
+					      </tr>
+					    </thead>
+					    <tbody>
+					      <tr>
+					        <td>example</td>
+					        <td>example</td>
+					        <td>example</td>
+					        <td>example</td>
+					        <td>example</td>
+					        <td>example</td>
+					      </tr>
+					    </tbody>
+					  </table>
+				</div>
+			</div>
+		</div>
+	</div>
+
+<script type="text/javascript" src="js/jquery.min.js"></script>
+<script type="text/javascript" src="js/bootstrap.min.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+
+</body>
+</html>
+
+
+<!-- dyron ikaw na po bahala design kung ano na pupusuan mo haha theme  -->
