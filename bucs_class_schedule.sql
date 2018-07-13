@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 13, 2018 at 07:39 PM
+-- Generation Time: Jul 13, 2018 at 07:42 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -135,7 +135,11 @@ CREATE TABLE `room` (
 --
 
 INSERT INTO `room` (`room_id`, `room_name`) VALUES
-(1, 'B2-101');
+(1, 'B2-101'),
+(2, 'B2-105'),
+(3, 'B2-201'),
+(4, 'B2-205'),
+(5, 'B2-206');
 
 -- --------------------------------------------------------
 
@@ -272,7 +276,7 @@ ALTER TABLE `professor`
 -- AUTO_INCREMENT for table `room`
 --
 ALTER TABLE `room`
-  MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `sched`
 --
