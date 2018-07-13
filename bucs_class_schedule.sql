@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 13, 2018 at 05:08 PM
+-- Generation Time: Jul 13, 2018 at 07:27 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -82,7 +82,13 @@ CREATE TABLE `course` (
 --
 
 INSERT INTO `course` (`course_id`, `course_code`, `course_title`, `lecture_unit`, `lab_unit`, `credit_unit`) VALUES
-(1, 'CS Elec 4', 'CS Elective 3', 3, 0, 3);
+(1, 'CS101', 'Introduction to Computing', 3, 0, 3),
+(2, 'CS 102', 'Computer Programming 1', 2, 1, 3),
+(3, 'CS 28', 'Special Problem 1', 3, 0, 3),
+(4, 'CS 29', 'Software Engineering', 3, 0, 3),
+(5, 'CS Elec 3', 'CS Elective 3', 3, 0, 3),
+(6, 'CS Elec 4', 'CS Elective 4', 3, 0, 3),
+(7, 'Free Elec 2', 'Free Elective 2', 3, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -184,33 +190,6 @@ CREATE TABLE `schedule` (
   `end_time` time(6) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
--- --------------------------------------------------------
-
---
--- Table structure for table `subject`
---
-
-CREATE TABLE `subject` (
-  `course_code` varchar(20) NOT NULL,
-  `desc_title` varchar(50) NOT NULL,
-  `lec_unit` int(5) NOT NULL,
-  `lab_unit` int(5) NOT NULL,
-  `cred_units` int(5) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `subject`
---
-
-INSERT INTO `subject` (`course_code`, `desc_title`, `lec_unit`, `lab_unit`, `cred_units`) VALUES
-('CS 101', 'Introduction to Computing', 3, 0, 3),
-('CS 102', 'Computer Programming 1', 2, 1, 3),
-('CS 28', 'Special Problem 1', 3, 0, 3),
-('CS 29', 'Software Engineering', 3, 0, 3),
-('CS Elec 3', 'CS Elective 3', 3, 0, 3),
-('CS Elec 4', 'CS Elective 3', 3, 0, 3),
-('Free Elec 2', 'Free Elective 2', 3, 0, 0);
-
 --
 -- Indexes for dumped tables
 --
@@ -262,12 +241,6 @@ ALTER TABLE `schedule`
   ADD KEY `sched_class` (`class_id`);
 
 --
--- Indexes for table `subject`
---
-ALTER TABLE `subject`
-  ADD PRIMARY KEY (`course_code`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -280,7 +253,7 @@ ALTER TABLE `class`
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
-  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `professor`
 --
