@@ -6,6 +6,30 @@
 
 // (CHANGES)
 
+class check{
+	function check_conflict($sql,$start_time,$end_time){
+		include('test_connect.php');
+		$result = $conn->query($sql);
+		while($row = $result->fetch_assoc()) {
+			if( ($row['room_id'] == $_POST['add_room']) && ($row['day'] == $_POST['select-day']) && ( (($row['start_time'] <= $start_time) && ($start_time <= $row['end_time'])) || (($row['start_time'] <= $end_time) && ($end_time <= $row['end_time'])) ) || (($row['course_id'] == $_POST['add_course']) && ($row['class_id'] == $_POST['add_class']))  ){
+				$conflict = 1;
+				break;
+			}
+			else{
+				$conflict = 0;
+			}
+		}
+		
+		if( $conflict == 0 ){
+			return 0;
+		}
+		else{
+			return 1;
+		}
+	}
+
+}
+
 
 
 // class for add, delete and update
@@ -18,16 +42,18 @@ class alter{
   		$end_time = $_POST['select-end-time'];
 
   		$sql = "SELECT * FROM schedule";
-		$result = $conn->query($sql);
 
-		while($row = $result->fetch_assoc()) {
-			if( ($row['room_id'] == $_POST['add_room']) && ($row['day'] == $_POST['select-day']) && ( (($row['start_time'] <= $start_time) && ($start_time <= $row['end_time'])) || (($row['start_time'] <= $end_time) && ($end_time <= $row['end_time'])) )  ){
-				echo "Conflict Schedule!!";
-			}
-			else{
-				echo "Schedule available";
-			}
+		$check = new check;
+
+		$check_if_conflict = $check->check_conflict($sql,$start_time,$end_time);
+
+		if($check_if_conflict == 1 ){
+			echo "Conflict Schedule or Course has been already offered to a same class";
 		}
+		else{
+			echo "sucess";
+		}
+
 	}
 
 	// function to delete data

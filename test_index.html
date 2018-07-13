@@ -27,7 +27,8 @@
 			<div class="col-md-3">
 				<div id="add-schedule">
 					<h3>Add Class Schedule</h3>
-
+					<form action="php/functions.php" method="POST">
+					<input type="hidden" name="add_schedule" id="add_schedule" value="1">
 					<label>Select Course code:</label>
 					<div id="select-course"></div>
 					
@@ -38,32 +39,31 @@
 					<div id="select-class"></div>
 
 
-					<div class="col-md-2">
+					
 						<label>Day</label>						
-						<select class="form-control" id="select-day">
-							<option value="M">M</option>
-							<option value="T">T</option>
-							<option value="W">W</option>
-							<option value="Th">Th</option>
-							<option value="F">F</option>
+						<select class="form-control" name="select-day" required>
+							<option value="M">Monday</option>
+							<option value="T">Tuesday</option>
+							<option value="W">Wednesday</option>
+							<option value="Th">Thursday</option>
+							<option value="F">Friday</option>
 						</select>
-					</div>
 
-					<div class="col-md-5">
+					<div class="col-md-6">
 						<label>Start Time</label>
-						<input type="time" id="select-start-time" class="form-control">
+						<input type="time" id="select-start-time" name="select-start-time" class="form-control" required>
 					</div>
 
-					<div class="col-md-5">
+					<div class="col-md-6">
 						<label>End Time</label>
-						<input type="time" id="select-start-time" class="form-control">
+						<input type="time" id="select-end-time" name="select-end-time" class="form-control" required>
 					</div>
 
 					<label>Select Room</label>
 					<div id="select-room"></div>
 
 					<button type="submit" class="form-control" id="add">Submit</button>
-
+					</form>
 				</div>
 			</div>
 

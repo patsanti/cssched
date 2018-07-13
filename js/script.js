@@ -60,6 +60,26 @@ $(document).ready(function() {
 
          }
     });
-     
+// submit button    
+      function check_submission(){
+      
+        $.ajax({
+          type: "POST",
+          url: "php/functions.php",
+          data: {
+            add_schedule: "1"
+           
+          },
+          success: function(result) {
+              alert(result);
+
+          },
+          error: function(result) {
+
+             }
+        });
+
+     }   
+         
     
 });
