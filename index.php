@@ -1,14 +1,14 @@
 <?php
   include_once 'php/connect.php';
 
-  $get_prof = mysqli_query($connect, "SELECT * FROM professor ") or die("Error: ".mysqli_error());
-  $get_profs = mysqli_query($connect, "SELECT * FROM professor ") or die("Error: ".mysqli_error());
-  $get_subj = mysqli_query($connect, "SELECT * FROM subject ") or die("Error: ".mysqli_error());
-  $get_rm = mysqli_query($connect, "SELECT * FROM room ") or die("Error: ".mysqli_error());
-  $get_rms = mysqli_query($connect, "SELECT * FROM room ") or die("Error: ".mysqli_error());
-  $get_day = mysqli_query($connect, "SELECT * FROM class_day ORDER BY no asc") or die("Error: ".mysqli_error());
+  $get_prof = mysqli_query($connect, "SELECT * FROM professor ") or die("Error: ".mysqli_error($connect));
+  $get_profs = mysqli_query($connect, "SELECT * FROM professor ") or die("Error: ".mysqli_error($connect));
+  $get_subj = mysqli_query($connect, "SELECT * FROM subject ") or die("Error: ".mysqli_error($connect));
+  $get_rm = mysqli_query($connect, "SELECT * FROM room ") or die("Error: ".mysqli_error($connect));
+  $get_rms = mysqli_query($connect, "SELECT * FROM room ") or die("Error: ".mysqli_error($connect));
+  $get_day = mysqli_query($connect, "SELECT * FROM class_day ORDER BY no asc") or die("Error: ".mysqli_error($connect));
 
-  $scheds = mysqli_query($connect, "SELECT * FROM sched WHERE room = 'B2-101' ") or die("Error: ".mysqli_error());
+  $scheds = mysqli_query($connect, "SELECT * FROM sched WHERE room = 'B2-101' ") or die("Error: ".mysqli_error($connect));
 ?>
 <!DOCTYPE html>
 <html>
@@ -75,7 +75,7 @@
 <?php
   while($row = mysqli_fetch_array($get_profs)){ 
     $prof = $row['prof_name'];
-    $get_sched = mysqli_query($connect, "(SELECT * FROM sched WHERE prof_name = '".$prof."' ORDER BY course_code asc) ORDER BY day asc") or die("Error: ".mysqli_error());
+    $get_sched = mysqli_query($connect, "(SELECT * FROM sched WHERE prof_name = '".$prof."' ORDER BY course_code asc) ORDER BY day asc") or die("Error: ".mysqli_error($connect));
     echo"
 <div class='wrk'>
   <h3> $prof </h3> <center>
@@ -105,7 +105,7 @@
     } 
 
     $subj = $row['course_code'];
-    $get_s = mysqli_query($connect, "SELECT * FROM subject WHERE course_code = '".$subj."' ORDER BY course_code asc") or die("Error: ".mysqli_error());
+    $get_s = mysqli_query($connect, "SELECT * FROM subject WHERE course_code = '".$subj."' ORDER BY course_code asc") or die("Error: ".mysqli_error($connect));
     $get = mysqli_fetch_array($get_s);
       echo"
       <tbody>
@@ -179,7 +179,7 @@ echo"
   <?php
   while($row = mysqli_fetch_array($get_rms)){ 
     $room = $row['room'];
-    $get_sched = mysqli_query($connect, "(SELECT * FROM sched WHERE room = '".$room."' ORDER BY day asc) ORDER BY  start_time asc ") or die("Error: ".mysqli_error());
+    $get_sched = mysqli_query($connect, "(SELECT * FROM sched WHERE room = '".$room."' ORDER BY day asc) ORDER BY  start_time asc ") or die("Error: ".mysqli_error($connect));
     echo"
 <div class='wrk'>
   <h3> $room </h3><center>
@@ -209,7 +209,7 @@ echo"
     } 
 
     $subj = $row['course_code'];
-    $get_s = mysqli_query($connect, "SELECT * FROM subject WHERE course_code = '".$subj."' ORDER BY course_code asc") or die("Error: ".mysqli_error());
+    $get_s = mysqli_query($connect, "SELECT * FROM subject WHERE course_code = '".$subj."' ORDER BY course_code asc") or die("Error: ".mysqli_error($connect));
     $get = mysqli_fetch_array($get_s);
       echo"
       <tbody><tr>
