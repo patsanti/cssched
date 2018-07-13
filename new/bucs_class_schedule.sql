@@ -36,7 +36,12 @@ CREATE TABLE `class` (
 --
 
 INSERT INTO `class` (`class_id`, `class_yr_blk`) VALUES
-(1, 'BSCS 4A');
+(1, 'BSCS 1A'),
+(2, 'BSCS 1B'),
+(3, 'BSCS 4A'),
+(4, 'BSCS 4B'),
+(5, 'BSIT 1A'),
+(6, 'BSIT 1B');
 
 -- --------------------------------------------------------
 
@@ -58,7 +63,13 @@ CREATE TABLE `course` (
 --
 
 INSERT INTO `course` (`course_id`, `course_code`, `course_title`, `lecture_unit`, `lab_unit`, `credit_unit`) VALUES
-(1, 'CS Elec 4', 'CS Elective 3', 3, 0, 3);
+(1, 'CS101', 'Introduction to Computing', 3, 0, 3),
+(2, 'CS 102', 'Computer Programming 1', 2, 1, 3),
+(3, 'CS 28', 'Special Problem 1', 3, 0, 3),
+(4, 'CS 29', 'Software Engineering', 3, 0, 3),
+(5, 'CS Elec 3', 'CS Elective 3', 3, 0, 3),
+(6, 'CS Elec 4', 'CS Elective 4', 3, 0, 3),
+(7, 'Free Elec 2', 'Free Elective 2', 3, 0, 0);
 
 -- --------------------------------------------------------
 
@@ -77,8 +88,17 @@ CREATE TABLE `professors` (
 -- Dumping data for table `professors`
 --
 
-INSERT INTO `professors` (`prof_id`, `prof_fname`, `prof_mname`, `prof_lname`) VALUES
-(1, 'Laarni', NULL, 'Pancho');
+INSERT INTO `professor` (`prof_id`, `prof_fname`, `prof_mname`, `prof_lname`) VALUES
+(1, 'Laarni', NULL, 'Pancho'),
+(2, 'Christian', 'Y.', 'Sy'),
+(3, 'Lea', 'P.', 'Austero'),
+(4, 'Benedicto', 'B.', 'Balilo'),
+(5, 'Rodel', 'N.', 'Naz'),
+(6, 'Mary Joy', 'P.', 'Canon'),
+(7, 'Noli', 'B.', 'Lucila Jr.'),
+(8, 'Rolando', NULL, 'Mendones'),
+(9, 'Franklin', NULL, 'Miranda'),
+(10, 'Arlene', NULL, 'Satuito');
 
 -- --------------------------------------------------------
 
@@ -96,7 +116,11 @@ CREATE TABLE `room` (
 --
 
 INSERT INTO `room` (`room_id`, `room_name`) VALUES
-(1, 'B2-101');
+(1, 'B2-101'),
+(2, 'B2-105'),
+(3, 'B2-201'),
+(4, 'B2-205'),
+(5, 'B2-206');
 
 -- --------------------------------------------------------
 
@@ -120,7 +144,26 @@ CREATE TABLE `schedule` (
 --
 
 INSERT INTO `schedule` (`sched_no`, `course_id`, `prof_id`, `room_id`, `class_id`, `day`, `start_time`, `end_time`) VALUES
-(1, 1, 1, 1, 1, 'M', '13:00:00.000000', '14:00:00.000000');
+(1, 5, 4, 1, 3, '2', '14:30:00.000000', '16:00:00.000000'),
+(2, 5, 4, 1, 3, '4', '14:30:00.000000', '16:00:00.000000'),
+(3, 5, 4, 1, 4, '2', '13:00:00.000000', '14:30:00.000000'),
+(4, 5, 4, 1, 4, '4', '13:00:00.000000', '14:30:00.000000'),
+(5, 2, 6, 4, 5, '2', '13:00:00.000000', '15:00:00.000000'),
+(6, 6, 7, 1, 3, '2', '10:30:00.000000', '12:00:00.000000'),
+(7, 6, 7, 1, 3, '5', '10:30:00.000000', '12:00:00.000000'),
+(8, 2, 7, 4, 6, '5', '13:00:00.000000', '15:00:00.000000'),
+(9, 1, 8, 5, 1, '5', '09:00:00.000000', '12:00:00.000000'),
+(10, 1, 8, 5, 2, '5', '13:00:00.000000', '00:00:00.000000'),
+(11, 7, 9, 3, 4, '2', '10:30:00.000000', '12:00:00.000000'),
+(12, 7, 9, 3, 4, '5', '10:30:00.000000', '12:00:00.000000'),
+(13, 1, 9, 3, 5, '5', '13:00:00.000000', '16:00:00.000000'),
+(14, 1, 9, 3, 6, '2', '13:00:00.000000', '16:00:00.000000'),
+(15, 7, 5, 3, 3, '2', '09:00:00.000000', '10:30:00.000000'),
+(16, 7, 5, 3, 3, '5', '09:00:00.000000', '10:30:00.000000'),
+(17, 2, 10, 5, 1, '2', '10:00:00.000000', '12:00:00.000000'),
+(18, 2, 10, 5, 2, '2', '13:00:00.000000', '16:00:00.000000'),
+(19, 3, 2, 2, 3, '3', '09:00:00.000000', '12:00:00.000000'),
+(20, 3, 2, 2, 4, '3', '13:00:00.000000', '16:00:00.000000');
 
 --
 -- Indexes for dumped tables
@@ -168,27 +211,27 @@ ALTER TABLE `schedule`
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
-  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `course`
 --
 ALTER TABLE `course`
-  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- AUTO_INCREMENT for table `professors`
 --
-ALTER TABLE `professors`
-  MODIFY `prof_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `professor`
+  MODIFY `prof_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `room`
 --
 ALTER TABLE `room`
-  MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `sched_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `sched_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 --
 -- Constraints for dumped tables
 --
