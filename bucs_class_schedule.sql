@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 13, 2018 at 09:00 PM
+-- Generation Time: Jul 13, 2018 at 09:01 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -44,28 +44,6 @@ INSERT INTO `class` (`class_id`, `class_yr_blk`) VALUES
 (4, 'BSCS 4B'),
 (5, 'BSIT 1A'),
 (6, 'BSIT 1B');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `class_day`
---
-
-CREATE TABLE `class_day` (
-  `no` int(11) NOT NULL,
-  `day` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `class_day`
---
-
-INSERT INTO `class_day` (`no`, `day`) VALUES
-(5, 'F'),
-(1, 'M'),
-(2, 'T'),
-(4, 'Th'),
-(3, 'W');
 
 -- --------------------------------------------------------
 
@@ -198,12 +176,6 @@ INSERT INTO `schedule` (`sched_no`, `course_id`, `prof_id`, `room_id`, `class_id
 --
 ALTER TABLE `class`
   ADD PRIMARY KEY (`class_id`);
-
---
--- Indexes for table `class_day`
---
-ALTER TABLE `class_day`
-  ADD PRIMARY KEY (`day`);
 
 --
 -- Indexes for table `course`
