@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 13, 2018 at 08:57 PM
+-- Generation Time: Jul 13, 2018 at 09:00 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -149,51 +149,6 @@ INSERT INTO `room` (`room_id`, `room_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `sched`
---
-
-CREATE TABLE `sched` (
-  `sched_no` int(11) NOT NULL,
-  `course_code` varchar(20) NOT NULL,
-  `start_time` time NOT NULL,
-  `end_time` time NOT NULL,
-  `prof_name` varchar(50) NOT NULL,
-  `class` varchar(20) NOT NULL,
-  `day` varchar(10) NOT NULL,
-  `room` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `sched`
---
-
-INSERT INTO `sched` (`sched_no`, `course_code`, `start_time`, `end_time`, `prof_name`, `class`, `day`, `room`) VALUES
-(1, 'CS Elec 3', '13:00:00', '14:30:00', 'Balilo, B.', 'BSCS 4B', '2', 'B2-101'),
-(2, 'CS Elec 3', '13:00:00', '14:30:00', 'Balilo, B.', 'BSCS 4B', '4', 'B2-101'),
-(3, 'CS Elec 3', '14:30:00', '16:00:00', 'Balilo, B.', 'BSCS 4A', '2', 'B2-101'),
-(4, 'CS Elec 3', '14:30:00', '16:00:00', 'Balilo, B.', 'BSCS 4A', '4', 'B2-101'),
-(5, 'CS 102', '13:00:00', '15:00:00', 'Canon, M.J.', 'BSIT 1A', '2', 'B2-205'),
-(6, 'CS Elec 4', '10:30:00', '12:00:00', 'Lucila, N.', 'BSCS 4A', '2', 'B2-101'),
-(7, 'CS Elec 4', '10:30:00', '12:00:00', 'Lucila, N.', 'BSCS 4A', '5', 'B2-101'),
-(8, 'CS 102', '13:00:00', '15:00:00', 'Lucila, N.', 'BSIT 1B', '5', 'B2-205'),
-(9, 'CS 101', '09:00:00', '12:00:00', 'Mendones, R.', 'BSCS 1A', '5', 'B2-206'),
-(10, 'CS 101', '13:00:00', '16:00:00', 'Mendones, R.', 'BSCS 1B', '5', 'B2-206'),
-(11, 'Free Elec 2', '10:30:00', '12:00:00', 'Miranda, F.', 'BSCS 4B', '2', 'B2-201'),
-(12, 'Free Elec 2', '10:30:00', '12:00:00', 'Miranda, F.', 'BSCS 4B', '5', 'B2-201'),
-(13, 'CS 101', '13:00:00', '16:00:00', 'Miranda, F.', 'BSIT 1B', '2', 'B2-201'),
-(14, 'CS 101', '13:00:00', '16:00:00', 'Miranda, F.', 'BSIT 1A', '5', 'B2-201'),
-(15, 'Free Elec 2', '09:00:00', '10:30:00', 'Naz, R.', 'BSCS 4A', '2', 'B2-201'),
-(16, 'Free Elec 2', '09:00:00', '10:30:00', 'Naz, R.', 'BSCS 4A', '5', 'B2-201'),
-(17, 'CS 102', '10:00:00', '12:00:00', 'Satuito, A.', 'BSCS 1A', '2', 'B2-206'),
-(18, 'CS 102', '13:00:00', '16:00:00', 'Satuito, A.', 'BSCS 1B', '2', 'B2-206'),
-(19, 'CS 28', '09:00:00', '12:00:00', 'Sy, C.', 'BSCS 4A', '3', 'B2-105'),
-(20, 'CS 28', '13:00:00', '16:00:00', 'Sy, C.', 'BSCS 4B', '3', 'B2-105'),
-(21, '', '00:00:00', '00:00:00', '', '', '', ''),
-(22, '', '00:00:00', '00:00:00', '', '', '', '');
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `schedule`
 --
 
@@ -269,12 +224,6 @@ ALTER TABLE `room`
   ADD PRIMARY KEY (`room_id`);
 
 --
--- Indexes for table `sched`
---
-ALTER TABLE `sched`
-  ADD PRIMARY KEY (`sched_no`);
-
---
 -- Indexes for table `schedule`
 --
 ALTER TABLE `schedule`
@@ -308,11 +257,6 @@ ALTER TABLE `professor`
 --
 ALTER TABLE `room`
   MODIFY `room_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
---
--- AUTO_INCREMENT for table `sched`
---
-ALTER TABLE `sched`
-  MODIFY `sched_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
 --
 -- AUTO_INCREMENT for table `schedule`
 --
