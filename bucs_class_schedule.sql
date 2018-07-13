@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 13, 2018 at 07:27 PM
+-- Generation Time: Jul 13, 2018 at 07:39 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -108,7 +108,16 @@ CREATE TABLE `professor` (
 --
 
 INSERT INTO `professor` (`prof_id`, `prof_fname`, `prof_mname`, `prof_lname`) VALUES
-(1, 'Laarni', NULL, 'Pancho');
+(1, 'Laarni', NULL, 'Pancho'),
+(2, 'Christian', 'Y.', 'Sy'),
+(3, 'Lea', 'P.', 'Austero'),
+(4, 'Benedicto', 'B.', 'Balilo'),
+(5, 'Rodel', 'N.', 'Naz'),
+(6, 'Mary Joy', 'P.', 'Canon'),
+(7, 'Noli', 'B.', 'Lucila Jr.'),
+(8, 'Rolando', NULL, 'Mendones'),
+(9, 'Franklin', NULL, 'Miranda'),
+(10, 'Arlene', NULL, 'Satuito');
 
 -- --------------------------------------------------------
 
@@ -258,7 +267,7 @@ ALTER TABLE `course`
 -- AUTO_INCREMENT for table `professor`
 --
 ALTER TABLE `professor`
-  MODIFY `prof_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `prof_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `room`
 --
