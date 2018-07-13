@@ -8,7 +8,7 @@
 
 class check{
 	function check_conflict($sql,$start_time,$end_time){
-		include('test_connect.php');
+		include('connect.php');
 		$result = $conn->query($sql);
 		while($row = $result->fetch_assoc()) {
 			if( ($row['room_id'] == $_POST['add_room']) && ($row['day'] == $_POST['select-day']) && ( (($row['start_time'] <= $start_time) && ($start_time <= $row['end_time'])) || (($row['start_time'] <= $end_time) && ($end_time <= $row['end_time'])) ) || (($row['course_id'] == $_POST['add_course']) && ($row['class_id'] == $_POST['add_class']))  ){
@@ -36,7 +36,7 @@ class check{
 class alter{
 	// function to add data
 	function alter_add(){
-  		include('test_connect.php');
+  		include('connect.php');
 
   		$start_time = $_POST['select-start-time'];
   		$end_time = $_POST['select-end-time'];
@@ -76,7 +76,7 @@ class get_data{
 
 	// function to get all data needed to add a schedule
 	function get_data_professor(){
-		include('test_connect.php');
+		include('connect.php');
 		$sql = "SELECT * FROM professors";
 		$result = $conn->query($sql);
 
@@ -94,7 +94,7 @@ class get_data{
 	} 
 
 	function get_data_course(){
-		include('test_connect.php');
+		include('connect.php');
 		$sql = "SELECT * FROM course";
 		$result = $conn->query($sql);
 
@@ -113,7 +113,7 @@ class get_data{
 
 
 	function get_data_class(){
-		include('test_connect.php');
+		include('connect.php');
 		$sql = "SELECT * FROM class";
 		$result = $conn->query($sql);
 
@@ -130,7 +130,7 @@ class get_data{
 
 	}
 	function get_data_room(){
-		include('test_connect.php');
+		include('connect.php');
 		$sql = "SELECT * FROM room";
 		$result = $conn->query($sql);
 
