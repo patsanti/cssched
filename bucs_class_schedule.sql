@@ -63,10 +63,10 @@ INSERT INTO `course` (`course_id`, `course_code`, `course_title`, `lecture_unit`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `professors`
+-- Table structure for table `professor`
 --
 
-CREATE TABLE `professors` (
+CREATE TABLE `professor` (
   `prof_id` int(11) NOT NULL,
   `prof_fname` varchar(50) NOT NULL,
   `prof_mname` varchar(2) DEFAULT NULL,
@@ -74,10 +74,10 @@ CREATE TABLE `professors` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `professors`
+-- Dumping data for table `professor`
 --
 
-INSERT INTO `professors` (`prof_id`, `prof_fname`, `prof_mname`, `prof_lname`) VALUES
+INSERT INTO `professor` (`prof_id`, `prof_fname`, `prof_mname`, `prof_lname`) VALUES
 (1, 'Laarni', NULL, 'Pancho');
 
 -- --------------------------------------------------------
@@ -132,9 +132,9 @@ ALTER TABLE `course`
   ADD PRIMARY KEY (`course_id`);
 
 --
--- Indexes for table `professors`
+-- Indexes for table `professor`
 --
-ALTER TABLE `professors`
+ALTER TABLE `professor`
   ADD PRIMARY KEY (`prof_id`);
 
 --
@@ -168,9 +168,9 @@ ALTER TABLE `class`
 ALTER TABLE `course`
   MODIFY `course_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
--- AUTO_INCREMENT for table `professors`
+-- AUTO_INCREMENT for table `professor`
 --
-ALTER TABLE `professors`
+ALTER TABLE `professor`
   MODIFY `prof_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `room`
@@ -192,7 +192,7 @@ ALTER TABLE `schedule`
 ALTER TABLE `schedule`
   ADD CONSTRAINT `sched_class` FOREIGN KEY (`class_id`) REFERENCES `class` (`class_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `sched_course` FOREIGN KEY (`course_id`) REFERENCES `course` (`course_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `sched_prof` FOREIGN KEY (`prof_id`) REFERENCES `professors` (`prof_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `sched_prof` FOREIGN KEY (`prof_id`) REFERENCES `professor` (`prof_id`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `sched_room` FOREIGN KEY (`room_id`) REFERENCES `room` (`room_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
