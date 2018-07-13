@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 13, 2018 at 07:42 PM
+-- Generation Time: Jul 13, 2018 at 07:47 PM
 -- Server version: 10.1.25-MariaDB
 -- PHP Version: 5.6.31
 
@@ -38,7 +38,12 @@ CREATE TABLE `class` (
 --
 
 INSERT INTO `class` (`class_id`, `class_yr_blk`) VALUES
-(1, 'BSCS 4A');
+(1, 'BSCS 1A'),
+(2, 'BSCS 1B'),
+(3, 'BSCS 4A'),
+(4, 'BSCS 4B'),
+(5, 'BSIT 1A'),
+(6, 'BSIT 1B');
 
 -- --------------------------------------------------------
 
@@ -261,7 +266,7 @@ ALTER TABLE `schedule`
 -- AUTO_INCREMENT for table `class`
 --
 ALTER TABLE `class`
-  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `class_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `course`
 --
