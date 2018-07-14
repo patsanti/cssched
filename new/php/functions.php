@@ -71,10 +71,10 @@ class alter{
 		$check_if_conflict = $check->check_conflict($sql,$start_time,$end_time);
 
 		if($check_if_conflict == 1 ){
-			echo "Conflict Schedule or Course has been already offered to a same class";
+			echo 0;
 		}
 		else{
-			echo "sucess";
+			echo 1;
 		}
 
 	}
@@ -93,7 +93,45 @@ class alter{
 class get_data{
 	
 	// function to get all data of scheadule
+	// TODO
 	function get_data_sched(){
+		echo '
+							<table class="table table-sm text-center">
+
+					    <thead  class="thead-dark">
+				      		<tr>
+				      			<th>Austero L.</th>
+				      		</tr>
+				      		<tr class="thead-light">
+					    		<th>Course Code</th>
+						        <th>Descriptive Title</th>
+						        <th>Course Yr. & Block</th>
+						        <th>Time</th>
+						        <th>Day</th>
+						        <th>Room</th>
+					    	</tr>
+					    </thead>
+					    <tbody id="workload_table_body">
+					    	
+					     	<tr>
+						        <td>example</td>
+						        <td>example</td>
+						        <td>example</td>
+						        <td>example</td>
+						        <td>example</td>
+						        <td>example</td>
+					      	</tr>
+					      	<tr >
+						        <td>xyz</td>
+						        <td>tux</td>
+						        <td>example</td>
+						        <td>example</td>
+						        <td>example</td>
+						        <td>example</td>
+					      	</tr>
+					    </tbody>
+					  </table>
+		';
 		
 	}
 
@@ -107,11 +145,17 @@ class get_data{
 
 		if ($result->num_rows > 0) {
 		    // output data of each row
-		    echo '<select class="form-control" name="add_prof" id="add_prof">';
+		    $n = 0;
+		    $professor = array();
 		    while($row = $result->fetch_assoc()) {
-		       echo  '<option value="'.$row['prof_id'].'">'.$row['prof_lname'].', '.$row['prof_fname'].' '.$row['prof_mname'].'</option>' ;
+		       $professor[$n] = $row['prof_id'];
+		       $n++;
+		       $professor[$n] = $row['prof_lname'].', '.$row['prof_fname'].' '.$row['prof_mname'];
+		       $n++;
 		    }
-		    echo "</select>";
+		    $array_return = json_encode($professor);
+		    echo $array_return;
+		   
 		} else {
 		    echo "no professor data";
 		}
@@ -127,11 +171,17 @@ class get_data{
 
 		if ($result->num_rows > 0) {
 		    // output data of each row
-		    echo '<select class="form-control" name="add_course">';
+		    $n = 0;
+		    $course = array();
 		    while($row = $result->fetch_assoc()) {
-		       echo  '<option value="'.$row['course_id'].'">'.$row['course_code'].'</option>' ;
+		       $course[$n] = $row['course_id'];
+		       $n++;
+		       $course[$n] = $row['course_code'];
+		       $n++;
 		    }
-		    echo "</select>";
+		    $array_return = json_encode($course);
+		    echo $array_return;
+		    
 		} else {
 		    echo "no Course data";
 		}
@@ -147,12 +197,18 @@ class get_data{
 		$result = $conn->query($sql);
 
 		if ($result->num_rows > 0) {
+			$n = 0;
+		    $class = array();
 		    // output data of each row
-		    echo '<select class="form-control" name="add_class">';
 		    while($row = $result->fetch_assoc()) {
-		       echo  '<option value="'.$row['class_id'].'">'.$row['class_yr_blk'].'</option>' ;
+		       $class[$n] = $row['class_id'];
+		       $n++;
+		       $class[$n] = $row['class_yr_blk'];
+		       $n++;
 		    }
-		    echo "</select>";
+		   	$array_return = json_encode($class);
+		    echo $array_return;
+
 		} else {
 		    echo "no Class data";
 		}
@@ -166,12 +222,18 @@ class get_data{
 		$result = $conn->query($sql);
 
 		if ($result->num_rows > 0) {
+			$n = 0;
+		    $room = array();
 		    // output data of each row
-		    echo '<select class="form-control" name="add_room">';
 		    while($row = $result->fetch_assoc()) {
-		       echo  '<option value="'.$row['room_id'].'">'.$row['room_name'].'</option>' ;
+		       $room[$n] = $row['room_id'];
+		       $n++;
+		       $room[$n] = $row['room_name'];
+		       $n++;
 		    }
-		    echo "</select>";
+		    $array_return = json_encode($room);
+		    echo $array_return;
+
 		} else {
 		    echo "no room data";
 		}
@@ -200,9 +262,14 @@ elseif (isset($_POST['get_class'])) {
 elseif (isset($_POST['get_room'])) {
 	$get_data->get_data_room();
 }
+//get all schedule
+elseif (isset($_POST['get_data_schedule'])) {
+	$get_data->get_data_sched();
+}
 // add schedule
 elseif (isset($_POST['add_schedule'])) {
 	$alter->alter_add();
 }
+
 
 ?>

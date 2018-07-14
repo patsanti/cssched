@@ -50,41 +50,49 @@
 					<form action="php/functions.php" method="POST">
 						<input type="hidden" name="add_schedule" id="add_schedule" value="1">
 						<label><span class="fas fa-edit"></span> Course Code</label>
-						<div id="select-course" class="select-course"></div>
+						<select id="select-course" class="form-control">
+							
+						</select>
 						
 						<label ><span class="fa fa-user"></span> Professor</label>
-						<div id='select-prof' class="select-prof"></div>
+						<select id="select-prof" class="form-control">
+							
+						</select>
 
 						<label><span class="fas fa-chalkboard-teacher"></span> Class</label>
-						<div id="select-class" class="select-class"></div>
-
+						<select id="select-class" class="form-control">
+							
+						</select>
+						
+						<label><span class="fas fa-sun"></span> Day</label>						
+						<select id="select-day" class="form-control" name="select-day" required>
+							<option value="1">Monday</option>
+							<option value="2">Tuesday</option>
+							<option value="3">Wednesday</option>
+							<option value="4">Thursday</option>
+							<option value="5">Friday</option>
+							<option value="6">Saturday</option>
+							<option value="7">Sunday</option>
+						</select>
+							
 						<div class="row">
 							<div class="col">
-								<label><span class="fas fa-sun"></span> Day</label>						
-								<select id="select-day" class="form-control" name="select-day" required>
-									<option value="M">M</option>
-									<option value="T">T</option>
-									<option value="W">W</option>
-									<option value="Th">Th</option>
-									<option value="F">F</option>
-								</select>
-							</div>
-
-							<div class="col">
 								<label><span class="fas fa-hourglass-start"></span> Start Time</label>
-								<input type="time" id="select-start-time" name="select-start-time" class="form-control" required>
+								<input type="time" id="select-start-time" name="select-start-time" class="form-control" value="07:00" required>
 							</div>
 								
 							<div class="col">
 								<label><span class="fas fa-hourglass-end"></span> End Time</label>
-								<input type="time" id="select-end-time" name="select-end-time" class="form-control" required>
+								<input type="time" id="select-end-time" name="select-end-time" class="form-control" value="08:00" required>
 							</div>
 						</div>
 						
 						<label><span class="fa fa-door-closed"></span> Room</label>
-						<div id="select-room"></div>
-
-						<button type="submit" class="form-control square_btn" id="add" style="margin:40px 0 55px 0">C R E A T E</button>
+						<select id="select-room" class="form-control">
+							
+						</select>
+						<div id="error_msg"></div>
+						<button type="submit" class="form-control square_btn" id="add" style="margin:40px 0 55px 0" onclick="return(check_submit());">Add Schedule</button>
 					</form>
 				</div>
 			</div>
@@ -99,81 +107,10 @@
 					</div>	
 					<div class="col-12"><hr></div>
 				</div>
+
 				<!-- WILL BE DISPLAYED BY PHP CODE IN A FORM OF TABLE -->        
-				<div id="schedule-data" class="table-responsive-sm">
-					<table class="table table-sm text-center">
+				<div id="schedule-data" class="table-responsive-sm"> </div>
 
-					    <thead  class="thead-dark">
-				      		<tr>
-				      			<th>Austero L.</th>
-				      		</tr>
-				      		<tr class="thead-light">
-					    		<th>Course Code</th>
-						        <th>Descriptive Title</th>
-						        <th>Course Yr. & Block</th>
-						        <th>Time</th>
-						        <th>Day</th>
-						        <th>Room</th>
-					    	</tr>
-					    </thead>
-					    <tbody id="workload_table_body">
-					    	
-					     	<tr>
-						        <td>example</td>
-						        <td>example</td>
-						        <td>example</td>
-						        <td>example</td>
-						        <td>example</td>
-						        <td>example</td>
-					      	</tr>
-					      	<tr >
-						        <td>xyz</td>
-						        <td>tux</td>
-						        <td>example</td>
-						        <td>example</td>
-						        <td>example</td>
-						        <td>example</td>
-					      	</tr>
-					    </tbody>
-					  </table>
-					  <hr>
-					  <table class="table table-sm text-center">
-
-					    <thead class="thead-dark">
-				      		<tr>
-				      			<th>Pancho L.</th>
-				      		</tr>
-				      		<tr class="thead-light">
-					    		<th>Course Code</th>
-						        <th>Descriptive Title</th>
-						        <th>Course Yr. & Block</th>
-						        <th>Time</th>
-						        <th>Day</th>
-						        <th>Room</th>
-					    	</tr>
-					    </thead>
-					    <tbody id="workload_table_body">
-					    	
-					     	<tr>
-						        <td>example</td>
-						        <td>example</td>
-						        <td>example</td>
-						        <td>example</td>
-						        <td>example</td>
-						        <td>example</td>
-					      	</tr>
-					      	<tr >
-						        <td>xyz</td>
-						        <td>tux</td>
-						        <td>example</td>
-						        <td>example</td>
-						        <td>example</td>
-						        <td>example</td>
-					      	</tr>
-					    </tbody>
-					  </table>
-				</div>
-				<hr>
 				
 				</div>
 			</div> <!-- END OF SIDE BAR -->
