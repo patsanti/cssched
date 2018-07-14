@@ -5,10 +5,32 @@
 // for those who want to Edit this Document please enter your changes below
 
 // (CHANGES)
+class global_use {
+	function connect_db(){
+		$servername = "localhost";
+		$username = "root";
+		$password = "password";
 
+		// Create connection
+		$conn = new mysqli($servername, $username, $password,'bucs_class_schedule');
+
+		// Check connection
+		if ($conn->connect_error) 
+		    die("Connection failed: " . $conn->connect_error);
+		else
+			return $conn;
+	}
+
+}
+
+
+
+
+// class for checking CSP
 class check{
 	function check_conflict($sql,$start_time,$end_time){
-		include('connect.php');
+		$global_use = new global_use;
+		$conn = $global_use->connect_db();
 		$result = $conn->query($sql);
 		while($row = $result->fetch_assoc()) {
 			if( ($row['room_id'] == $_POST['add_room']) && ($row['day'] == $_POST['select-day']) && ( (($row['start_time'] <= $start_time) && ($start_time <= $row['end_time'])) || (($row['start_time'] <= $end_time) && ($end_time <= $row['end_time'])) ) || (($row['course_id'] == $_POST['add_course']) && ($row['class_id'] == $_POST['add_class']))  ){
@@ -22,7 +44,7 @@ class check{
 		
 		if( $conflict == 0 ){
 			return 0;
-		}
+		}	
 		else{
 			return 1;
 		}
@@ -36,7 +58,8 @@ class check{
 class alter{
 	// function to add data
 	function alter_add(){
-  		include('connect.php');
+  		$global_use = new global_use;
+		$conn = $global_use->connect_db();
 
   		$start_time = $_POST['select-start-time'];
   		$end_time = $_POST['select-end-time'];
@@ -76,15 +99,17 @@ class get_data{
 
 	// function to get all data needed to add a schedule
 	function get_data_professor(){
-		include('connect.php');
-		$sql = "SELECT * FROM professors";
+		$global_use = new global_use;
+		$conn = $global_use->connect_db();
+
+		$sql = "SELECT * FROM professor";
 		$result = $conn->query($sql);
 
 		if ($result->num_rows > 0) {
 		    // output data of each row
 		    echo '<select class="form-control" name="add_prof" id="add_prof">';
 		    while($row = $result->fetch_assoc()) {
-		       echo  '<option value="'.$row['prof_id'].'">'.$row['prof_fname'].'</option>' ;
+		       echo  '<option value="'.$row['prof_id'].'">'.$row['prof_lname'].', '.$row['prof_fname'].' '.$row['prof_mname'].'</option>' ;
 		    }
 		    echo "</select>";
 		} else {
@@ -94,7 +119,9 @@ class get_data{
 	} 
 
 	function get_data_course(){
-		include('connect.php');
+		$global_use = new global_use;
+		$conn = $global_use->connect_db();
+
 		$sql = "SELECT * FROM course";
 		$result = $conn->query($sql);
 
@@ -113,7 +140,9 @@ class get_data{
 
 
 	function get_data_class(){
-		include('connect.php');
+		$global_use = new global_use;
+		$conn = $global_use->connect_db();
+
 		$sql = "SELECT * FROM class";
 		$result = $conn->query($sql);
 
@@ -130,7 +159,9 @@ class get_data{
 
 	}
 	function get_data_room(){
-		include('connect.php');
+		$global_use = new global_use;
+		$conn = $global_use->connect_db();
+		
 		$sql = "SELECT * FROM room";
 		$result = $conn->query($sql);
 
