@@ -1,0 +1,13 @@
+h2 {
+    font-size: 1.25rem;
+}
+
+input, select {
+    border-radius: 0% !important;
+}
+
+input:focus, select:focus, button:focus {
+	-webkit-box-shadow: none !important;
+	-moz-box-shadow: none !important;
+	box-shadow: none !important;
+}
