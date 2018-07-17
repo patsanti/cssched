@@ -1,32 +1,33 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  	<title>CSIT Schedule</title>
+  	<title>CSIT Class Scheduler</title>
 	<meta charset="utf-8">
 	<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="stylesheet" href="css/bootstrap.min.css">
-	<link rel="stylesheet" type="text/css" href="css/cs-sched-style.css">
 	<link rel="shortcut icon" type="image/x-icon" href="img/bucs-logo.png">
-	<link rel="stylesheet" type="text/css" href="css/fontawesome-free-5.1.0-web/css/all.css">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/navbar.css">
+	<link rel="stylesheet" href="css/default-theme.css">
+	<link rel="stylesheet" href="css/footer.css">
 	<script type="text/javascript" src="js/jquery.min.js"></script>
   	<script type="text/javascript" src="js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="js/script.js"></script>
 </head>
 <body>
 	<!-- NAVIGATION BAR -->
-	<nav class="navbar navbar-expand-lg navbar-light bg-light navbar-color">
-	  	<a class="navbar-brand" href="#">
-	    	<img src="img/bucs-logo.png" width="50" height="50" alt="">
-	  	</a>
-	  	<a class="navbar-brand" href="#"><h2><strong>CSIT SCHEDULER</strong></h2></a>
+	<nav class="navbar navbar-expand-md sticky-top navbar-light bg-light navbar-color">
+	  	<div class="navbar-brand" style="user-select: none">
+			<img src="img/bucs-logo.png" alt="CSIT departmental logo">
+			<h1>CLASS SCHEDULER</h1>
+		</div>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
 	  	<div class="collapse navbar-collapse" id="navbarNav">
 	    	<ul id="nav-list" class="navbar-nav">
 	      		<li class="nav-item active">
-	        		<a class="nav-link" href="#">Faculty Workload <span class="sr-only">(current)</span></a>
+	        		<a class="nav-link" href="#">Faculty Workload</a>
 	      		</li>
 		      	<li class="nav-item">
 		        	<a class="nav-link" href="#">Weekly Schedule</a>
@@ -38,27 +39,29 @@
 	  	</div>
 	</nav> <!-- END OF TNAVIGATION BAR -->
 
-	<div class="container-fluid">
+	<div class="container">
 		<div class="row">
 			<!-- SIDEBAR -->
-			<div class="col-lg-3 col-sm-12 sidebar">
-				<div id="add-schedule">
-					<h2 class="text-center" style="margin-top:20px; padding:10px;">ADD CLASS SCHEDULE</h2>
+			<div class="col-md-3">
+				<section id="add-schedule">
+					<header>
+						<h2>ADD CLASS SCHEDULE</h2>
+					</header>
 					<hr>
 					<form action="php/functions.php" method="POST">
 						<input type="hidden" name="add_schedule" id="add_schedule" value="1">
-						<label for="select-course"><span class="fas fa-edit"></span>Course Code</label>
-						<select id="select-course" class="form-control" required></select>
+						<label for="select-course">Course Code</label>
+						<select id="select-course" class="form-control" required>
+							<option value="">Option 1</option>
+							<option value="">Option 2</option>
+						</select>
 
-						<span class="fa fa-user"></span>
 						<label for="select-prof">Professor</label>
 						<select id="select-prof" class="form-control" required></select>
 
-						<span class="fas fa-chalkboard-teacher"></span>
 						<label for="select-class">Class</label>
 						<select id="select-class" class="form-control" required></select>
 
-						<span class="fas fa-sun"></span>
 						<label for="select-day">Day</label>
 						<select id="select-day" class="form-control" name="select-day" required>
 							<option value="1">Monday</option>
@@ -72,37 +75,34 @@
 
 						<div class="row">
 							<div class="col">
-								<span class="fas fa-hourglass-start"></span>
 								<label for="select-start-time">Start Time</label>
 								<input type="time" id="select-start-time" name="select-start-time" class="form-control" value="07:00" required>
 							</div>
 
 							<div class="col">
-								<span class="fas fa-hourglass-end"></span>
 								<label for="select-end-time">End Time</label>
 								<input type="time" id="select-end-time" name="select-end-time" class="form-control" value="08:00" required>
 							</div>
 						</div>
 
-						<span class="fa fa-door-closed"></span>
 						<label for="select-room">Room</label>
 						<select id="select-room" class="form-control" required></select>
 						<div id="error_msg"></div>
-						<button type="submit" class="form-control square_btn" id="add" style="margin:40px 0 55px 0" onclick="return(check_submit());">Add Schedule</button>
+						<button type="submit" class="form-control square_btn" id="add" style="margin-top: 40px" onclick="return(check_submit());">Add Schedule</button>
 					</form>
-				</div>
+				</section>
 			</div> <!-- END OF SIDE BAR -->
 
 			<!-- FACULTY WORKLOAD -->
-			<div class="col-lg-9 col-sm-12">
-				<div class="row" style="margin-top:20px; padding:10px;">
-					<div class="col-lg-8">
+			<div class="col-md-9">
+				<header class="row">
+					<div class="col-md-8">
 						<h2>Faculty Workload</h2>
 					</div>
-					<div class="col-lg-4">
+					<div class="col-md-4">
 						<input type="text" id="workload_search" class="form-control" placeholder="Search for names...">
 					</div>
-				</div>
+				</header>
 				<hr>
 
 				<!-- WILL BE DISPLAYED BY PHP CODE IN A FORM OF TABLE -->
@@ -110,6 +110,7 @@
 			</div>
 		</div>
 	</div>
+	<footer><i>Footer here (work in progress).</i></footer>
 	<script>
 	$(document).ready(function() {
 		$("#workload_search").on("keyup", function() {
