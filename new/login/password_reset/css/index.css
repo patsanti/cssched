@@ -1,0 +1,100 @@
+body {
+    background-color: white;
+    margin: 0;
+    padding: 0;
+}
+
+.change_pass {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  /* bring your own prefixes */
+  transform: translate(-50%, -50%);
+}
+
+
+input[type=password]:focus {
+    border: 3px solid #555;
+
+}
+
+input[type=password]{
+
+padding: 7px 7px 5px;
+border-radius: 3px;
+line-height: 20px;
+border: 1px solid #ccd6dd;
+outline: 0;
+font-size: 20px;
+margin: 5px 10px 5px 0;
+
+
+}
+#brand-logo1 {
+height: 10%;
+width: 6%;
+margin-top: 30px;
+}
+
+.header{
+    margin-bottom: 10px;
+    font-size: 30px;
+
+}
+
+.hello_user{
+    margin-bottom: 19px;
+    font-size: 15px;
+
+}
+input[type=submit]{
+    border-radius: 100px;
+    box-shadow: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 20px;
+    padding: 6px 16px;
+    position: relative;
+    text-align: center;
+    white-space: nowrap;
+
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    padding: 9px 18px;
+    border: 1px solid #3b94d9;
+    border-radius: 3px;
+    background-color: #50a5e6;
+    outline: 0;
+    display: inline-block;
+    margin-top: 5px;
+
+}
+
+.error_msg {
+    color: red;
+    font-size: 17px;
+}
+
+.panel-login {
+   max-width: 300px;
+  padding: 15px 35px 45px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 0px solid rgba(0,0,0,0.1);
+box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+
+
+}
+@media only screen and (max-width: 600px;){
+    body .w3-main{
+        min-width: 300px !important;
+    }
+}
+
+@media (max-width: 768px){
+    #topbar1{
+            margin-left: 20px;
+        }
+}

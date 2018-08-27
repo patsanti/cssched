@@ -1,0 +1,144 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.error_msg,.uname_error{
+    color: red;
+    font-size: 17px;
+}
+
+
+
+input[type=text],input[type=password],input[type=email]{
+padding: 7px 7px 5px;
+border-radius: 3px;
+line-height: 20px;
+border: 1px solid #ccd6dd;
+outline: 0;
+font-size: 15px;
+margin: 5px 10px 5px 0;
+
+}
+input[type=text]:focus,input[type=password]:focus,input[type=email]:focus {
+    border: 3px solid #555;
+
+}
+#brand-logo1 {
+  height: 10%;
+  width: 8%;
+  min-height: 15%;
+  min-width: : 15% ;
+  max-width: 30%;
+  max-height: :   30%;
+      height: auto;
+     width: : auto;
+margin-top: 30px;
+}
+
+input[type=submit]{
+    border-radius: 100px;
+    box-shadow: none;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    line-height: 15px;
+    padding: 6px 16px;
+    position: relative;
+    text-align: center;
+    white-space: nowrap;
+    font-size: 14px;
+    font-weight: bold;
+    color: white;
+    padding: 9px 18px;
+    border: 0px solid #3b94d9;
+    border-radius: 3px;
+    background-color: #50a5e6;
+    outline: 0;
+    display: inline-block;
+    margin-top: 5px;
+    width: 230px;
+
+}
+input[type=submit]:hover {
+  background: rgba(0,0,0,0);
+  color: #3a7999;
+  box-shadow: inset 0 0 0 3px #3a7999;
+}
+
+.disabled {
+    background-color: black;
+}
+
+.forgot_pass {
+  margin-top: 10px;
+   font-size: 17px;
+}
+
+
+.show_hide {
+  display:none;
+}
+
+.show_hide2 {
+  display:none;
+}
+
+
+
+.page_header {
+font-size: 28px;
+font-weight: 200;
+color: #66757f;
+margin-bottom: 5px;
+}
+
+.panel-login {
+   max-width: 300px;
+  padding: 15px 35px 45px;
+  margin: 0 auto;
+  background-color: #fff;
+  border: 0px solid rgba(0,0,0,0.1);
+box-shadow: 0px 2px 3px 0px rgba(0,0,0,0.2);
+
+
+}
+
+.login_form{
+
+}
+
+.error_email {
+  color: red;
+  font-size: 17px;
+}
+
+input[type=email]:focus {
+    border: 3px solid #555;
+
+}
+
+input[type=email]{
+
+padding: 7px 7px 5px;
+border-radius: 3px;
+line-height: 20px;
+border: 1px solid #ccd6dd;
+outline: 0;
+font-size: 15px;
+margin: 5px 10px 5px 0;
+
+}
+
+
+@media only screen and (max-width: 600px;){
+    body .w3-main{
+        min-width: 300px !important;
+    }
+}
+
+@media (max-width: 768px){
+    #topbar1{
+            margin-left: 20px;
+        }
+}
