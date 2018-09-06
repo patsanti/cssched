@@ -5,12 +5,13 @@ if(session_status() == PHP_SESSION_NONE) {
 }
 
 include $_SERVER['DOCUMENT_ROOT']."/cssched/php/functions.php";
+include $_SERVER['DOCUMENT_ROOT']."/cssched/php/encrypt.php";
 $global_use = new global_use;
 $conn = $global_use->connect_db();
 
 if(isset($_POST['uname']) && isset($_POST['pass'])){
-	$username = $global_use->encode($_POST['uname']);
-	$password = $global_use->encrypt($global_use->encode($_POST['pass']));
+	$username = encode($_POST['uname']);
+	$password = encrypt(encode($_POST['pass']));
 
 	// check if entered username and password is in the database
 	$result = mysqli_query($conn,"SELECT * FrOm bucs_class_schedule.account where bucs_class_schedule.account.username = '$username' AND bucs_class_schedule.account.password = '$password' ");
@@ -40,8 +41,8 @@ if(isset($_POST['uname']) && isset($_POST['pass'])){
 
 // create account
 elseif(isset($_POST['crt_uname']) && isset($_POST['crt_pass'])){
-	$username = $global_use->encode($_POST['crt_uname']);
-	$password = $global_use->encrypt($global_use->encode($_POST['crt_pass']));
+	$username = encode($_POST['crt_uname']);
+	$password = encrypt(encode($_POST['crt_pass']));
  	// $password = encrypt(encode($_POST['crt_pass']));
 	if(mysqli_query($conn,"INSERT INTO bucs_class_schedule.account(account_id,username,password) VALUES ('','$username','$password') ")){
 		echo "success";
@@ -51,10 +52,10 @@ elseif(isset($_POST['crt_uname']) && isset($_POST['crt_pass'])){
 	}
 }
 else{
-  $username = $global_use->encode($_POST['uname']);
+  	$username = encode($_POST['uname']);
 
 	// check if entered username and password is in the database
-	$result = mysqli_query($conn,"SELECT bucs_class_schedule.account.username FrOm bucs_class_schedule.account where bucs_class_schedule.account.username = '$username' ");
+	$result = mysqli_query($conn,"SELECT bucs_class_schedule.account.username FrOm bucs_class_schedule.account where bucs_class_schedule.account.username = ".$username." ");
 	if($row = mysqli_num_rows($result) != 0){
 		echo "This Username is already taken";
 	}
