@@ -7,12 +7,8 @@
 // (CHANGES)
 class global_use {
 	function connect_db(){
-		$servername = "localhost";
-		$username = "root";
-		$password = "password";
-
-		// Create connection
-		$conn = new mysqli($servername, $username, $password,'csit_advising_scheduler');
+		//connect to the database
+		require_once 'connect.php';
 
 		// Check connection
 		if ($conn->connect_error) 
