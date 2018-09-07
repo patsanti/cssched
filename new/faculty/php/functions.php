@@ -8,7 +8,7 @@
 class global_use {
 	function connect_db(){
 		//connect to the database
-		require_once 'connect.php';
+		require_once '../../global/php/connect.php';
 
 		// Check connection
 		if ($conn->connect_error) 
