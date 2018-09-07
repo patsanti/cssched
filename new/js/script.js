@@ -18,7 +18,7 @@ $(document).ready(function() {
         type: "POST",
         url: "php/functions.php",
         data: {
-            get_course: "1"
+            get_subject: "1"
         },
         success: function (result) {
             var course = eval(result);

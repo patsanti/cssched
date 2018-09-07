@@ -52,7 +52,6 @@ if(isset($_SESSION['account_id'])) {
 				</div>
 				<input type="submit" class="btn btn-md" name="submit" id="submit" value="Login" onclick="return(login_submit());">
 				<div id="forgot_pass"><a href="#" class="show_hide2"> Forgot Password</a></div>
-				<a href="#" class="show_hide">Sign Up</a><br />
 			</form>
 		</div>
 	</div>
@@ -75,26 +74,6 @@ if(isset($_SESSION['account_id'])) {
 		</div>
 	</div>
 
-	<!-- Create Form -->
-	<div class="container crt_form">
-		<div align="center">
-			<img src="../img/bucs-logo.png" id="brand-logo1">
-			<h3>Create a New Account</h3>
-		</div>
-		<div class="panel-login">
-			<form method="post" enctype="multipart/form-data">
-				<div class="form-group">
-					<label>Username</label>
-					<input type="text" class="form-control" name="crt_uname" id="crt_uname"   required>
-					<label>Password</label>
-					<input type="password" class="form-control" name="crt_pass" id="crt_pass" required>
-					<span class="help-block" id="uname_error"></span>
-				</div>
-				<input type="submit" name="crt_acc" id="crt_acc" value="Create account" onclick="return(crt_submit());"><br>
-				<a href="#" class="show_hide">Already have an account? Log in</a><br>
-			</form>
-		</div>
-	</div>
 
 <!-- Email success -->
 <div id="myModal" class="modal fade">

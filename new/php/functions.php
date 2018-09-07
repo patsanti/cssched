@@ -12,7 +12,7 @@ class global_use {
 		$password = "password";
 
 		// Create connection
-		$conn = new mysqli($servername, $username, $password,'bucs_class_schedule');
+		$conn = new mysqli($servername, $username, $password,'test_join');
 
 		// Check connection
 		if ($conn->connect_error) 
@@ -67,7 +67,7 @@ class check{
 		$conn = $global_use->connect_db();
 		$result = $conn->query($sql);
 		while($row = $result->fetch_assoc()) {
-			if( ($row['room_id'] == $_POST['add_room']) && ($row['day'] == $_POST['select-day']) && ( (($row['start_time'] <= $start_time) && ($start_time <= $row['end_time'])) || (($row['start_time'] <= $end_time) && ($end_time <= $row['end_time'])) ) || (($row['course_id'] == $_POST['add_course']) && ($row['class_id'] == $_POST['add_class']))  ){
+			if( ($row['room_id'] == $_POST['add_room']) && ($row['day'] == $_POST['select-day']) && ( (($row['start_time'] <= $start_time) && ($start_time <= $row['end_time'])) || (($row['start_time'] <= $end_time) && ($end_time <= $row['end_time'])) ) || (($row['subject_id'] == $_POST['add_subject']) && ($row['class_id'] == $_POST['add_class']))  ){
 				$conflict = 1;
 				break;
 			}
@@ -141,12 +141,12 @@ class get_data{
 							<table class="table table-sm text-center">
 							    <thead  class="thead-dark">
 						      		<tr>
-						      			<th>'.$row['prof_fname'].' '.$row['prof_mname'].' '.$row['prof_mlame'].'</th>
+						      			<th>'.$row['prof_fname'].' '.$row['prof_mname'].' '.$row['prof_lname'].'</th>
 						      		</tr>
 						      		<tr class="thead-light">
-							    		<th>Course Code</th>
+							    		<th>subject Code</th>
 								        <th>Descriptive Title</th>
-								        <th>Course Yr. & Block</th>
+								        <th>subject Yr. & Block</th>
 								        <th>Time</th>
 								        <th>Day</th>
 								        <th>Room</th>
@@ -172,23 +172,28 @@ class get_data{
 							$day = "Sat";
 						}
 
-						// for the course data schedule
-						$sql2 = "SELECT * FROM course WHERE course_id = ".$row1['course_id']." ";
+						$start_time = strtotime($row1['start_time']);
+						$end_time = strtotime($row1['end_time']);
+						$start_time = date("h:i",$start_time);
+						$end_time = date("h:i",$end_time);
+
+						// for the subject data schedule
+						$sql2 = "SELECT * FROM subject WHERE subject_id = ".$row1['subject_id']." ";
 						$result2 = $conn->query($sql2);
 						$row2 = $result2->fetch_assoc();
 						// for the class data in schedule
 						$sql3 = "SELECT * FROM class WHERE class_id = ".$row1['class_id']." ";
 						$result3 = $conn->query($sql3);
-						$course_yr = $result3->fetch_assoc();
+						$subject_yr = $result3->fetch_assoc();
 						// for the room data in schedule
 						$sql4 = "SELECT * FROM room WHERE room_id = ".$row1['room_id']." ";
 						$result4 = $conn->query($sql4);
 						$room_data = $result4->fetch_assoc();
 						echo '<tr>
-								        <td>'.$row2['course_code'].'</td>
-								        <td>'.$row2['course_title'].'</td>
-								        <td>'.$course_yr['class_yr_blk'].'</td>
-								        <td>'.$row1['start_time'].' - '.$row1['end_time'].'</td>
+								        <td>'.$row2['subject_name'].'</td>
+								        <td>'.$row2['subject_description'].'</td>
+								        <td>'.$subject_yr['class_yr_blk'].'</td>
+								        <td>'.$start_time.' - '.$end_time.'</td>
 								        <td>'.$day.'</td>
 								        <td>'.$room_data['room_name'].'</td>
 							      	</tr>';
@@ -236,28 +241,28 @@ class get_data{
 
 	} 
 
-	function get_data_course(){
+	function get_data_subject(){
 		$global_use = new global_use;
 		$conn = $global_use->connect_db();
 
-		$sql = "SELECT * FROM course";
+		$sql = "SELECT * FROM subject";
 		$result = $conn->query($sql);
 
 		if ($result->num_rows > 0) {
 		    // output data of each row
 		    $n = 0;
-		    $course = array();
+		    $subject = array();
 		    while($row = $result->fetch_assoc()) {
-		       $course[$n] = $row['course_id'];
+		       $subject[$n] = $row['subject_id'];
 		       $n++;
-		       $course[$n] = $row['course_code'];
+		       $subject[$n] = $row['subject_name'];
 		       $n++;
 		    }
-		    $array_return = json_encode($course);
+		    $array_return = json_encode($subject);
 		    echo $array_return;
 		    
 		} else {
-		    echo "no Course data";
+		    echo "no subject data";
 		}
 
 	}
@@ -324,9 +329,9 @@ $get_data = new get_data;
 if(isset($_POST['get_prof'])){
 	$get_data->get_data_professor();
 }
-// get all course list
-elseif (isset($_POST['get_course'])) {
-	$get_data->get_data_course();
+// get all subject list
+elseif (isset($_POST['get_subject'])) {
+	$get_data->get_data_subject();
 }
 // get all class list
 elseif (isset($_POST['get_class'])) {

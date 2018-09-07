@@ -4,7 +4,7 @@ $username = "root";
 $password = "password";
 
 // Create connection
-$conn = new mysqli($servername, $username, $password,'bucs_class_schedule');
+$conn = new mysqli($servername, $username, $password,'test_join');
 
 // Check connection
 if ($conn->connect_error) {
