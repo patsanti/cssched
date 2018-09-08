@@ -21,39 +21,8 @@ $(document).ready(function() {
     });
 
 
-    // checking if username is available
-    $("#crt_uname").blur(
-        function(event) {
-            if ($("#crt_uname").val() == "") {
-                $("#uname_error").css({ color: 'red' });
-                document.getElementById("uname_error").innerHTML = "Please Enter your desired Username";
-            }
-            else {
-                $.ajax({
-                    type: "POST",
-                    url: "php/login.php",
-                    data: {
-                        uname: $("#crt_uname").val()
-                    },
-                    success: function(result) {
-                        if (result == "Username's Available") {
-                            document.getElementById("uname_error").innerHTML = result;
-                            $("#uname_error").css({ color: 'green' });
-                            $("input[type=submit]#crt_acc").removeAttr("disabled");
-                            $("input[type=submit]#crt_acc").css({ backgroundColor: '#50a5e6' });
-                        }
-                        else {
-                            document.getElementById("uname_error").innerHTML = result;
-                            $("input[type=submit]#crt_acc").attr("disabled", "disabled");
-                            $("#uname_error").css({ color: 'red' });
-                            $("input[type=submit]#crt_acc").css({ backgroundColor: 'grey' });
-                            //$("input[type=button]#crt_acc").removeClass('input[type=button]:hover');
-                        }
-                    }
-                });
-            }
-        }
-    );
+
+
 });
 
 function login_submit() {
@@ -61,20 +30,17 @@ function login_submit() {
     $("#submit").val("Loging in...");
     $.ajax({
         type: "POST",
-        url: "php/login.php",
+        url: "login/php/login.php",
         data: {
             uname: $("#uname").val(),
             pass: $("#pass").val()
         },
         success: function(result) {
-            if (result == "sucess") {
-                window.location.assign(document.getElementById('redir_link').value);
+            if (result == 1) {
+                window.location.assign("faculty/");
             }
             else if (result == "deactivated account") {
                 window.location.assign("reactivate_account/");
-            }
-            else if (result == "banned account") {
-                window.location.assign("banned_account/");
             }
             else {
                 $("#submit").val("Login");
@@ -93,58 +59,25 @@ function email_submit() {
     $("#send_mail").val("Sending...");
     $.ajax({
         type: "POST",
-        url: "php/password_reset.php",
+        url: "login/php/password_reset.php",
         data: {
             email: $("#email").val()
         },
         success: function(result) {
             $("#send_mail").val("Send");
 
-            if (result == "failed") {
-                $("#error_email").css({ color: 'red' });
-                document.getElementById("error_email").innerHTML = "Email not Found";
-                stat = false;
-            }
-            else {
+            if(result == 1){
                 document.getElementById("error_email").innerHTML = "";
                 $("#myModal").modal('show');
+                window.setTimeout(function(){ window.location = "index.php"; },3000);
+            }
+            else{
+                $("#error_email").css({ color: 'red' });
+                document.getElementById("error_email").innerHTML = "Username not Found";
+                stat = false;
             }
         }
     });
-    if (!stat)
-        return false;
-}
-
-function crt_submit() {
-    var stat = "";
-    $("#crt_acc").val("Creating Account...");
-    if (($("#crt_uname").val() == "" && $("#crt_pass").val() == "") || ($("#crt_uname").val() == "" || $("#crt_pass").val() == "")) {
-        $("#crt_acc").val("Create Account");
-        $("#uname_error").css({ color: 'red' });
-        document.getElementById("uname_error").innerHTML = "Please Fill up the form";
-        stat = false;
-    }
-    else if ($("#crt_pass").val().length < 8) {
-        $("#crt_acc").val("Create Account");
-        $("#uname_error").css({ color: 'red' });
-        document.getElementById("uname_error").innerHTML = "Password Must be atleast 8 characters";
-        stat = false;
-    }
-    else {
-        $.ajax({
-            type: "POST",
-            url: "php/login.php",
-            data: {
-                crt_uname: $("#crt_uname").val(),
-                crt_pass: $("#crt_pass").val()
-            },
-            success: function(result) {
-                // window.location.assign("http://localhost/augeo/home/account/?new=1");
-                window.location.assign("http://localhost/cssched/login");
-            }
-        });
-    }
-
     if (!stat)
         return false;
 }

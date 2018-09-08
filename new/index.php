@@ -4,10 +4,11 @@ if(session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
-if(isset($_SESSION['account_id'])) {
-    header($_SERVER['SERVER_PROTOCOL']." 302 Found");
-	header("Location: http://localhost/cssched");
-	exit();
+if(isset($_SESSION['acc_type_id'])) {
+	if($_SESSION['acc_type_id'] == 2)
+		header("Location: faculty/");
+	elseif ($_SESSION['acc_type_id'] == 3) 
+		header("Location: approve");
 }
 
 ?>
@@ -17,26 +18,16 @@ if(isset($_SESSION['account_id'])) {
 <head>
 	<title>login</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" href="css/index.css"/>
-	<link rel="stylesheet" href="../css/bootstrap.min.css">
+	<link rel="stylesheet" href="login/css/index.css"/>
+	<link rel="stylesheet" href="global/css/bootstrap.min.css">
 </head>
 <body>
-	<?php
-	if(isset($_GET['activated'])) {
-		echo '<input type="hidden" name="activated" id="activated" value="1">';
-	}
-	$redir_link = 'http://localhost/augeo/user/account';
-	if(isset($_GET['redir'])) {
-		$redir_link = $_GET['redir'];
-		unset($_GET['redir']);
-	}
-	echo '<input type="hidden" id="redir_link" value="'.$redir_link.'">';
-	?>
+
 
 	<!-- Login form -->
 	<div class="container login_form">
 		<div align="center">
-			<img src="../img/bucs-logo.png" id="brand-logo1">
+			<img src="global/img/bucs-logo.png" id="brand-logo1">
 			<h3>Sign in to CSIT Scheduler</h3>
 		</div>
 		<div class="panel-login">
@@ -59,13 +50,13 @@ if(isset($_SESSION['account_id'])) {
 	<!-- Password Reset Form-->
 	<div class="container email_d" >
 		<div align="center">
-			<img src="../img/bucs-logo.png" id="brand-logo1">
+			<img src="global/img/bucs-logo.png" id="brand-logo1">
 			<h3>Recover Account</h3>
 		</div>
 		<div class="panel-login">
 			<form method="post" enctype="multipart/form-data">
 				<div class="form-group">
-					<label>Enter your Email</label>
+					<label>Enter your username</label>
 					<input type="email" class="input-group" name="email" id="email">
 					<span class="help-block" id ="error_email"></span>
 				</div>
@@ -81,32 +72,18 @@ if(isset($_SESSION['account_id'])) {
 		<div class="modal-content">
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-				<h4 class="modal-title">Email Sent!</h4>
+				<h4 class="modal-title">Password Reset request pending</h4>
 			</div>
 			<div class="modal-body">
-				<h2 align="center"> Please check your Email to reset your password</h2>
+				<h2 align="center"> Please wait untill your administrator approves your request</h2>
 			</div>
 		</div>
 	</div>
 </div>
 
-	<!--Activated Account-->
-	<div id="activated_modal" class="modal fade">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-					<h4 class="modal-title">Account has been Activated!</h4>
-				</div>
-				<div class="modal-body">
-					<h2 align="center"> To continue, Please login</h2>
-				</div>
-			</div>
-		</div>
-	</div>
 
-	<script src="../js/jquery.min.js"></script>
-	<script src="../js/bootstrap.min.js"></script>
-	<script src="js/index.js"></script>
+	<script src="global/js/jquery.min.js"></script>
+	<script src="global/js/bootstrap.min.js"></script>
+	<script src="login/js/index.js"></script>
 </body>
 </html>
