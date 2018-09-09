@@ -12,7 +12,7 @@
 	<link rel="stylesheet" href="../global/css/footer.css">
 	<script type="text/javascript" src="../global/js/jquery.min.js"></script>
   	<script type="text/javascript" src="../global/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/script.js"></script>
+	<script src="js/daypilot-all.min.js?v=2018.2.232" type="text/javascript"></script>
 </head>
 <body>
 	<!-- NAVIGATION BAR -->
@@ -26,11 +26,11 @@
 		</button>
 	  	<div class="collapse navbar-collapse" id="navbarNav">
 	    	<ul id="nav-list" class="navbar-nav">
-	      		<li class="nav-item active">
-	        		<a class="nav-link" href="#">Faculty Workload</a>
+	      		<li class="nav-item">
+	        		<a class="nav-link" href="../faculty">Faculty Workload</a>
 	      		</li>
-		      	<li class="nav-item">
-		        	<a class="nav-link" href="../weekly">Weekly Schedule</a>
+		      	<li class="nav-item active">
+		        	<a class="nav-link" href="#">Weekly Schedule</a>
 		      	</li>
 		      	<li class="nav-item">
 		        	<a class="nav-link" href="#">Room Designation</a>
@@ -38,12 +38,10 @@
 	    	</ul>
 	  	</div>
 	</nav> <!-- END OF TNAVIGATION BAR -->
-
 	<div class="container">
 		<div class="row">
-			<!-- SIDEBAR -->
 			<div class="col-md-3">
-				<section id="add-schedule">
+					<section id="add-schedule">
 					<header>
 						<h2>ADD CLASS SCHEDULE</h2>
 					</header>
@@ -60,28 +58,6 @@
 						<label for="select-class">Class</label>
 						<select id="select-class" class="form-control" required></select>
 
-						<label for="select-day">Day</label>
-						<select id="select-day" class="form-control" name="select-day" required>
-							<option value="1">Monday</option>
-							<option value="2">Tuesday</option>
-							<option value="3">Wednesday</option>
-							<option value="4">Thursday</option>
-							<option value="5">Friday</option>
-							<option value="6">Saturday</option>
-							<option value="7">Sunday</option>
-						</select>
-
-						<div class="row">
-							<div class="col">
-								<label for="select-start-time">Start Time</label>
-								<input type="time" id="select-start-time" name="select-start-time" class="form-control" value="07:00" required>
-							</div>
-
-							<div class="col">
-								<label for="select-end-time">End Time</label>
-								<input type="time" id="select-end-time" name="select-end-time" class="form-control" value="08:00" required>
-							</div>
-						</div>
 
 						<label for="select-room">Room</label>
 						<select id="select-room" class="form-control" required></select>
@@ -89,42 +65,15 @@
 						<button type="submit" class="form-control square_btn" id="add" style="margin-top: 40px" onclick="return(check_submit());">Add Schedule</button>
 					</form>
 				</section>
-			</div> <!-- END OF SIDE BAR -->
-
-			<!-- FACULTY WORKLOAD -->
+			</div>
 			<div class="col-md-9">
-				<header class="row">
-					<div class="col-md-8">
-						<h2>Faculty Workload</h2>
-					</div>
-					<div class="col-md-4">
-						<input type="text" id="workload_search" class="form-control" placeholder="Search for names...">
-					</div>
-				</header>
-				<hr>
-
-				<!-- WILL BE DISPLAYED BY PHP CODE IN A FORM OF TABLE -->
-				<div id="schedule-data" class="table-responsive-sm"></div>
+				<h1>Weekly Schedule</h1>
+				<div id="dp"></div>
 			</div>
 		</div>
 	</div>
+
 	<footer><i>Footer here (work in progress).</i></footer>
-	<script>
-	$(document).ready(function() {
-		$("#workload_search").on("keyup", function() {
-			var value = $(this).val().toLowerCase();
-			// $("#workload_table_head th").filter(function() {
-			//   $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-			// });
-			$("#workload_table_body tr").filter(function() {
-				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
-			});
-		});
-	});
-	</script>
+	<script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>
-
-
-<!-- dyron ikaw na po bahala design kung ano na pupusuan mo haha theme  -->
-<!-- sana sia mapusuan nia rin ako :3 XD -->
