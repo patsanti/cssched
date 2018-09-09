@@ -24,35 +24,67 @@
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
+	  	<div class="collapse navbar-collapse" id="navbarNav">
+	    	<ul id="nav-list" class="navbar-nav">
+	      		<li class="nav-item">
+	        		<a class="nav-link" href="#">Faculty Workload</a>
+	      		</li>
+		      	<li class="nav-item">
+		        	<a class="nav-link" href="#">Weekly Schedule</a>
+		      	</li>
+		      	<li class="nav-item">
+		        	<a class="nav-link" href="#">Room Designation</a>
+		      	</li>
+	    	</ul>
+	  	</div>
 	</nav> <!-- END OF TNAVIGATION BAR -->
 
-	<div class="alert alert-warning alert-dismissible fade show" role="alert" data-spy="affix" data-offset-top="197">
-  		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-    		<span aria-hidden="true">&times;</span>
- 		 </button>
-  		<strong>Schedule Request:  Successfully changed</strong>
+	
+<div class="container">
+	<h2>Account Settings</h2>
+  <div class="row">
+  		<div class="col-md-2">
+  			<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+			  <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Profile</a>
+			  <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Account</a>
+			  <a class="nav-link" id="v-pills-messages-tab" data-toggle="pill" href="#v-pills-messages" role="tab" aria-controls="v-pills-messages" aria-selected="false">Messages</a>
+			  <a class="nav-link" id="v-pills-settings-tab" data-toggle="pill" href="#v-pills-settings" role="tab" aria-controls="v-pills-settings" aria-selected="false">Settings</a>
+			</div>
+
+		</div>
+		<div class="col-md-10">
+			<div class="tab-content" id="v-pills-tabContent">
+			  <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">profile
+
+			  </div>
+			  
+			  <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+				  <form action="/action_page.php">
+				    <div class="form-group">
+				      <label for="email">Username:</label>
+				      <input type="email" class="form-control" id="email" placeholder="Enter email" name="email">
+				    </div>
+				    <div class="form-group">
+				      <label for="pwd">Password:</label>
+				      <input type="password" class="form-control" id="pwd" placeholder="Enter password" name="pswd">
+				    </div>
+				    <div class="form-group form-check">
+				      <label class="form-check-label">
+				        <input class="form-check-input" type="checkbox" name="remember"> Remember me
+				      </label>
+				    </div>
+				    <button type="submit" class="btn btn-primary">Submit</button>
+				  </form>
+			  </div>
+
+			  <div class="tab-pane fade" id="v-pills-messages" role="tabpanel" aria-labelledby="v-pills-messages-tab">...</div>
+			  
+			  <div class="tab-pane fade" id="v-pills-settings" role="tabpanel" aria-labelledby="v-pills-settings-tab">...</div>
+		</div>
+		</div>
 	</div>
+</div>
 
-	<div class="container">
-
-		  <ul class="nav nav-tabs">
-		    <li class="nav-item">
-		      <a class="nav-link active" data-toggle="tab" href="#home"><button value="0" class="form-control" name="button" id="button" onclick="request_type('0')">Pending Schedule Request</button></a>
-
-		    </li>
-		    <li class="nav-item">
-		      <a class="nav-link" data-toggle="tab" href="#home"><button value="1" class="form-control" name="button" id="button" onclick="request_type('1')">Approved Schedule Request</button></a>
-		    </li>
-		    <li class="nav-item">
-		      <a class="nav-link" data-toggle="tab" href="#home"><button value="2" class="form-control" name="button" id="button" onclick="request_type('2')">Denied Schedule Request</button></a>
-		    </li>
-		  </ul>
-
-		  <!-- Tab panes -->
-		 <div id="approve_data"></div>
-
-
-	</div>
 
 </body>
 </html>
