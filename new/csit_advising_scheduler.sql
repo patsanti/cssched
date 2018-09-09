@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 07, 2018 at 01:50 PM
+-- Generation Time: Sep 09, 2018 at 03:56 PM
 -- Server version: 10.1.34-MariaDB-0ubuntu0.18.04.1
 -- PHP Version: 7.2.7-0ubuntu0.18.04.2
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `test_join`
+-- Database: `csit_advising_scheduler`
 --
 
 -- --------------------------------------------------------
@@ -33,8 +33,15 @@ CREATE TABLE `account` (
   `acc_fname` varchar(255) NOT NULL,
   `acc_lname` varchar(255) NOT NULL,
   `acc_type_id` int(255) NOT NULL,
-  `acc_status` tinyint(2) NOT NULL COMMENT '0 for inactive; 1 for active; 2 for deactivated'
+  `acc_status` tinyint(2) NOT NULL COMMENT '0 for inactive; 1 for active; 2 for deactivated; 3 for reset'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `account`
+--
+
+INSERT INTO `account` (`account_id`, `account_usern`, `account_pass`, `acc_fname`, `acc_lname`, `acc_type_id`, `acc_status`) VALUES
+(1, 'super', '8d0f1de01fe57bc432ec5b8cbca39ec6', 'Naz', 'Naz', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -52,7 +59,10 @@ CREATE TABLE `acc_type` (
 --
 
 INSERT INTO `acc_type` (`acc_type_id`, `acc_type_name`) VALUES
-(1, 'Adviser');
+(1, 'Adviser'),
+(2, 'super admin'),
+(3, 'admin_approver'),
+(4, 'schedule deputy');
 
 -- --------------------------------------------------------
 
@@ -182,34 +192,35 @@ CREATE TABLE `schedule` (
   `class_id` int(11) NOT NULL,
   `day` varchar(20) NOT NULL,
   `start_time` time(6) NOT NULL,
-  `end_time` time(6) NOT NULL
+  `end_time` time(6) NOT NULL,
+  `status` tinyint(2) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `schedule`
 --
 
-INSERT INTO `schedule` (`sched_no`, `subject_id`, `prof_id`, `room_id`, `class_id`, `day`, `start_time`, `end_time`) VALUES
-(1, 5, 4, 1, 3, '2', '14:30:00.000000', '16:00:00.000000'),
-(2, 5, 4, 1, 3, '4', '14:30:00.000000', '16:00:00.000000'),
-(3, 5, 4, 1, 4, '2', '13:00:00.000000', '14:30:00.000000'),
-(4, 5, 4, 1, 4, '4', '13:00:00.000000', '14:30:00.000000'),
-(5, 2, 6, 4, 5, '2', '13:00:00.000000', '15:00:00.000000'),
-(6, 6, 7, 1, 3, '2', '10:30:00.000000', '12:00:00.000000'),
-(7, 6, 7, 1, 3, '5', '10:30:00.000000', '12:00:00.000000'),
-(8, 2, 7, 4, 6, '5', '13:00:00.000000', '15:00:00.000000'),
-(9, 1, 8, 5, 1, '5', '09:00:00.000000', '12:00:00.000000'),
-(10, 1, 8, 5, 2, '5', '13:00:00.000000', '00:00:00.000000'),
-(11, 7, 9, 3, 4, '2', '10:30:00.000000', '12:00:00.000000'),
-(12, 7, 9, 3, 4, '5', '10:30:00.000000', '12:00:00.000000'),
-(13, 1, 9, 3, 5, '5', '13:00:00.000000', '16:00:00.000000'),
-(14, 1, 9, 3, 6, '2', '13:00:00.000000', '16:00:00.000000'),
-(15, 7, 5, 3, 3, '2', '09:00:00.000000', '10:30:00.000000'),
-(16, 7, 5, 3, 3, '5', '09:00:00.000000', '10:30:00.000000'),
-(17, 2, 10, 5, 1, '2', '10:00:00.000000', '12:00:00.000000'),
-(18, 2, 10, 5, 2, '2', '13:00:00.000000', '16:00:00.000000'),
-(19, 3, 2, 2, 3, '3', '09:00:00.000000', '12:00:00.000000'),
-(20, 3, 2, 2, 4, '3', '13:00:00.000000', '16:00:00.000000');
+INSERT INTO `schedule` (`sched_no`, `subject_id`, `prof_id`, `room_id`, `class_id`, `day`, `start_time`, `end_time`, `status`) VALUES
+(1, 5, 4, 1, 3, '2', '14:30:00.000000', '16:00:00.000000', 0),
+(2, 5, 4, 1, 3, '4', '14:30:00.000000', '16:00:00.000000', 0),
+(3, 5, 4, 1, 4, '2', '13:00:00.000000', '14:30:00.000000', 0),
+(4, 5, 4, 1, 4, '4', '13:00:00.000000', '14:30:00.000000', 0),
+(5, 2, 6, 4, 5, '2', '13:00:00.000000', '15:00:00.000000', 0),
+(6, 6, 7, 1, 3, '2', '10:30:00.000000', '12:00:00.000000', 0),
+(7, 6, 7, 1, 3, '5', '10:30:00.000000', '12:00:00.000000', 0),
+(8, 2, 7, 4, 6, '5', '13:00:00.000000', '15:00:00.000000', 0),
+(9, 1, 8, 5, 1, '5', '09:00:00.000000', '12:00:00.000000', 0),
+(10, 1, 8, 5, 2, '5', '13:00:00.000000', '00:00:00.000000', 0),
+(11, 7, 9, 3, 4, '2', '10:30:00.000000', '12:00:00.000000', 0),
+(12, 7, 9, 3, 4, '5', '10:30:00.000000', '12:00:00.000000', 0),
+(13, 1, 9, 3, 5, '5', '13:00:00.000000', '16:00:00.000000', 0),
+(14, 1, 9, 3, 6, '2', '13:00:00.000000', '16:00:00.000000', 0),
+(15, 7, 5, 3, 3, '2', '09:00:00.000000', '10:30:00.000000', 0),
+(16, 7, 5, 3, 3, '5', '09:00:00.000000', '10:30:00.000000', 0),
+(17, 2, 10, 5, 1, '2', '10:00:00.000000', '12:00:00.000000', 0),
+(18, 2, 10, 5, 2, '2', '13:00:00.000000', '16:00:00.000000', 0),
+(19, 3, 2, 2, 3, '3', '09:00:00.000000', '12:00:00.000000', 0),
+(20, 3, 2, 2, 4, '3', '13:00:00.000000', '16:00:00.000000', 0);
 
 -- --------------------------------------------------------
 
@@ -311,7 +322,8 @@ CREATE TABLE `subject_preq` (
 -- Indexes for table `account`
 --
 ALTER TABLE `account`
-  ADD PRIMARY KEY (`account_id`);
+  ADD PRIMARY KEY (`account_id`),
+  ADD KEY `account_type` (`acc_type_id`);
 
 --
 -- Indexes for table `acc_type`
@@ -406,12 +418,12 @@ ALTER TABLE `subject_preq`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `account_id` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `account_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `acc_type`
 --
 ALTER TABLE `acc_type`
-  MODIFY `acc_type_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `acc_type_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `class`
 --
@@ -450,6 +462,12 @@ ALTER TABLE `student_schlyr`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `account`
+--
+ALTER TABLE `account`
+  ADD CONSTRAINT `account_type` FOREIGN KEY (`acc_type_id`) REFERENCES `acc_type` (`acc_type_id`);
 
 --
 -- Constraints for table `schedule`
