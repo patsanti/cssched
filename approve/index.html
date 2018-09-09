@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	<title>CSIT Class Scheduler</title>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="shortcut icon" type="image/x-icon" href="../global/img/bucs-logo.png">
+	<link rel="stylesheet" href="../global/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../global/css/navbar.css">
+	<link rel="stylesheet" href="../global/css/default-theme.css">
+	<link rel="stylesheet" href="../global/css/footer.css">
+	<script type="text/javascript" src="../global/js/jquery.min.js"></script>
+  	<script type="text/javascript" src="../global/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
+</head>
+<body>
+	<!-- NAVIGATION BAR -->
+	<nav class="navbar navbar-expand-md sticky-top navbar-light bg-light navbar-color">
+	  	<div class="navbar-brand" style="user-select: none">
+			<img src="../global/img/bucs-logo.png" alt="CSIT departmental logo">
+			<h1>CLASS SCHEDULER APPROVER</h1>
+		</div>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+	</nav> <!-- END OF TNAVIGATION BAR -->
+
+	<div class="alert alert-warning alert-dismissible fade show" role="alert" data-spy="affix" data-offset-top="197">
+  		<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+    		<span aria-hidden="true">&times;</span>
+ 		 </button>
+  		<strong>Schedule Request:  Successfully changed</strong>
+	</div>
+
+	<div class="container">
+
+		  <ul class="nav nav-tabs">
+		    <li class="nav-item">
+		      <a class="nav-link active" data-toggle="tab" href="#home"><button value="0" class="form-control" name="button" id="button" onclick="request_type('0')">Pending Schedule Request</button></a>
+
+		    </li>
+		    <li class="nav-item">
+		      <a class="nav-link" data-toggle="tab" href="#home"><button value="1" class="form-control" name="button" id="button" onclick="request_type('1')">Approved Schedule Request</button></a>
+		    </li>
+		    <li class="nav-item">
+		      <a class="nav-link" data-toggle="tab" href="#home"><button value="2" class="form-control" name="button" id="button" onclick="request_type('2')">Denied Schedule Request</button></a>
+		    </li>
+		  </ul>
+
+		  <!-- Tab panes -->
+		 <div id="approve_data"></div>
+
+
+	</div>
+
+</body>
+</html>
