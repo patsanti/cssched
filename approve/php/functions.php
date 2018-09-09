@@ -138,6 +138,8 @@ if(isset($_POST['get_data_schedule'])){
 else if(isset($_GET['operation']) && isset($_GET['sched_id'])){
 	if($_GET['operation'] == 1)
 		$approve->operation("1",$_GET['sched_id']);
-	else
+	else if($_GET['operation'] == 0)
 		$approve->operation("0",$_GET['sched_id']);
+	else
+		$approve->operation("2",$_GET['sched_id']);
 }

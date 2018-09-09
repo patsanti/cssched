@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	<title>CSIT Class Scheduler</title>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="shortcut icon" type="image/x-icon" href="../../global/img/bucs-logo.png">
+	<link rel="stylesheet" href="../../global/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../../global/css/navbar.css">
+	<link rel="stylesheet" href="../../global/css/default-theme.css">
+	<link rel="stylesheet" href="../../global/css/footer.css">
+	<script type="text/javascript" src="../../global/js/jquery.min.js"></script>
+  	<script type="text/javascript" src="../../global/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="js/script.js"></script>
+</head>
+<body>
+	<!-- NAVIGATION BAR -->
+	<nav class="navbar navbar-expand-md sticky-top navbar-light bg-light navbar-color">
+	  	<div class="navbar-brand" style="user-select: none">
+			<img src="../../global/img/bucs-logo.png" alt="CSIT departmental logo">
+			<h1>CLASS SCHEDULER</h1>
+		</div>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+	  	<div class="collapse navbar-collapse" id="navbarNav">
+	    	<ul id="nav-list" class="navbar-nav">
+	      		<li class="nav-item">
+	        		<a class="nav-link" href="#">Faculty Workload</a>
+	      		</li>
+		      	<li class="nav-item">
+		        	<a class="nav-link" href="#">Weekly Schedule</a>
+		      	</li>
+		      	<li class="nav-item">
+		        	<a class="nav-link" href="#">Room Designation</a>
+		      	</li>
+	    	</ul>
+	  	</div>
+	</nav> <!-- END OF TNAVIGATION BAR -->
+
+	
+<div class="container">
+	<h2>Account Settings</h2>
+  <div class="row">
+  		<div class="col-md-2">
+  			<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+			  <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#v-pills-home" role="tab" aria-controls="v-pills-home" aria-selected="true">Add User</a>
+			  <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#v-pills-profile" role="tab" aria-controls="v-pills-profile" aria-selected="false">Manage Users</a>
+			</div>
+
+		</div>
+		<div class="col-md-10">
+			<div class="tab-content" id="v-pills-tabContent">
+			  <div class="tab-pane fade show active" id="v-pills-home" role="tabpanel" aria-labelledby="v-pills-home-tab">
+			  	<h3>Create User Account</h3>
+			  	<form method="post" enctype="multipart/form-data">
+				    <div class="form-group">
+				      <label for="email">Username:</label>
+				      <input type="email" class="form-control" id="username" placeholder="Enter Username" name="username">
+				    </div>
+				    <div class="form-group">
+				      <label for="pwd">Password:</label>
+				      <input type="password" class="form-control" id="password" placeholder="Enter password" name="password">
+				    </div>
+					 <div class="form-group">
+					  <label for="sel1">User Type</label>
+					  <select class="form-control" id="user_type">
+					    <option value="2">Administrator</option>
+					    <option value="3">Schedule Approver Deputy</option>
+					    <option value="4">Scheduler Deputy</option>
+					    <option value="5">Department Chair</option>
+					  </select>
+					</div>
+					<div id="error_msg"></div> 
+				    <button type="submit" class="btn btn-primary" name="submit" id="submit" onclick="return(create_user());">Create User</button >
+				  </form>
+			  </div>
+			  
+			  <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
+				  
+			  </div>
+
+		</div>
+		</div>
+	</div>
+</div>
+
+
+</body>
+</html>
