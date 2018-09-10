@@ -19,6 +19,7 @@
                 get_room_1: room
             },
             success: function(result) {
+
                 var name = result;
                 if (!name) return;
                 var e = new DayPilot.Event({
@@ -27,8 +28,33 @@
                     id: DayPilot.guid(),
                     text: name
                 });
-                dp.events.add(e);
-                dp.clearSelection();
+                var start_time = args.start.toDate();
+                var end_time = args.end.toDate();
+            $.ajax({
+                type: "POST",
+                url: "php/functions.php",
+                data: {
+                    add_schedule: 1,
+                    start_time: start_time,
+                    end_time: end_time
+                },
+                success: function(result) {
+                    if(result == 1){
+                        dp.events.add(e);
+                        dp.clearSelection();
+                        $("#error_msg").css({ color: 'green' });
+                        document.getElementById('error_msg').innerHTML = " Schedule Added";
+
+                    }
+                    else{
+                        alert(result);
+                        $("#error_msg").css({ color: 'red' });
+                        document.getElementById('error_msg').innerHTML = "Schedule Already Taken!";
+                    }
+                    
+                }
+            });
+                
             }
         });
 
@@ -38,8 +64,26 @@
     dp.onEventClick = function(args) {
 
         //alert(args.e.start());
-        var start = args.e.text();
-        alert(start);
+        var start = args.e.id();
+        $.ajax({
+            type: "POST",
+            url: "php/functions.php",
+            data: {
+                show_schedule: start
+            },
+            success: function(result) {
+                var schedule = eval(result);
+                document.getElementById('course_code').innerHTML = "<b>Course Code:</b> " + schedule[0];
+                document.getElementById('course_description').innerHTML = "<b>Course Description:</b> " + schedule[1];
+                document.getElementById('professor').innerHTML = "<b>Faculty:</b> " + schedule[2];
+                document.getElementById('class').innerHTML = "<b>Class:</b> " + schedule[3];
+                document.getElementById('room').innerHTML = "<b>Room:</b> " + schedule[4];
+                document.getElementById('schedule').innerHTML = "<b>Schedule:</b> " + schedule[5];      
+                $("#myModal").modal();
+
+                
+            }
+        });
     };
 
     dp.headerDateFormat = "dddd";
@@ -53,7 +97,6 @@
                 get_schedule_data_all: 1
             },
             success: function(result) {
-                alert(result);
                 var schedule = eval(result);
                 var Length = schedule.length / 4;
                 var n = 0;
@@ -66,7 +109,6 @@
                         text: schedule[n+1],
                     });
                     dp.events.add(e);
-                    alert(schedule[n+3])
                     n = n + 4;
                 }
                 

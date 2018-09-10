@@ -47,6 +47,7 @@
 					</header>
 					<hr>
 					<form action="php/functions.php" method="POST">
+						<p style="color:green">Select schedule information here before adding schedule</p>
 						<input type="hidden" name="add_schedule" id="add_schedule" value="1">
 						<label for="select-course">Course Code</label>
 						<select id="select-course" class="form-control" required>
@@ -62,7 +63,7 @@
 						<label for="select-room">Room</label>
 						<select id="select-room" class="form-control" required></select>
 						<div id="error_msg"></div>
-						<button type="submit" class="form-control square_btn" id="add" style="margin-top: 40px" onclick="return(check_submit());">Add Schedule</button>
+
 					</form>
 				</section>
 			</div>
@@ -72,6 +73,31 @@
 			</div>
 		</div>
 	</div>
+
+	<div class="modal fade" id="myModal" role="dialog">
+	    <div class="modal-dialog">
+	    
+	      <!-- Modal content-->
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <h4 class="modal-title">Schedule Information</h4>
+	          <button type="button" class="close" data-dismiss="modal">&times;</button>
+	        </div>
+	        <div class="modal-body">
+	          <div id="course_code">Course code here</div>
+	          <div id="course_description">Course description here</div>
+	          <div id="professor">Professor here</div>
+	          <div id="class">class here</div>
+	          <div id="room">room here</div>
+	          <div id="schedule">Schedule here</div>
+	        </div>
+	        <div class="modal-footer">
+	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+	        </div>
+	      </div>
+	      
+	    </div>
+	  </div>
 
 	<footer><i>Footer here (work in progress).</i></footer>
 	<script type="text/javascript" src="js/script.js"></script>

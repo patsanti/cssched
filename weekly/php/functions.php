@@ -26,17 +26,10 @@ class check{
 	function check_conflict($sql,$start_time,$end_time){
 		$global_use = new global_use;
 		$conn = $global_use->connect_db();
-		$result = $conn->query($sql);
-		while($row = $result->fetch_assoc()) {
-			if( ($row['room_id'] == $_POST['add_room']) && ($row['day'] == $_POST['select-day']) && ( (($row['start_time'] <= $start_time) && ($start_time <= $row['end_time'])) || (($row['start_time'] <= $end_time) && ($end_time <= $row['end_time'])) ) || (($row['subject_id'] == $_POST['add_subject']) && ($row['class_id'] == $_POST['add_class']))  ){
-				$conflict = 1;
-				break;
-			}
-			else{
-				$conflict = 0;
-			}
-		}
-		
+
+	
+
+		$conflict = 0;
 		if( $conflict == 0 ){
 			return 0;
 		}	
@@ -52,12 +45,14 @@ class check{
 // class for add, delete and update
 class alter{
 	// function to add data
-	function alter_add(){
+	function alter_add($start_time,$end_time){
   		$global_use = new global_use;
 		$conn = $global_use->connect_db();
 
-  		$start_time = $_POST['select-start-time'];
-  		$end_time = $_POST['select-end-time'];
+		$start_time = strtotime($start_time);
+		$end_time = strtotime($end_time);
+		$start_time = date("H:i",$start_time);
+		$end_time = date("H:i",$end_time);
 
   		$sql = "SELECT * FROM schedule";
 
@@ -65,12 +60,11 @@ class alter{
 
 		$check_if_conflict = $check->check_conflict($sql,$start_time,$end_time);
 
-		if($check_if_conflict == 1 ){
+		if($check_if_conflict == 1 )
 			echo 0;
-		}
-		else{
+		else
 			echo 1;
-		}
+		
 
 	}
 
@@ -226,8 +220,8 @@ class get_data{
 
 				$start_time = strtotime($row['start_time']);
 				$end_time = strtotime($row['end_time']);
-				$start_time = date("h:i:s",$start_time);
-				$end_time = date("h:i:s",$end_time);
+				$start_time = date("H:i:s",$start_time);
+				$end_time = date("H:i:s",$end_time);
 
 				if($row['day'] == 1)
 					$concat = "2013-03-04T";
@@ -260,6 +254,56 @@ class get_data{
 		} 	
 	}
 
+	function show_schedule($id){
+		$global_use = new global_use;
+		$conn = $global_use->connect_db();
+
+		$sql = "SELECT * FROM schedule WHERE sched_no = '$id'";
+		$result = $conn->query($sql);
+		$row = $result->fetch_assoc();
+
+		$start_time = strtotime($row['start_time']);
+		$end_time = strtotime($row['end_time']);
+		$start_time = date("h:i",$start_time);
+		$end_time = date("h:i",$end_time);
+
+		if($row['day'] == 1)
+			$day = "Monday";
+		else if($row['day'] == 2)
+			$day = "Tuesday";
+		else if ($row['day'] == 3)
+			$day = "Wednesday";
+		else if($row['day'] == 4)
+			$day = "Thursday";
+		else if($row['day'] == 5)
+			$day = "Friday";
+		else if($row['day'] == 6)
+			$day = "Saturday";
+		else if($row['day'] == 7)
+			$day = "Sunday";
+
+		$subject = $row['subject_id'];
+		$professor = $row['prof_id'];
+		$class_id = $row['class_id'];
+		$room = $row['room_id'];
+
+		$sql2 = "SELECT * FROM subject,professor,class,room WHERE subject.subject_id = '$subject' AND professor.prof_id = '$professor' AND class.class_id = '$class_id' AND room.room_id = '$room'";
+		
+		$data = $conn->query($sql2);
+		$all_data = $data->fetch_assoc();
+		
+		$schedule = array();
+		$schedule[0] = $all_data['subject_name'];
+		$schedule[1] = $all_data['subject_description'];
+		$schedule[2] = $all_data['prof_lname'].', '.$all_data['prof_fname']. ' '.$all_data['prof_mname'] ;
+		$schedule[3] = $all_data['class_yr_blk'];
+		$schedule[4] = $all_data['room_name'];
+		$schedule[5] = $start_time.' - '.$end_time. ' '.$day;
+
+		$array_return = json_encode($schedule);
+		echo $array_return;
+	}
+
 }
 
 // initialize classes
@@ -281,13 +325,17 @@ elseif (isset($_POST['get_class'])) {
 elseif (isset($_POST['get_room'])) {
 	$get_data->get_data_room();
 }
-// add schedule
-elseif (isset($_POST['add_schedule'])) {
-	$alter->alter_add();
-}
-////
+
 else if(isset($_POST['get_schedule_data']))
 	$get_data->get_schedule_data($_POST['get_subject_1'],$_POST['get_professor_1'],$_POST['get_class_1'],$_POST['get_room_1']);
 else if(isset($_POST['get_schedule_data_all']))
 	$get_data->get_schedule_data_all();
+
+else if(isset($_POST['show_schedule']))
+	$get_data->show_schedule($_POST['show_schedule']);
+
+// add schedule
+elseif (isset($_POST['add_schedule'])) {
+	$alter->alter_add($_POST['start_time'],$_POST['end_time']);
+}
 ?>
