@@ -1,5 +1,5 @@
  var dp = new DayPilot.Calendar("dp");
-    dp.startDate = "2013-03-04";  // or just dp.startDate = "2013-03-25";
+    dp.startDate = "2013-03-04";  // DO NOT CHANGE!!
     dp.viewType = "Week";
     
     // event creating schedule
@@ -28,32 +28,42 @@
                     id: DayPilot.guid(),
                     text: name
                 });
-                var start_time = args.start.toDate();
-                var end_time = args.end.toDate();
-            $.ajax({
-                type: "POST",
-                url: "php/functions.php",
-                data: {
-                    add_schedule: 1,
-                    start_time: start_time,
-                    end_time: end_time
-                },
-                success: function(result) {
-                    if(result == 1){
-                        dp.events.add(e);
-                        dp.clearSelection();
-                        $("#error_msg").css({ color: 'green' });
-                        document.getElementById('error_msg').innerHTML = " Schedule Added";
+                var start_time = args.start.toString();
+                var end_time = args.end.toString();
+                start_time = start_time.split("T");
+                end_time = end_time.split("T");
+                var day = start_time[0].split("-");
+                $.ajax({
+                    type: "POST",
+                    url: "php/functions.php",
+                    data: {
+                        add_schedule: 1,
+                        start_time: start_time[1],
+                        end_time: end_time[1],
+                        subject: subject,
+                        professor: professor,
+                        class_1: class_data,
+                        room: room,
+                        day: day[2]
 
+                    },
+                    success: function(result) {
+                        if(result == 1){
+                            dp.events.add(e);
+                            dp.clearSelection();
+                            $("#error_msg").css({ color: 'green' });
+                            document.getElementById('error_msg').innerHTML = " Schedule Added";
+                            window.setTimeout(function(){ window.location = "index.html"; },1000);
+
+
+                        }
+                        else{
+                            $("#error_msg").css({ color: 'red' });
+                            document.getElementById('error_msg').innerHTML = "Schedule Already Taken!";
+                        }
+                        
                     }
-                    else{
-                        alert(result);
-                        $("#error_msg").css({ color: 'red' });
-                        document.getElementById('error_msg').innerHTML = "Schedule Already Taken!";
-                    }
-                    
-                }
-            });
+                });
                 
             }
         });

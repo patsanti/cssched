@@ -23,19 +23,45 @@ class global_use {
 
 // class for checking CSP
 class check{
-	function check_conflict($sql,$start_time,$end_time){
-		$global_use = new global_use;
-		$conn = $global_use->connect_db();
+	function check_conflict($result,$start_time,$end_time,$subject,$professor,$class,$room,$day){
 
-	
+		if ($result->num_rows > 0) {
+			$if_conflict = 0;
+		    while($row = $result->fetch_assoc()) {
+		    	$db_start_time = strtotime($row['start_time']);
+				$db_end_time = strtotime($row['end_time']);
+				$db_start_time = date("H:i",$db_start_time);
+				$db_end_time = date("H:i",$db_end_time);
+				
+		    	if( 
+		    		( (($end_time > $db_start_time) && ($db_end_time > $start_time)) && ($room == $row['room_id']) && ($day == $row['day']) ) ||
+		    		(($class == $row['class_id']) && ($subject == $row['subject_id']) && ($professor == $row['prof_id']) ) 
 
-		$conflict = 0;
-		if( $conflict == 0 ){
-			return 0;
-		}	
-		else{
-			return 1;
+		    		    ) {
+   					$if_conflict = $if_conflict + 1;
+				}
+		    }
+		    return $if_conflict;
 		}
+
+	}
+	// convert days: ask austin why do this
+	function convert_day($day){
+		if($day == "3")
+			return 7;
+		else if($day == "4")
+			return 1;
+		else if($day == "5")
+			return 2;
+		else if($day == "6")
+			return 3;
+		else if($day == "7")
+			return 4;
+		else if($day == "8")
+			return 5;
+		else if($day == "9")
+			return 6;
+
 	}
 
 }
@@ -45,25 +71,32 @@ class check{
 // class for add, delete and update
 class alter{
 	// function to add data
-	function alter_add($start_time,$end_time){
+	function alter_add($start_time,$end_time,$subject,$professor,$class,$room,$day){
   		$global_use = new global_use;
 		$conn = $global_use->connect_db();
 
 		$start_time = strtotime($start_time);
 		$end_time = strtotime($end_time);
-		$start_time = date("H:i",$start_time);
-		$end_time = date("H:i",$end_time);
+		$start_time = date("H:i:s",$start_time);
+		$end_time = date("H:i:s",$end_time);
+
 
   		$sql = "SELECT * FROM schedule";
 
 		$check = new check;
+		$result = $conn->query("SELECT * FROM schedule WHERE status = 1");
+		$day = $check->convert_day($day);
+		$check_if_conflict = $check->check_conflict($result,$start_time,$end_time,$subject,$professor,$class,$room,$day);
 
-		$check_if_conflict = $check->check_conflict($sql,$start_time,$end_time);
 
-		if($check_if_conflict == 1 )
-			echo 0;
-		else
+
+		if($check_if_conflict == 0){
+			$sql = "INSERT INTO schedule(subject_id,prof_id,room_id,class_id,day,start_time,end_time,status) VALUES ('$subject','$professor','$room','$class','$day','$start_time','$end_time',1)";
+			$result = $conn->query($sql);
 			echo 1;
+		}
+		else
+			echo 0;
 		
 
 	}
@@ -189,7 +222,7 @@ class get_data{
 		}
 
 	}
-	// get only ONE schedule data
+	// get only ONE schedule data and display to calendar
 	function get_schedule_data($subject,$professor,$class_id,$room){
 		$global_use = new global_use;
 		$conn = $global_use->connect_db();
@@ -223,11 +256,13 @@ class get_data{
 				$start_time = date("H:i:s",$start_time);
 				$end_time = date("H:i:s",$end_time);
 
-				if($row['day'] == 1)
+				if($row['day'] == 7)
+					$concat = "2013-03-03T";
+				else if($row['day'] == 1)
 					$concat = "2013-03-04T";
-				else if($row['day'] == 2)
+				else if ($row['day'] == 2)
 					$concat = "2013-03-05T";
-				else if ($row['day'] == 3)
+				else if($row['day'] == 3)
 					$concat = "2013-03-06T";
 				else if($row['day'] == 4)
 					$concat = "2013-03-07T";
@@ -235,8 +270,6 @@ class get_data{
 					$concat = "2013-03-08T";
 				else if($row['day'] == 6)
 					$concat = "2013-03-09T";
-				else if($row['day'] == 7)
-					$concat = "2013-03-10T";
 
 
 		       	$schedule[$n] = $row['sched_no'];
@@ -253,7 +286,7 @@ class get_data{
 		   
 		} 	
 	}
-
+	// show schedule info in modal
 	function show_schedule($id){
 		$global_use = new global_use;
 		$conn = $global_use->connect_db();
@@ -336,6 +369,6 @@ else if(isset($_POST['show_schedule']))
 
 // add schedule
 elseif (isset($_POST['add_schedule'])) {
-	$alter->alter_add($_POST['start_time'],$_POST['end_time']);
+	$alter->alter_add($_POST['start_time'],$_POST['end_time'],$_POST['subject'],$_POST['professor'],$_POST['class_1'],$_POST['room'],$_POST['day']);
 }
 ?>
