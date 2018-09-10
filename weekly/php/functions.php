@@ -195,7 +195,70 @@ class get_data{
 		}
 
 	}
+	// get only ONE schedule data
+	function get_schedule_data($subject,$professor,$class_id,$room){
+		$global_use = new global_use;
+		$conn = $global_use->connect_db();
 
+		$sql = "SELECT * FROM subject,professor,class,room WHERE subject.subject_id = '$subject' AND professor.prof_id = '$professor' AND class.class_id = '$class_id' AND room.room_id = '$room'";
+		$result = $conn->query($sql);
+		$all_data = $result->fetch_assoc();
+
+		echo $all_data['subject_name'].' - '.$all_data['subject_description'];
+	}
+	// get all schedule data and display
+	function get_schedule_data_all(){
+		$global_use = new global_use;
+		$conn = $global_use->connect_db();
+
+		$sql = "SELECT * FROM schedule WHERE status = 1";
+		$result = $conn->query($sql);
+
+		if ($result->num_rows > 0) {
+		    // output data of each row
+		    $n = 0;
+		    $schedule = array();
+		    while($row = $result->fetch_assoc()) {
+		    	
+		    	$sql2 = "SELECT * FROM subject WHERE subject_id = ".$row['subject_id']." ";
+				$result2 = $conn->query($sql2);
+				$subject = $result2->fetch_assoc();
+
+				$start_time = strtotime($row['start_time']);
+				$end_time = strtotime($row['end_time']);
+				$start_time = date("h:i:s",$start_time);
+				$end_time = date("h:i:s",$end_time);
+
+				if($row['day'] == 1)
+					$concat = "2013-03-04T";
+				else if($row['day'] == 2)
+					$concat = "2013-03-05T";
+				else if ($row['day'] == 3)
+					$concat = "2013-03-06T";
+				else if($row['day'] == 4)
+					$concat = "2013-03-07T";
+				else if($row['day'] == 5)
+					$concat = "2013-03-08T";
+				else if($row['day'] == 6)
+					$concat = "2013-03-09T";
+				else if($row['day'] == 7)
+					$concat = "2013-03-10T";
+
+
+		       	$schedule[$n] = $row['sched_no'];
+		       	$n++;
+		       	$schedule[$n] = $subject['subject_name'].' - '.$subject['subject_description'];
+		       	$n++;
+		       	$schedule[$n] = $concat.$start_time;
+		       	$n++;
+		       	$schedule[$n] = $concat.$end_time;
+		       	$n++;
+		    }
+		    $array_return = json_encode($schedule);
+		    echo $array_return;
+		   
+		} 	
+	}
 
 }
 
@@ -222,6 +285,9 @@ elseif (isset($_POST['get_room'])) {
 elseif (isset($_POST['add_schedule'])) {
 	$alter->alter_add();
 }
-
-
+////
+else if(isset($_POST['get_schedule_data']))
+	$get_data->get_schedule_data($_POST['get_subject_1'],$_POST['get_professor_1'],$_POST['get_class_1'],$_POST['get_room_1']);
+else if(isset($_POST['get_schedule_data_all']))
+	$get_data->get_schedule_data_all();
 ?>

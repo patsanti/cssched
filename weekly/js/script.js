@@ -1,46 +1,80 @@
  var dp = new DayPilot.Calendar("dp");
-
+    dp.startDate = "2013-03-04";  // or just dp.startDate = "2013-03-25";
     dp.viewType = "Week";
     
-    // event creating
+    // event creating schedule
     dp.onTimeRangeSelected = function (args) {
-        var name = prompt("Add Schedule:", "");
-        if (!name) return;
-        var e = new DayPilot.Event({
-            start: args.start,
-            end: args.end,
-            id: DayPilot.guid(),
-            text: name
+        var subject = document.getElementById('select-course').value;
+        var professor = document.getElementById('select-prof').value;
+        var class_data = document.getElementById('select-class').value;
+        var room = document.getElementById('select-room').value;
+        $.ajax({
+            type: "POST",
+            url: "php/functions.php",
+            data: {
+                get_schedule_data: 1,
+                get_subject_1: subject,
+                get_professor_1: professor,
+                get_class_1: class_data,
+                get_room_1: room
+            },
+            success: function(result) {
+                var name = result;
+                if (!name) return;
+                var e = new DayPilot.Event({
+                    start: args.start,
+                    end: args.end,
+                    id: DayPilot.guid(),
+                    text: name
+                });
+                dp.events.add(e);
+                dp.clearSelection();
+            }
         });
-        dp.events.add(e);
-        dp.clearSelection();
+
+
     };
-    
+    // function when user clicked on the schedule
     dp.onEventClick = function(args) {
 
         //alert(args.e.start());
-    $.ajax({
-        type: "POST",
-        url: "php/functions.php",
-        data: {
-            uname: 1
-        },
-        success: function(result) {
-            alert(result);
-        }
-    });
+        var start = args.e.text();
+        alert(start);
     };
 
     dp.headerDateFormat = "dddd";
     dp.init();
 
-    //var e = new DayPilot.Event({
-      //  start: new DayPilot.Date("2013-03-25T12:00:00"),
-        //end: new DayPilot.Date("2013-03-25T12:00:00").addHours(3).addMinutes(15),
-        //id: "10",
-        //text: "Special evena"
-    //});
-    //dp.events.add(e);
+    // for getting all schedule data and displays
+        $.ajax({
+            type: "POST",
+            url: "php/functions.php",
+            data: {
+                get_schedule_data_all: 1
+            },
+            success: function(result) {
+                alert(result);
+                var schedule = eval(result);
+                var Length = schedule.length / 4;
+                var n = 0;
+
+                for (var i = 0; i < Length; i++){
+                    var e = new DayPilot.Event({
+                        start: new DayPilot.Date(schedule[n+2]),
+                        end: new DayPilot.Date(schedule[n+3]),
+                        id: schedule[n],
+                        text: schedule[n+1],
+                    });
+                    dp.events.add(e);
+                    alert(schedule[n+3])
+                    n = n + 4;
+                }
+                
+            }
+        });
+
+
+    
     
 $(document).ready(function() {
     var url = window.location.href;
