@@ -1,14 +1,14 @@
 <?php
 // all functions in cs scheduler
 
-
+session_start();
 // for those who want to Edit this Document please enter your changes below
 
 // (CHANGES)
 class global_use {
 	function connect_db(){
 		//connect to the database
-		require_once '../../global/php/connect.php';
+		require_once '../../../global/php/connect.php';
 
 		// Check connection
 		if ($conn->connect_error) 
@@ -82,16 +82,16 @@ class alter{
 
 
   		$sql = "SELECT * FROM schedule";
-
+  		$id = $_SESSION['schedule_request'];
 		$check = new check;
-		$result = $conn->query("SELECT * FROM schedule WHERE status = 1");
+		$result = $conn->query("SELECT * FROM schedule WHERE sched_req_no = '$id'");
 		$day = $check->convert_day($day);
 		$check_if_conflict = $check->check_conflict($result,$start_time,$end_time,$subject,$professor,$class,$room,$day);
 
 
 
 		if($check_if_conflict == 0){
-			$sql = "INSERT INTO schedule(subject_id,prof_id,room_id,class_id,day,start_time,end_time,status) VALUES ('$subject','$professor','$room','$class','$day','$start_time','$end_time',1)";
+			$sql = "INSERT INTO schedule(subject_id,prof_id,room_id,class_id,day,start_time,end_time,sched_req_no) VALUES ('$subject','$professor','$room','$class','$day','$start_time','$end_time','$id')";
 			$result = $conn->query($sql);
 			echo 1;
 		}
@@ -237,8 +237,8 @@ class get_data{
 	function get_schedule_data_all(){
 		$global_use = new global_use;
 		$conn = $global_use->connect_db();
-
-		$sql = "SELECT * FROM schedule WHERE status = 1";
+		$id = $_SESSION['schedule_request'];
+		$sql = "SELECT * FROM schedule WHERE sched_req_no = '$id'";
 		$result = $conn->query($sql);
 
 		if ($result->num_rows > 0) {

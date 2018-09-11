@@ -6,9 +6,9 @@ if(session_status() == PHP_SESSION_NONE) {
 
 if(isset($_SESSION['acc_type_id'])) {
 	if($_SESSION['acc_type_id'] == 2)
-		header("Location: faculty/");
+		header("Location: department/");
 	elseif ($_SESSION['acc_type_id'] == 3) 
-		header("Location: approve");
+		header("Location: dean/");
 }
 
 ?>
