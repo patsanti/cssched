@@ -10,6 +10,7 @@
 	<link rel="stylesheet" href="../global/css/navbar.css">
 	<link rel="stylesheet" href="../global/css/default-theme.css">
 	<link rel="stylesheet" href="../global/css/footer.css">
+	<link rel="stylesheet" href="css/faculty.css">
 </head>
 <body>
 	<!-- NAVIGATION BAR -->
@@ -34,10 +35,76 @@
 		      	</li>
 	    	</ul>
 	  	</div>
-	</nav> <!-- END OF TNAVIGATION BAR -->
-	<main></main>
+	</nav><!-- END OF TNAVIGATION BAR -->
+
+	<!-- FACULTY INFORMATION -->
+	<main class="container">
+		<div style="/*overflow: auto*/">
+			<table class="table table-sm table-bordered table-hover">
+				<caption><address>Austero, L.</address></caption>
+				<thead class="thead-light">
+					<th>Subject</th>
+					<th>Lecture Unit</th>
+					<th>Lab Unit</th>
+					<th>Credit Unit</th>
+					<th>Course</th>
+					<th>Year & Sec.</th>
+					<th>Time</th>
+					<th>Days</th>
+					<th>Room</th>
+					<th>No. of Stud.</th>
+				</thead>
+				<tbody>
+					<tr>
+						<td>
+							<select class="subject">
+								<option disabled selected hidden></option>
+								<option>CS ELEC 3 &mdash; Software Engineering</option>
+							</select>
+						</td>
+						<td><input type="number" value="3.00" step="0.01" class="lecture-unit"></td>
+						<td><input type="number" value="0.00" step="0.01" class="lab-unit"></td>
+						<td><input type="number" value="3.00" step="0.01" class="credit-unit"></td>
+						<td>
+							<select>
+								<option disabled selected hidden></option>
+								<option>BSCS</option>
+							</select>
+						</td>
+						<td>
+							<select>
+								<option disabled selected hidden></option>
+								<option>4-A</option>
+							</select>
+						</td>
+						<td>
+							<span class="time-container"><input type="time" step="1800" value="01:00"></span> to
+							<span class="time-container"><input type="time" step="1800" value="02:30"></span>
+						</td>
+						<td>
+							<div class="checklist">
+								<button class="toggler">MTH</button>
+								<div class="dropdown">
+									<div><input type="checkbox" id="mon"><label for="mon">Monday</label></div>
+									<div><input type="checkbox" id="tue"><label for="tue">Tuesday</label></div>
+									<div><input type="checkbox" id="wed"><label for="wed">Wednesday</label></div>
+									<div><input type="checkbox" id="thu"><label for="thu">Thursday</label></div>
+									<div><input type="checkbox" id="fri"><label for="fri">Friday</label></div>
+									<div><input type="checkbox" id="sat"><label for="sat">Saturday</label></div>
+									<div><input type="checkbox" id="sun"><label for="sun">Sunday</label></div>
+								</fieldset>
+							</div>
+						</td>
+						<td>B2-201</td>
+						<td></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</main>
 	<script src="../global/js/jquery.min.js"></script>
 	<script src="../global/js/bootstrap.min.js"></script>
+	<script src="js/event_handler.js"></script>
 	<script src="js/faculty_model.js"></script>
 	<script src="js/get_schedules.js"></script>
 </body>
