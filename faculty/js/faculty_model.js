@@ -62,5 +62,5 @@ function model_faculty(schedule_table) {
         i = j;
     }
 
-    console.log(faculty_list);
+    display_info(faculty_list);
 }
