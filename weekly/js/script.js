@@ -54,12 +54,10 @@
                             $("#error_msg").css({ color: 'green' });
                             document.getElementById('error_msg').innerHTML = " Schedule Added";
                             window.setTimeout(function(){ window.location = "index.html"; },1000);
-
-
                         }
                         else{
                             $("#error_msg").css({ color: 'red' });
-                            document.getElementById('error_msg').innerHTML = "Schedule Already Taken!";
+                            document.getElementById('error_msg').innerHTML = "Schedule/Subject Already Taken!";
                         }
                         
                     }
@@ -226,15 +224,6 @@ $(document).ready(function() {
 
         }
     });
-
-
-
-
-
-
-
-
-
 
 
 
