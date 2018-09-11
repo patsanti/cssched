@@ -1,0 +1,3 @@
+[submodule "global/vendor/bootstrap-multiselect"]
+	path = global/vendor/bootstrap-multiselect
+	url = https://github.com/davidstutz/bootstrap-multiselect.git
