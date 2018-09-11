@@ -41,7 +41,6 @@ function create_schedule() {
             semester:$("#semester").val()
         },
         success: function(result) {
-            alert(result);
             if (result == 1) {
                 window.location.href = "weekly/";
             }
@@ -88,18 +87,26 @@ function create_schedule() {
 
 function open_schedule() {
     var stat = "";
-    $.ajax({
-        type: "POST",
-        url: "php/functions.php",
-        data: {
-            open: 1,
-            open_schedule_id: $('#sched_name').val()
-        },
-        success: function(result) {
-            window.location.href = "weekly/";
 
-        }
-    });
+    if($('#sched_name').val() == 0){
+        $("#error_msg_open").css({ color: 'red' });
+        document.getElementById('error_msg_open').innerHTML = "You got 0 Unfinished schedule request. create one first";
+        return false;
+    }
+    else{
+        $.ajax({
+            type: "POST",
+            url: "php/functions.php",
+            data: {
+                open: 1,
+                open_schedule_id: $('#sched_name').val()
+            },
+            success: function(result) {
+                window.location.href = "weekly/";
+
+            }
+        });
+    }
     if (!stat)
         return false;
 }

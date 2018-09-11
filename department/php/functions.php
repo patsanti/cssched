@@ -60,6 +60,12 @@ class request{
 			$array_return = json_encode($data);
 		    echo $array_return;
 		}
+		else{
+			$data[0] = "0";
+			$data[1] = "None";
+			$array_return = json_encode($data);
+		    echo $array_return;
+		}
 	}
 }
 
