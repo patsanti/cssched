@@ -77,7 +77,23 @@
 					    <div class="form-group">        
 					      <div class="col-sm-offset-2 col-sm-10">
 					        <button class="btn btn-primary" id="profile" type="submit"
-							onclick="return(open_schedule());">Open Schedule Request</button>
+							onclick="return(open_schedule(document.getElementById('sched_name').value));">Open Schedule Request</button>
+					      </div>
+					    </div>
+  				</form>
+  			</div>
+  				<div class="col-md-4">
+				<form class="form-horizontal" method="post" enctype="multipart/form-data">
+					    <div class="form-group">
+
+					       <label>View Schedule</label>
+					       <select class="form-control" id="sched_name_view">
+					       </select>
+					    </div>
+					    <div class="form-group">        
+					      <div class="col-sm-offset-2 col-sm-10">
+					        <button class="btn btn-primary" id="view" type="submit"
+							onclick="return(view_schedule(document.getElementById('sched_name_view').value));">View</button>
 					      </div>
 					    </div>
   				</form>

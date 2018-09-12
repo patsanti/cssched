@@ -37,11 +37,11 @@ class request{
 			echo 0;
 	}
 
-	function schedule_name(){
+	function schedule_name($status){
 		$global_use = new global_use;
 		$conn = $global_use->connect_db();
 
-		$result = $conn->query("SELECT * FROM schedule_request WHERE request_status = 0");
+		$result = $conn->query("SELECT * FROM schedule_request WHERE request_status = '$status'");
 		$data = array();
 		$n=0;
 		if ($result->num_rows > 0) {
@@ -74,11 +74,13 @@ $request = new request;
 
 if(isset($_POST['create']))
 	$request->create_request($_POST['year'],$_POST['semester']);
+
 else if(isset($_POST['schedule_name']))
-	$request->schedule_name();
-else if(isset($_POST['open'])){
+	$request->schedule_name($_POST['status']);
+
+else if(isset($_POST['open']))
 	$_SESSION['schedule_request'] = $_POST['open_schedule_id'];
-}
+
 
 
 
