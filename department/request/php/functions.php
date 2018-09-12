@@ -234,11 +234,11 @@ class get_data{
 		echo $all_data['subject_name'].' - '.$all_data['subject_description'];
 	}
 	// get all schedule data and display
-	function get_schedule_data_all(){
+	function get_schedule_data_all($append){
 		$global_use = new global_use;
 		$conn = $global_use->connect_db();
 		$id = $_SESSION['schedule_request'];
-		$sql = "SELECT * FROM schedule WHERE sched_req_no = '$id'";
+		$sql = "SELECT * FROM schedule WHERE sched_req_no = '$id'".$append;
 		$result = $conn->query($sql);
 
 		if ($result->num_rows > 0) {
@@ -337,6 +337,17 @@ class get_data{
 		echo $array_return;
 	}
 
+	function get_title($sql,$name,$id,$type){
+		$global_use = new global_use;
+		$conn = $global_use->connect_db();
+		$_SESSION['export_download'] = $id;
+
+		$result = $conn->query($sql);
+		$row = $result->fetch_assoc();
+		$_SESSION['export_download_name'] = $type;
+		echo $row[$name];
+	}
+
 }
 
 // initialize classes
@@ -362,7 +373,7 @@ elseif (isset($_POST['get_room'])) {
 else if(isset($_POST['get_schedule_data']))
 	$get_data->get_schedule_data($_POST['get_subject_1'],$_POST['get_professor_1'],$_POST['get_class_1'],$_POST['get_room_1']);
 else if(isset($_POST['get_schedule_data_all']))
-	$get_data->get_schedule_data_all();
+	$get_data->get_schedule_data_all($_POST['query']);
 
 else if(isset($_POST['show_schedule']))
 	$get_data->show_schedule($_POST['show_schedule']);
@@ -371,4 +382,9 @@ else if(isset($_POST['show_schedule']))
 elseif (isset($_POST['add_schedule'])) {
 	$alter->alter_add($_POST['start_time'],$_POST['end_time'],$_POST['subject'],$_POST['professor'],$_POST['class_1'],$_POST['room'],$_POST['day']);
 }
+
+elseif(isset($_POST['get_name_schedule']))
+	$get_data->get_title($_POST['sql'],$_POST['data'],$_POST['session_id'],$_POST['type_data']);
+
+
 ?>
