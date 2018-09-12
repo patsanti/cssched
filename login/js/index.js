@@ -39,8 +39,8 @@ function login_submit() {
             if (result == 1) {
                 window.location.assign("faculty/");
             }
-            else if (result == "deactivated account") {
-                window.location.assign("reactivate_account/");
+            else if(result == 0) {
+                window.location.assign("login/reactivate_account/");
             }
             else {
                 $("#submit").val("Login");

@@ -107,7 +107,7 @@ function open_schedule(sched) {
 function view_schedule(sched) {
     var stat = "";
 
-    if($('#sched_name').val() == 0){
+    if($('#sched_name-view').val() == 0){
         $("#error_msg_open").css({ color: 'red' });
         document.getElementById('error_msg_open').innerHTML = "You got 0 Unfinished schedule request. create one first";
         return false;
