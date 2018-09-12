@@ -5,7 +5,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="shortcut icon" type="image/x-icon" href="../global/img/bucs-logo.png">
+	<link rel="shortcut icon" type="image/x-icon" href="../../global/img/bucs-logo.png">
 	<link rel="stylesheet" href="../../global/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../../global/css/navbar.css">
 	<link rel="stylesheet" href="../../global/css/default-theme.css">
@@ -88,11 +88,12 @@
 			</div>
 
 		</div>
+		<button class="form-control btn-success form-control-sm" id="btn-confirm" type="submit">Submit Schedule Request to College Dean</button>
+		<div id="success_msg"></div>
 	</div>
 
 	<div class="modal fade" id="myModal" role="dialog">
 	    <div class="modal-dialog">
-	    
 	      <!-- Modal content-->
 	      <div class="modal-content">
 	        <div class="modal-header">
@@ -111,9 +112,32 @@
 	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	        </div>
 	      </div>
-	      
+	    </div>
+	</div>
+	<!--another modal -->
+	<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	      	<h4 class="modal-title" id="myModalLabel">Schedule Request</h4>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	      </div>
+	      <div class="modal-content">
+	      	<div class="modal-body">
+	      		<div><p>
+	      			Are you sure you want to submit schedule request to College Dean?<br><br></p>
+	      			<p style="color: red; font-size: 12px;"> Reminder: Make sure
+	      		    the schedule request your submitting is FINAL. </p>
+	      		</div>
+	      	</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-success" id="modal-btn-si">Submit</button>
+	        <button type="button" class="btn btn-default" id="modal-btn-no">Cancel</button>
+	      </div>
 	    </div>
 	  </div>
+	</div>
 
 	<footer><i>Footer here (work in progress).</i></footer>
 	<script type="text/javascript" src="js/script.js"></script>

@@ -34,70 +34,6 @@ $.ajax({
 });
 
 
-// event creating schedule
-dp.onTimeRangeSelected = function (args) {
-    var subject = document.getElementById('select-course').value;
-    var professor = document.getElementById('select-prof').value;
-    var class_data = document.getElementById('select-class').value;
-    var room = document.getElementById('select-room').value;
-    $.ajax({
-        type: "POST",
-        url: "php/functions.php",
-        data: {
-            get_schedule_data: 1,
-            get_subject_1: subject,
-            get_professor_1: professor,
-            get_class_1: class_data,
-            get_room_1: room
-        },
-        success: function(result) {
-
-            var name = result;
-            if (!name) return;
-            var e = new DayPilot.Event({
-                start: args.start,
-                end: args.end,
-                id: DayPilot.guid(),
-                text: name
-            });
-            var start_time = args.start.toString();
-            var end_time = args.end.toString();
-            start_time = start_time.split("T");
-            end_time = end_time.split("T");
-            var day = start_time[0].split("-");
-            $.ajax({
-                type: "POST",
-                url: "php/functions.php",
-                data: {
-                    add_schedule: 1,
-                    start_time: start_time[1],
-                    end_time: end_time[1],
-                    subject: subject,
-                    professor: professor,
-                    class_1: class_data,
-                    room: room,
-                    day: day[2]
-
-                },
-                success: function(result) {
-                    if(result == 1){
-                        dp.events.add(e);
-                        dp.clearSelection();
-                        $("#error_msg").css({ color: 'green' });
-                        document.getElementById('error_msg').innerHTML = " Schedule Added";
-                        window.setTimeout(function(){ window.location = "index.html"; },1000);
-                    }
-                    else{
-                        $("#error_msg").css({ color: 'red' });
-                        document.getElementById('error_msg').innerHTML = "Conflict: Schedule Already Taken!";
-                    }
-                    
-                }
-            });
-            
-        }
-    });
-};
 
 // function when user clicked on the schedule
 dp.onEventClick = function(args) {
@@ -320,6 +256,74 @@ $('#select-room-view').on('change', function() {
 });
 
 
+// event creating schedule
+dp.onTimeRangeSelected = function (args) {
+    var subject = document.getElementById('select-course').value;
+    var professor = document.getElementById('select-prof').value;
+    var class_data = document.getElementById('select-class').value;
+    var room = document.getElementById('select-room').value;
+    $.ajax({
+        type: "POST",
+        url: "php/functions.php",
+        data: {
+            get_schedule_data: 1,
+            get_subject_1: subject,
+            get_professor_1: professor,
+            get_class_1: class_data,
+            get_room_1: room
+        },
+        success: function(result) {
+
+            var name = result;
+            if (!name) return;
+            var e = new DayPilot.Event({
+                start: args.start,
+                end: args.end,
+                id: DayPilot.guid(),
+                text: name
+            });
+            var start_time = args.start.toString();
+            var end_time = args.end.toString();
+            start_time = start_time.split("T");
+            end_time = end_time.split("T");
+            var day = start_time[0].split("-");
+            $.ajax({
+                type: "POST",
+                url: "php/functions.php",
+                data: {
+                    add_schedule: 1,
+                    start_time: start_time[1],
+                    end_time: end_time[1],
+                    subject: subject,
+                    professor: professor,
+                    class_1: class_data,
+                    room: room,
+                    day: day[2]
+
+                },
+                success: function(result) {
+                    if(result == 1){
+                        dp.events.add(e);
+                        dp.clearSelection();
+                        $("#error_msg").css({ color: 'green' });
+                        document.getElementById('error_msg').innerHTML = " Schedule Added";
+                        window.setTimeout(function(){ window.location = "index.html"; },1000);
+                    }
+                    else{
+                        $("#error_msg").css({ color: 'red' });
+                        document.getElementById('error_msg').innerHTML = "Conflict: Schedule Already Taken!";
+                    }
+                    
+                }
+            });
+            
+        }
+    });
+};
+
+
+
+
 
 //////////////////////////////////////////////////////////////
 $(document).ready(function() {
@@ -447,3 +451,39 @@ function get_title(query,name,id,type){
 
     });
 }
+
+
+var modalConfirm = function(callback){
+  
+  $("#btn-confirm").on("click", function(){
+    $("#mi-modal").modal('show');
+  });
+
+  $("#modal-btn-si").on("click", function(){
+    callback(true);
+    $("#mi-modal").modal('hide');
+  });
+  
+  $("#modal-btn-no").on("click", function(){
+    callback(false);
+    $("#mi-modal").modal('hide');
+  });
+};
+
+modalConfirm(function(confirm){
+  if(confirm){
+    $.ajax({
+        type: "POST",
+        url: "php/functions.php",
+        data: {
+            submit_schedule: "1",
+        },
+        success: function (result) {
+            $("#success_msg").css({ color: 'green' });
+            document.getElementById('success_msg').innerHTML = result;
+            window.setTimeout(function(){ window.location = "../index.html"; },1000);
+        }
+
+    });
+  }
+});

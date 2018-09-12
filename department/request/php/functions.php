@@ -345,6 +345,15 @@ class get_data{
 		echo $row[$name];
 	}
 
+	function submit_schedule(){
+		$global_use = new global_use;
+		$conn = $global_use->connect_db();
+		$id =  $_SESSION['schedule_request'];
+
+		$result = $conn->query("UPDATE schedule_request set request_status = 1 WHERE sched_req_no = '$id'");
+		echo "Schedule Request Submitted!";
+	}
+
 }
 
 // initialize classes
@@ -379,9 +388,11 @@ else if(isset($_POST['show_schedule']))
 elseif (isset($_POST['add_schedule'])) {
 	$alter->alter_add($_POST['start_time'],$_POST['end_time'],$_POST['subject'],$_POST['professor'],$_POST['class_1'],$_POST['room'],$_POST['day']);
 }
-
 elseif(isset($_POST['get_name_schedule']))
 	$get_data->get_title($_POST['sql'],$_POST['data'],$_POST['session_id'],$_POST['type_data']);
+
+elseif(isset($_POST['submit_schedule']))
+	$get_data->submit_schedule();
 
 
 ?>
