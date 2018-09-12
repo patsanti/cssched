@@ -47,18 +47,22 @@
 					</header>
 					<hr>
 					<form action="php/functions.php" method="POST">
-						<p style="color:green">Filter Schedule </p>
+						<p>Filter Schedule </p>
 						<input type="hidden" name="add_schedule" id="add_schedule" value="1">
-						
-						<label for="select-prof">Professor</label>
-						<select id="select-prof" class="form-control" required></select>
 
-						<label for="select-class">Class</label>
-						<select id="select-class" class="form-control" required></select>
-
-
-						<label for="select-room">Room</label>
-						<select id="select-room" class="form-control" required></select>
+						<label for="select-prof">By Professor</label>
+						<select multiple class="form-control" id="select-prof" class="form-control" required>
+							
+						</select>
+						<hr>
+						<label for="select-class">By Class</label>
+						<select multiple class="form-control" id="select-class" class="form-control" required>
+							
+						</select>
+						<hr>
+						<label for="select-room">By Room</label>
+						<select multiple class="form-control" id="select-room" class="form-control" required>
+						</select>
 						<div id="error_msg"></div>
 
 					</form>
@@ -67,8 +71,10 @@
 			<div class="col-md-9">
 
 
-
+				<div class="h4" id="title_name">Schedule of professor</div>
+				<hr>
 				<div id="dp"></div>
+				<button id="export"><a href="php/export.php" target="_blank">Export to Excel File</a></button>
 			</div>
 		</div>
 	</div>

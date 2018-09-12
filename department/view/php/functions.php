@@ -163,7 +163,9 @@ class get_data{
 		    $array_return = json_encode($schedule);
 		    echo $array_return;
 		   
-		} 	
+		}
+		else
+			echo 0; 	
 	}
 	// show schedule info in modal
 	function show_schedule($id){
@@ -216,35 +218,50 @@ class get_data{
 		echo $array_return;
 	}
 
+	function get_title($sql,$name,$id,$type){
+		$global_use = new global_use;
+		$conn = $global_use->connect_db();
+		$_SESSION['export_download'] = $id;
+
+		$result = $conn->query($sql);
+		$row = $result->fetch_assoc();
+		$_SESSION['export_download_name'] = $type;
+		echo $row[$name];
+	}
+
+
 }
 
 // initialize classes
 
 $get_data = new get_data;
 // get all prof list
-if(isset($_POST['get_prof'])){
+if(isset($_POST['get_prof']))
 	$get_data->get_data_professor();
-}
 // get all subject list
-elseif (isset($_POST['get_subject'])) {
+elseif (isset($_POST['get_subject'])) 
 	$get_data->get_data_subject();
-}
-// get all class list
-elseif (isset($_POST['get_class'])) {
-	$get_data->get_data_class();
-}
-// get all room list
-elseif (isset($_POST['get_room'])) {
-	$get_data->get_data_room();
-}
 
-else if(isset($_POST['get_schedule_data']))
+// get all class list
+elseif (isset($_POST['get_class'])) 
+	$get_data->get_data_class();
+
+// get all room list
+elseif (isset($_POST['get_room'])) 
+	$get_data->get_data_room();
+
+elseif(isset($_POST['get_schedule_data']))
 	$get_data->get_schedule_data($_POST['get_subject_1'],$_POST['get_professor_1'],$_POST['get_class_1'],$_POST['get_room_1']);
 
-else if(isset($_POST['get_schedule_data_all']))
+elseif(isset($_POST['get_schedule_data_all']))
 	$get_data->get_schedule_data_all($_POST['query']);
 
-else if(isset($_POST['show_schedule']))
+elseif(isset($_POST['show_schedule']))
 	$get_data->show_schedule($_POST['show_schedule']);
+
+elseif(isset($_POST['get_name_schedule']))
+	$get_data->get_title($_POST['sql'],$_POST['data'],$_POST['session_id'],$_POST['type_data']);
+
+
 
 ?>
