@@ -19,8 +19,6 @@ class global_use {
 }
 
 
-
-
 // class for checking CSP
 class check{
 	function check_conflict($result,$start_time,$end_time,$subject,$professor,$class,$room,$day){
@@ -34,8 +32,7 @@ class check{
 				$db_end_time = date("H:i",$db_end_time);
 				
 		    	if( 
-		    		( (($end_time > $db_start_time) && ($db_end_time > $start_time)) && ($room == $row['room_id']) && ($day == $row['day']) ) ||
-		    		(($class == $row['class_id']) && ($subject == $row['subject_id']) && ($professor == $row['prof_id']) ) 
+		    		( (($end_time > $db_start_time) && ($db_end_time > $start_time)) && ($room == $row['room_id']) && ($day == $row['day']) ) 
 
 		    		    ) {
    					$if_conflict = $if_conflict + 1;

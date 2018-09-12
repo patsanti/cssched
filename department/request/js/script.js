@@ -89,7 +89,7 @@ dp.onTimeRangeSelected = function (args) {
                     }
                     else{
                         $("#error_msg").css({ color: 'red' });
-                        document.getElementById('error_msg').innerHTML = "Schedule/Subject Already Taken!";
+                        document.getElementById('error_msg').innerHTML = "Conflict: Schedule Already Taken!";
                     }
                     
                 }
