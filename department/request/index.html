@@ -40,48 +40,53 @@
 	</nav> <!-- END OF TNAVIGATION BAR -->
 	<div class="container">
 		<div class="row">
-			<div class="col-md-3">
+			<div class="col-md-2">
 					<section id="add-schedule">
+						<hr>
 					<header>
 						<h2>ADD CLASS SCHEDULE</h2>
 					</header>
-					<hr>
 					<form action="php/functions.php" method="POST">
-						<p style="color:green">Select schedule information here before adding schedule</p>
+						<p style="color:green;font-size: 15px;">Select schedule information here before adding schedule</p>
 						<input type="hidden" name="add_schedule" id="add_schedule" value="1">
 						<label for="select-course">Course Code</label>
-						<select id="select-course" class="form-control" required>
+						<select id="select-course" class="form-control form-control-sm" required>
 						</select>
 
 						<label for="select-prof">Professor</label>
-						<select id="select-prof" class="form-control" required></select>
+						<select id="select-prof" class="form-control form-control-sm" required></select>
 
 						<label for="select-class">Class</label>
-						<select id="select-class" class="form-control" required></select>
+						<select id="select-class" class="form-control form-control-sm" required></select>
 
 
 						<label for="select-room">Room</label>
-						<select id="select-room" class="form-control" required></select>
+						<select id="select-room" class="form-control form-control-sm" required></select>
 						<div id="error_msg"></div>
 
 					</form>
 				</section>
 			</div>
-			<div class="col-md-9">
-
-				<div class="form-group row">
-			      <div class="col-xs-2">
-			        <label for="ex1">View Schedule By:</label>
-			        <select class="form-control" id="ex1">
-			        	<option>Professor</option>
-			        	<option>Room</option>
-			        	<option>Class</option>
-			        </select>
-			      </div>
-    			</div>
-
+			<div class="col-md-8">
+				<h4>Weekly Schedule of</h4>
 				<div id="dp"></div>
 			</div>
+			<div class="col-md-2">
+				<header>
+					<hr>
+					<h2>SELECT SCHEDULE</h2>
+				</header>
+				<p style="color:green; font-size: 15px;">Select the name of the professor/class to add schedule.</p>
+				<label>Select by Professor</label>
+				<select class="form-control form-control-sm" id="select-prof-view" class="form-control" required></select>
+				
+				<label>Select by Class</label>
+				<select class="form-control form-control-sm" id="select-class-view" class="form-control" required></select>
+				
+				<label>Select by Room</label>
+				<select class="form-control form-control-sm" id="select-room-view" class="form-control" required></select>
+			</div>
+
 		</div>
 	</div>
 

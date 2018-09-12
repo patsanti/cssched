@@ -39,9 +39,14 @@
 	  	</div>
 	</nav> <!-- END OF TNAVIGATION BAR -->
 	<div class="container">
+		<h2>Select Schedule Options</h2>
+			<hr>
 		<div class="row">
-			<div class="col-md-4">
+
+			<div class="col-md-3" style="margin-top: 30px;">
 				<form class="form-horizontal" method="post" enctype="multipart/form-data">
+					<h2>Create Schedule Request</h2>
+
 					    <div class="form-group">
 					    	<label>Year</label>
 					          <select class="form-control" id="year">
@@ -64,35 +69,36 @@
 					    </div>
   				</form>
   			</div>
-
-  			<div class="col-md-4">
+  			  			<div class="col-md-1"></div>
+  			<div class="col-md-3" style="margin-top: 30px;">
+  				<h2>Open Unfinished Schedule Request</h2>
 				<form class="form-horizontal" method="post" enctype="multipart/form-data">
 					    <div class="form-group">
 
-					       <label>Unfinished Schedule Request</label>
-					       <select class="form-control" id="sched_name">
+					       <select class="form-control" id="sched_name" style="margin-top: 50px;">
 					       </select>
 					    </div>
 					    <div id="error_msg_open"></div>
 					    <div class="form-group">        
 					      <div class="col-sm-offset-2 col-sm-10">
-					        <button class="btn btn-primary" id="profile" type="submit"
+					        <button class="btn btn-primary" style="margin-top: 35px;" id="profile" type="submit"
 							onclick="return(open_schedule(document.getElementById('sched_name').value));">Open Schedule Request</button>
 					      </div>
 					    </div>
   				</form>
   			</div>
-  				<div class="col-md-4">
+  			<div class="col-md-1"></div>
+  				<div class="col-md-3" style="margin-top: 30px;">
+  					<h2>View Approved Schedules</h2>
 				<form class="form-horizontal" method="post" enctype="multipart/form-data">
 					    <div class="form-group">
 
-					       <label>View Schedule</label>
-					       <select class="form-control" id="sched_name_view">
+					       <select class="form-control" id="sched_name_view" style="margin-top: 75px;">
 					       </select>
 					    </div>
 					    <div class="form-group">        
 					      <div class="col-sm-offset-2 col-sm-10">
-					        <button class="btn btn-primary" id="view" type="submit"
+					        <button class="form-control btn btn-primary" style="margin-top: 35px;" id="view" type="submit"
 							onclick="return(view_schedule(document.getElementById('sched_name_view').value));">View</button>
 					      </div>
 					    </div>
@@ -100,7 +106,7 @@
   			</div>
 		</div>
 	</div>
-
+	<div><br><br><br><br><br><br></div>
 	<footer><i>Footer here (work in progress).</i></footer>
 	<script type="text/javascript" src="js/script.js"></script>
 </body>
