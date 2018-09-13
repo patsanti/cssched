@@ -37,10 +37,10 @@ function login_submit() {
         },
         success: function(result) {
             if (result == 1) {
-                window.location.assign("faculty/");
+                window.location.assign("index.php");
             }
-            else if (result == "deactivated account") {
-                window.location.assign("reactivate_account/");
+            else if(result == 0) {
+                window.location.assign("login/reactivate_account/");
             }
             else {
                 $("#submit").val("Login");

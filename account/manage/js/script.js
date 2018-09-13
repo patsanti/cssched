@@ -4,10 +4,10 @@ $(document).ready(function() {
         type: "POST",
         url: "php/functions.php",
         data: {
-            get_data_schedule: "0"
+            get_account_info: 1
         },
         success: function (result) {
-            document.getElementById('approve_data').innerHTML = result;
+            //document.getElementById('approve_data').innerHTML = result;
         },
         error: function (result) {
 

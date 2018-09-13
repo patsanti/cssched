@@ -17,7 +17,7 @@ if(isset($_POST['uname']) && isset($_POST['pass'])){
     if($row = mysqli_num_rows($result) == 1){
 		$found = mysqli_fetch_array($result);
 
-		if($found['acc_status'] == 1){
+		if($found['acc_status'] == 1 || $found['acc_status'] == 3){
 			$account_id = $found['account_id'];
 			setcookie("account_id", $account_id, time() + (86400 * 30), "/");
 			$_SESSION['account_id'] = $account_id;
@@ -31,7 +31,7 @@ if(isset($_POST['uname']) && isset($_POST['pass'])){
 		}
 		else{
 			$_SESSION['deactivated_id'] = $found['account_id'];
-			echo "deactivated account";
+			echo 0;
 		}
 	}
     else{

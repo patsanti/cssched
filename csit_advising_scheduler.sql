@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 09, 2018 at 03:56 PM
+-- Generation Time: Sep 11, 2018 at 11:12 PM
 -- Server version: 10.1.34-MariaDB-0ubuntu0.18.04.1
 -- PHP Version: 7.2.7-0ubuntu0.18.04.2
 
@@ -41,7 +41,8 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`account_id`, `account_usern`, `account_pass`, `acc_fname`, `acc_lname`, `acc_type_id`, `acc_status`) VALUES
-(1, 'super', '8d0f1de01fe57bc432ec5b8cbca39ec6', 'Naz', 'Naz', 2, 1);
+(1, 'chair', 'ca4c3d16284c44d113d05b8d43beba89', 'Naza', 'Naz', 2, 1),
+(2, 'dean', '8d0f1de01fe57bc432ec5b8cbca39ec6', 'first name', 'last name', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -60,9 +61,8 @@ CREATE TABLE `acc_type` (
 
 INSERT INTO `acc_type` (`acc_type_id`, `acc_type_name`) VALUES
 (1, 'Adviser'),
-(2, 'super admin'),
-(3, 'admin_approver'),
-(4, 'schedule deputy');
+(2, 'Department Chair'),
+(3, 'Dean');
 
 -- --------------------------------------------------------
 
@@ -193,34 +193,36 @@ CREATE TABLE `schedule` (
   `day` varchar(20) NOT NULL,
   `start_time` time(6) NOT NULL,
   `end_time` time(6) NOT NULL,
-  `status` tinyint(2) NOT NULL
+  `sched_req_no` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `schedule`
 --
 
-INSERT INTO `schedule` (`sched_no`, `subject_id`, `prof_id`, `room_id`, `class_id`, `day`, `start_time`, `end_time`, `status`) VALUES
-(1, 5, 4, 1, 3, '2', '14:30:00.000000', '16:00:00.000000', 0),
-(2, 5, 4, 1, 3, '4', '14:30:00.000000', '16:00:00.000000', 0),
-(3, 5, 4, 1, 4, '2', '13:00:00.000000', '14:30:00.000000', 0),
-(4, 5, 4, 1, 4, '4', '13:00:00.000000', '14:30:00.000000', 0),
-(5, 2, 6, 4, 5, '2', '13:00:00.000000', '15:00:00.000000', 0),
-(6, 6, 7, 1, 3, '2', '10:30:00.000000', '12:00:00.000000', 0),
-(7, 6, 7, 1, 3, '5', '10:30:00.000000', '12:00:00.000000', 0),
-(8, 2, 7, 4, 6, '5', '13:00:00.000000', '15:00:00.000000', 0),
-(9, 1, 8, 5, 1, '5', '09:00:00.000000', '12:00:00.000000', 0),
-(10, 1, 8, 5, 2, '5', '13:00:00.000000', '00:00:00.000000', 0),
-(11, 7, 9, 3, 4, '2', '10:30:00.000000', '12:00:00.000000', 0),
-(12, 7, 9, 3, 4, '5', '10:30:00.000000', '12:00:00.000000', 0),
-(13, 1, 9, 3, 5, '5', '13:00:00.000000', '16:00:00.000000', 0),
-(14, 1, 9, 3, 6, '2', '13:00:00.000000', '16:00:00.000000', 0),
-(15, 7, 5, 3, 3, '2', '09:00:00.000000', '10:30:00.000000', 0),
-(16, 7, 5, 3, 3, '5', '09:00:00.000000', '10:30:00.000000', 0),
-(17, 2, 10, 5, 1, '2', '10:00:00.000000', '12:00:00.000000', 0),
-(18, 2, 10, 5, 2, '2', '13:00:00.000000', '16:00:00.000000', 0),
-(19, 3, 2, 2, 3, '3', '09:00:00.000000', '12:00:00.000000', 0),
-(20, 3, 2, 2, 4, '3', '13:00:00.000000', '16:00:00.000000', 0);
+INSERT INTO `schedule` (`sched_no`, `subject_id`, `prof_id`, `room_id`, `class_id`, `day`, `start_time`, `end_time`, `sched_req_no`) VALUES
+(1, 1, 1, 1, 1, '1', '09:00:00.000000', '12:00:00.000000', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `schedule_request`
+--
+
+CREATE TABLE `schedule_request` (
+  `sched_req_no` int(11) NOT NULL,
+  `account_id` int(11) NOT NULL,
+  `school_year` year(4) NOT NULL,
+  `semester` tinyint(2) NOT NULL,
+  `request_status` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `schedule_request`
+--
+
+INSERT INTO `schedule_request` (`sched_req_no`, `account_id`, `school_year`, `semester`, `request_status`) VALUES
+(1, 1, 2018, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -366,10 +368,18 @@ ALTER TABLE `room`
 --
 ALTER TABLE `schedule`
   ADD PRIMARY KEY (`sched_no`),
-  ADD KEY `sched_course` (`subject_id`),
-  ADD KEY `sched_prof` (`prof_id`),
-  ADD KEY `sched_room` (`room_id`),
-  ADD KEY `sched_class` (`class_id`);
+  ADD KEY `subject_id` (`subject_id`),
+  ADD KEY `prof_id` (`prof_id`),
+  ADD KEY `room_id` (`room_id`),
+  ADD KEY `class_id` (`class_id`),
+  ADD KEY `sched_req_no` (`sched_req_no`);
+
+--
+-- Indexes for table `schedule_request`
+--
+ALTER TABLE `schedule_request`
+  ADD PRIMARY KEY (`sched_req_no`),
+  ADD KEY `account_id` (`account_id`);
 
 --
 -- Indexes for table `student`
@@ -418,12 +428,12 @@ ALTER TABLE `subject_preq`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `account_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `account_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `acc_type`
 --
 ALTER TABLE `acc_type`
-  MODIFY `acc_type_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `acc_type_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `class`
 --
@@ -453,7 +463,12 @@ ALTER TABLE `room`
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `sched_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `sched_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+--
+-- AUTO_INCREMENT for table `schedule_request`
+--
+ALTER TABLE `schedule_request`
+  MODIFY `sched_req_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `student_schlyr`
 --
@@ -473,10 +488,17 @@ ALTER TABLE `account`
 -- Constraints for table `schedule`
 --
 ALTER TABLE `schedule`
-  ADD CONSTRAINT `sched_class` FOREIGN KEY (`class_id`) REFERENCES `class` (`class_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `sched_course` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`subject_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `sched_prof` FOREIGN KEY (`prof_id`) REFERENCES `professor` (`prof_id`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `sched_room` FOREIGN KEY (`room_id`) REFERENCES `room` (`room_id`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `schedule_ibfk_1` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`subject_id`),
+  ADD CONSTRAINT `schedule_ibfk_2` FOREIGN KEY (`prof_id`) REFERENCES `professor` (`prof_id`),
+  ADD CONSTRAINT `schedule_ibfk_3` FOREIGN KEY (`room_id`) REFERENCES `room` (`room_id`),
+  ADD CONSTRAINT `schedule_ibfk_4` FOREIGN KEY (`class_id`) REFERENCES `class` (`class_id`),
+  ADD CONSTRAINT `schedule_ibfk_5` FOREIGN KEY (`sched_req_no`) REFERENCES `schedule_request` (`sched_req_no`);
+
+--
+-- Constraints for table `schedule_request`
+--
+ALTER TABLE `schedule_request`
+  ADD CONSTRAINT `schedule_request_ibfk_1` FOREIGN KEY (`account_id`) REFERENCES `account` (`account_id`);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

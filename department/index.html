@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  	<title>CSIT Class Scheduler</title>
+	<meta charset="utf-8">
+	<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<link rel="shortcut icon" type="image/x-icon" href="../global/img/bucs-logo.png">
+	<link rel="stylesheet" href="../global/css/bootstrap.min.css">
+	<link rel="stylesheet" href="../global/css/navbar.css">
+	<link rel="stylesheet" href="../global/css/default-theme.css">
+	<link rel="stylesheet" href="../global/css/footer.css">
+	<script type="text/javascript" src="../global/js/jquery.min.js"></script>
+  	<script type="text/javascript" src="../global/js/bootstrap.min.js"></script>
+	<script src="js/daypilot-all.min.js?v=2018.2.232" type="text/javascript"></script>
+</head>
+<body>
+	<!-- NAVIGATION BAR -->
+	<nav class="navbar navbar-expand-md sticky-top navbar-light bg-light navbar-color">
+	  	<div class="navbar-brand" style="user-select: none">
+			<img src="../global/img/bucs-logo.png" alt="CSIT departmental logo">
+			<h1>CLASS SCHEDULER</h1>
+		</div>
+		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+			<span class="navbar-toggler-icon"></span>
+		</button>
+	  	<div class="collapse navbar-collapse" id="navbarNav">
+	    	<ul id="nav-list" class="navbar-nav">
+	      		<li class="nav-item">
+	        		<a class="nav-link" href="../faculty">Faculty Workload</a>
+	      		</li>
+		      	<li class="nav-item active">
+		        	<a class="nav-link" href="#">Weekly Schedule</a>
+		      	</li>
+		      	<li class="nav-item">
+		        	<a class="nav-link" href="#">Room Designation</a>
+		      	</li>
+	    	</ul>
+	  	</div>
+	</nav> <!-- END OF TNAVIGATION BAR -->
+	<div class="container">
+		<h2>Select Schedule Options</h2>
+			<hr>
+		<div class="row">
+
+			<div class="col-md-3" style="margin-top: 30px;">
+				<form class="form-horizontal" method="post" enctype="multipart/form-data">
+					<h2>Create Schedule Request</h2>
+
+					    <div class="form-group">
+					    	<label>Year</label>
+					          <select class="form-control" id="year">
+					          </select>
+
+					       <label>Semester</label>
+					          <select class="form-control" id="semester">
+					          	<option value="1">1st Semester</option>
+					          	<option value="2">2nd Semester</option>
+					          	<option value="3">Summer</option>
+					          </select>
+
+					    </div>
+					    <div id="error_msg"></div>
+					    <div class="form-group">        
+					      <div class="col-sm-offset-2 col-sm-10">
+					        <button class="btn btn-primary" id="create" type="submit"
+							onclick="return(create_schedule());">Create Schedule Request</button>
+					      </div>
+					    </div>
+  				</form>
+  			</div>
+  			  			<div class="col-md-1"></div>
+  			<div class="col-md-3" style="margin-top: 30px;">
+  				<h2>Open Unfinished Schedule Request</h2>
+				<form class="form-horizontal" method="post" enctype="multipart/form-data">
+					    <div class="form-group">
+
+					       <select class="form-control" id="sched_name" style="margin-top: 50px;">
+					       </select>
+					    </div>
+					    <div id="error_msg_open" style="position: absolute;"></div>
+					    <div class="form-group">        
+					      <div class="col-sm-offset-2 col-sm-10">
+					        <button class="btn btn-primary" style="margin-top: 35px;" id="profile" type="submit"
+							onclick="return(open_schedule(document.getElementById('sched_name').value));">Open Schedule Request</button>
+					      </div>
+					    </div>
+  				</form>
+  			</div>
+  			<div class="col-md-1"></div>
+  				<div class="col-md-3" style="margin-top: 30px;">
+  					<h2>View Approved Schedules</h2>
+				<form class="form-horizontal" method="post" enctype="multipart/form-data">
+					    <div class="form-group">
+
+					       <select class="form-control" id="sched_name_view" style="margin-top: 75px;">
+					       </select>
+					    </div>
+					    <div id="error_msg_view" style="position: absolute;"></div>
+					    <div class="form-group">        
+					      <div class="col-sm-offset-2 col-sm-10">
+					        <button class="form-control btn btn-primary" style="margin-top: 35px;" id="view" type="submit"
+							onclick="return(view_schedule(document.getElementById('sched_name_view').value));">View</button>
+					      </div>
+					    </div>
+  				</form>
+  			</div>
+		</div>
+	</div>
+	<div><br><br><br><br><br><br></div>
+	<footer><i>Footer here (work in progress).</i></footer>
+	<script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>

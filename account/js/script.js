@@ -4,13 +4,16 @@ $(document).ready(function() {
         type: "POST",
         url: "php/functions.php",
         data: {
-            get_data_schedule: "0"
+            info: "0"
         },
         success: function (result) {
-            document.getElementById('approve_data').innerHTML = result;
+            var data = JSON.parse(result);
+            $('#fname').val(data['fname']);
+            $('#lname').val(data['lname']);
+            $('#uname').val(data['username']);
         },
         error: function (result) {
-
+            console.log("error in retrieving account data");
         }
     });
 
@@ -18,19 +21,64 @@ $(document).ready(function() {
 });
 
 
-function request_type(value){
+function update_profile() {
+    var stat = "";
+    $("#profile").val("Updating Profile...");
     $.ajax({
         type: "POST",
         url: "php/functions.php",
         data: {
-            get_data_schedule: value
+            profile: 1,
+            fname: $("#fname").val(),
+            lname:$("#lname").val()
         },
-        success: function (result) {
-            
-            document.getElementById('approve_data').innerHTML = result;
-        },
-        error: function (result) {
+        success: function(result) {
+            if (result == 1) {
+                $("#profile").val("Updating...");
+                $("#error_msg").css({ color: 'green' });
+                document.getElementById("error_msg").innerHTML = "Profile Updated";
+                window.setTimeout(function(){ window.location = "index.html"; },3000);
 
+            }
+            else {
+                $("#profile").val("Update");
+                $("#error_msg").css({ color: 'red' });
+                document.getElementById("error_msg").innerHTML = "Update failed";
+                stat = false;
+            }
         }
     });
+    if (!stat)
+        return false;
+}
+
+
+
+function update_password() {
+    var stat = "";
+    $("#account").val("Updating Account...");
+    $.ajax({
+        type: "POST",
+        url: "php/functions.php",
+        data: {
+            pass: $("#pass").val()
+        },
+        success: function(result) {
+            if (result == 1) {
+                $("#account").val("Updating...");
+                $("#error_msg_acc").css({ color: 'green' });
+                document.getElementById("error_msg_acc").innerHTML = "Account Updated";
+                window.setTimeout(function(){ window.location = "index.html"; },3000);
+
+            }
+            else {
+                $("#account").val("Update");
+                $("#error_msg_acc").css({ color: 'red' });
+                document.getElementById("error_msg_acc").innerHTML = "Update failed";
+                stat = false;
+            }
+        }
+    });
+    if (!stat)
+        return false;
 }
