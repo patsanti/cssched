@@ -10,10 +10,10 @@ window.addEventListener('load', function() {
         dataType: 'json',
         error: function(jqXHR, textStatus, errorThrown) {
             //for debugging only
-            console.log(jqXHR, textStatus, errorThrown);
+            console.error(jqXHR, textStatus, errorThrown);
         },
         success: function(result) {
-            model_faculty(result);
+            handle_retrieved_info(result);
         }
     });
 });

@@ -7,41 +7,64 @@ caption address {
     display: inline-block;
     color: white;
     margin: 0;
-    padding: 0.2em 1.5em;
+    padding: 0.523em 1.5em;
     background-color: #2196F3;
+}
+
+th {
+    padding: 0.5em !important;
 }
 
 th, td {
     text-align: center;
 }
 
+td {
+    padding: 0.2em !important;
+    vertical-align: middle !important;
+}
+
+.btn-group.open .dropdown-toggle {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.dropdown-menu > .active > a {
+    background-color: #2196F3;
+}
+
 select {
-    max-width: 5.8em;
-    border: none;
-    background-color: transparent !important;
+    display: none;
 }
 
-select[class="subject"] {
-    max-width: 5.8em;
+.selection-toggler {
+    padding: 0.2em 0.7em;
+    border: 1px solid transparent;
+    background-color: transparent;
 }
 
-input[type="number"][class$="unit"] {
-    max-width: 3.3em !important;
+.selection-toggler:focus,
+td input[type="number"] {
+    border: 1px solid #2196F3;
+}
+
+td input[type="number"] {
+    text-align: center;
+    padding: 0.2em 0 0.2em 0.7em;
+    max-width: 5em !important;
     border: none;
     background-color: transparent;
 }
 
 .time-container {
+    font-size: 0.8em;
     vertical-align: middle;
-    margin-top: -0.3em;
     display: inline-block;
-    max-width: 3.75em;
+    max-width: 4.85em;
     overflow: hidden;
 }
 
 input[type="time"] {
-    width: 7em;
-    font-size: 0.8em;
     border: none;
     background-color: transparent;
 }
@@ -50,24 +73,12 @@ input[type="time"]:focus {
     outline: none;
 }
 
-.checklist {
-    position: relative;
-}
-
-.checklist .toggler {
-    border: none;
-    background-color: transparent;
-}
-
-.checklist .toggler:hover {
-    background-color: #fafafa;
-}
-
-.checklist .dropdown {
-    position: absolute;
-    text-align: left;
-    min-width: 9em;
-    padding: 0.5em 1em;
-    background-color: white;
-    border: 1px solid #777777;
-}
+.time-separator {
+    color: #777777;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }  
