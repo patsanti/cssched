@@ -82,7 +82,7 @@ function open_schedule(sched) {
 
     if($('#sched_name').val() == 0){
         $("#error_msg_open").css({ color: 'red' });
-        document.getElementById('error_msg_open').innerHTML = "You got 0 Unfinished schedule request. create one first";
+        document.getElementById('error_msg_open').innerHTML = "Empty Unfinished schedule request.";
         return false;
     }
     else{
@@ -107,9 +107,10 @@ function open_schedule(sched) {
 function view_schedule(sched) {
     var stat = "";
 
-    if($('#sched_name-view').val() == 0){
-        $("#error_msg_open").css({ color: 'red' });
-        document.getElementById('error_msg_open').innerHTML = "You got 0 Unfinished schedule request. create one first";
+    if($('#sched_name_view').val() == 0){
+
+        $("#error_msg_view").css({ color: 'red' });
+        document.getElementById('error_msg_view').innerHTML = "You got 0 approved schedule request.";
         return false;
     }
     else{

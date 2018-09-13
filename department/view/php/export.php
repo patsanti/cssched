@@ -24,6 +24,16 @@ class global_use {
   $file= $data_type.'-'.$id.'.xls';
   $sched_req_no = $_SESSION['schedule_request'];
 
+  $name = $conn->query("SELECT * FROM schedule_request WHERE sched_req_no = '$sched_req_no'");
+  $row11 = $name->fetch_assoc();
+  
+  if($row11['semester'] == 1)
+    $filename = $row11['school_year']."-1st Semester";
+  elseif($row11['semester'] == 2)
+    $filename = $row11['school_year']."-2nd Semester";
+  else
+    $filename = $row11['school_year']."-Summer";
+
     if($data_type == "professor")
       $concat = "prof_id =".$id;
     else if($data_type == "class")
@@ -83,6 +93,14 @@ class global_use {
 
          $excel = $excel.$c;
     }
+
+    if($data_type == "professor")
+      $file= $all_data['prof_lname'].' '.$all_data['prof_fname'].'_'.$filename.'.xls';
+    else if($data_type == "class")
+      $file= $all_data['class_yr_blk'].'_'.$filename.'.xls';
+    else if($data_type == "room")
+      $file= $all_data['room_name'].'_'.$filename.'.xls';
+    
     $excel = '<table border="3"><caption>Weekly Schedule of '.$all_data['prof_fname'].' '.$all_data['prof_lname'].'</caption>'.$excel.'</table>';
     header("Content-type: application/vnd.ms-excel");
     header("Content-Disposition: attachment; filename=$file");
