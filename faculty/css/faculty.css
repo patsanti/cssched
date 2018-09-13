@@ -1,0 +1,84 @@
+table caption {
+    caption-side: top;
+    padding-bottom: 0;
+}
+
+caption address {
+    display: inline-block;
+    color: white;
+    margin: 0;
+    padding: 0.523em 1.5em;
+    background-color: #2196F3;
+}
+
+th {
+    padding: 0.5em !important;
+}
+
+th, td {
+    text-align: center;
+}
+
+td {
+    padding: 0.2em !important;
+    vertical-align: middle !important;
+}
+
+.btn-group.open .dropdown-toggle {
+    -webkit-box-shadow: none;
+    box-shadow: none;
+}
+
+.dropdown-menu > .active > a {
+    background-color: #2196F3;
+}
+
+select {
+    display: none;
+}
+
+.selection-toggler {
+    padding: 0.2em 0.7em;
+    border: 1px solid transparent;
+    background-color: transparent;
+}
+
+.selection-toggler:focus,
+td input[type="number"] {
+    border: 1px solid #2196F3;
+}
+
+td input[type="number"] {
+    text-align: center;
+    padding: 0.2em 0 0.2em 0.7em;
+    max-width: 5em !important;
+    border: none;
+    background-color: transparent;
+}
+
+.time-container {
+    font-size: 0.8em;
+    vertical-align: middle;
+    display: inline-block;
+    max-width: 4.85em;
+    overflow: hidden;
+}
+
+input[type="time"] {
+    border: none;
+    background-color: transparent;
+}
+
+input[type="time"]:focus {
+    outline: none;
+}
+
+.time-separator {
+    color: #777777;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+  }  
