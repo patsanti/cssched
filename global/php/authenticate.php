@@ -1,19 +1,16 @@
 <?php
-
-function check_login(){
-    if(session_status() == PHP_SESSION_NONE) {
-        session_start();
-        if(isset($_SESSION['acc_type_id']))
-            return $_SESSION['acc_type_id'];
-        else
-            return 0;
-    }   
-    else{
-        if(isset($_SESSION['acc_type_id']))
-            return $_SESSION['acc_type_id'];
-        else
-            return 0;
-    }
+if(session_status() == PHP_SESSION_NONE) {
+    session_start();
 }
-echo check_login();
+
+if(isset($_GET['logout'])) {
+    $id = $_SESSION['account_id'];
+    setcookie("account_id", $id, time() - (86400 * 30), "/");
+    unset($_SESSION['account_id']);
+    session_destroy();
+    header("Location: http://localhost/cssched/");
+    exit();
+}
+
+
 ?>

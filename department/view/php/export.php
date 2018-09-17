@@ -94,14 +94,20 @@ class global_use {
          $excel = $excel.$c;
     }
 
-    if($data_type == "professor")
-      $file= $all_data['prof_lname'].' '.$all_data['prof_fname'].'_'.$filename.'.xls';
-    else if($data_type == "class")
+    if($data_type == "professor"){
+      $file= $all_data['prof_lname'].'_'.$all_data['prof_fname'].'_'.$filename.'.xls';
+      $title = $all_data['prof_fname'].'_'.$all_data['prof_lname'];
+    }
+    else if($data_type == "class"){
       $file= $all_data['class_yr_blk'].'_'.$filename.'.xls';
-    else if($data_type == "room")
+      $title = $all_data['class_yr_blk'];
+    }
+    else if($data_type == "room"){
       $file= $all_data['room_name'].'_'.$filename.'.xls';
+      $title = $all_data['room_name'];
+    }
     
-    $excel = '<table border="3"><caption>Weekly Schedule of '.$all_data['prof_fname'].' '.$all_data['prof_lname'].'</caption>'.$excel.'</table>';
+    $excel = '<table border="3"><caption>Weekly Schedule of '.$title.'</caption>'.$excel.'</table>';
     header("Content-type: application/vnd.ms-excel");
     header("Content-Disposition: attachment; filename=$file");
     echo $excel;

@@ -2,7 +2,7 @@
 
 $servername = "localhost";
 $username = "root";
-$password = "";
+$password = "password";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, 'csit_advising_scheduler');

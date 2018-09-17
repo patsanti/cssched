@@ -9,6 +9,8 @@ if(isset($_SESSION['acc_type_id'])) {
 		header("Location: department/");
 	elseif ($_SESSION['acc_type_id'] == 3) 
 		header("Location: dean/");
+	elseif ($_SESSION['acc_type_id'] == 4) 
+		header("Location: admin/");
 }
 
 ?>
