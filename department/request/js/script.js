@@ -193,7 +193,7 @@ dp.onTimeRangeSelected = function (args) {
                         dp.clearSelection();
                         $("#error_msg").css({ color: 'green' });
                         document.getElementById('error_msg').innerHTML = " Schedule Added";
-                        window.setTimeout(function(){ window.location = "index.html"; },1000);
+                        window.setTimeout(function(){ window.location = "index.php"; },1000);
                     }
                     else{
                         $("#error_msg").css({ color: 'red' });
@@ -325,7 +325,7 @@ $('#select-prof-view').on('change', function() {
                             dp.clearSelection();
                             $("#error_msg").css({ color: 'green' });
                             document.getElementById('error_msg').innerHTML = " Schedule Added";
-                            window.setTimeout(function(){ window.location = "index.html"; },1000);
+                            window.setTimeout(function(){ window.location = "index.php"; },1000);
                         }
                         else{
                             $("#error_msg").css({ color: 'red' });
@@ -456,7 +456,7 @@ $('#select-class-view').on('change', function() {
                             dp.clearSelection();
                             $("#error_msg").css({ color: 'green' });
                             document.getElementById('error_msg').innerHTML = " Schedule Added";
-                            window.setTimeout(function(){ window.location = "index.html"; },1000);
+                            window.setTimeout(function(){ window.location = "index.php"; },1000);
                         }
                         else{
                             $("#error_msg").css({ color: 'red' });
@@ -586,7 +586,7 @@ $('#select-room-view').on('change', function() {
                             dp.clearSelection();
                             $("#error_msg").css({ color: 'green' });
                             document.getElementById('error_msg').innerHTML = " Schedule Added";
-                            window.setTimeout(function(){ window.location = "index.html"; },1000);
+                            window.setTimeout(function(){ window.location = "index.php"; },1000);
                         }
                         else{
                             $("#error_msg").css({ color: 'red' });
@@ -676,7 +676,7 @@ modalConfirm(function(confirm){
         success: function (result) {
             $("#success_msg").css({ color: 'green' });
             document.getElementById('success_msg').innerHTML = result;
-            window.setTimeout(function(){ window.location = "../index.html"; },1000);
+            window.setTimeout(function(){ window.location = "../index.php"; },1000);
         }
 
     });

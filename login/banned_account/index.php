@@ -5,23 +5,23 @@
 <head>
     <title>Banned Account</title>
 </head>
- <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link rel="stylesheet" href="http://localhost/augeo/global/vendor/bootstrap/dist/css/bootstrap.min.css">
-
-<link rel="stylesheet" href="css/index.css" />
+	<link rel="stylesheet" href="../../global/css/bootstrap.min.css">
+	<link rel="shortcut icon" type="image/x-icon" href="../../global/img/logo.png">
+	<link rel="stylesheet" href="css/index.css" />
 <body>
     <div class="container">
-<div align="center">
-    <img src="http://localhost/augeo/global/img/logo.png" id="brand-logo1">
-<h2>Banned Account</h2>
-</div>
-<div class="panel-login">
-<label for="activate">Your Account has been banned, for more information visit <a href="http://localhost/augeo/help_page/">faq</a> </label><br>
-</div>
+		<div align="center">
+		    <img src="../../global/img/logo.png" id="brand-logo1">
+		<h2>Banned Account</h2>
+		</div>
+		<div class="panel-login">
+		<label for="activate">Your Account has been banned</label><br>
+		</div>
     </div>
 
-</body>
-    <script src="http://localhost/augeo/global/vendor/jquery/dist/jquery.min.js"></script>
-    <script src="http://localhost/augeo/global/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
+	<script type="text/javascript" src="../../global/js/jquery.min.js"></script>
+  	<script type="text/javascript" src="../../global/js/bootstrap.min.js"></script>
+</body>    
 </html>

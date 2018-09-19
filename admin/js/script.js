@@ -30,7 +30,7 @@ function create_user() {
                 $("#submit").val("Login");
                 $("#error_msg").css({ color: 'green' });
                 document.getElementById("error_msg").innerHTML = "Account Created";
-                window.setTimeout(function(){ window.location = "index.html"; },3000);
+                window.setTimeout(function(){ window.location = "index.php"; },1000);
 
             }
             else {
@@ -62,7 +62,7 @@ function change_password() {
                 $("#submit").val("Login");
                 $("#error_msg").css({ color: 'green' });
                 document.getElementById("error_msg").innerHTML = "Account Created";
-                window.setTimeout(function(){ window.location = "index.html"; },3000);
+                window.setTimeout(function(){ window.location = "index.php"; },3000);
 
             }
             else {

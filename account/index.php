@@ -1,3 +1,10 @@
+<?php
+if(session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
+if(!isset($_SESSION['acc_type_id'])) 
+ 	header("Location: ../");
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -5,7 +12,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="shortcut icon" type="image/x-icon" href="../global/img/bucs-logo.png">
+	<link rel="shortcut icon" type="image/x-icon" href="../global/img/logo.png">
 	<link rel="stylesheet" href="../global/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../global/css/navbar.css">
 	<link rel="stylesheet" href="../global/css/default-theme.css">
@@ -18,7 +25,7 @@
 	<!-- NAVIGATION BAR -->
 	<nav class="navbar navbar-expand-md sticky-top navbar-light bg-light navbar-color">
 	  	<div class="navbar-brand" style="user-select: none">
-			<img src="../global/img/bucs-logo.png" alt="CSIT departmental logo">
+			<img src="../global/img/logo.png" alt="CSIT departmental logo">
 			<h1>CLASS SCHEDULER</h1>
 		</div>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,16 +34,21 @@
 	  	<div class="collapse navbar-collapse" id="navbarNav">
 	    	<ul id="nav-list" class="navbar-nav">
 	      		<li class="nav-item">
-	        		<a class="nav-link" href="../faculty">Faculty Workload</a>
+	        		<a class="nav-link" href="../">Home</a>
 	      		</li>
-		      	<li class="nav-item">
-		        	<a class="nav-link" href="../weekly">Weekly Schedule</a>
-		      	</li>
-		      	<li class="nav-item">
-		        	<a class="nav-link" href="#">Room Designation</a>
-		      	</li>
 	    	</ul>
 	  	</div>
+	  	<ul class="nav navbar-nav navbar-right">
+			<li class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
+					<span class="caret" style="color:black">Settings</span>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a class="nav-link" style="color: black" href="#">Account</a></li>
+					<li><a class="nav-link" style="color: black" href="../global/php/authenticate.php?logout=1">Log Out</a></li>
+				</ul>
+			</li>
+		</ul>
 	</nav> <!-- END OF TNAVIGATION BAR -->
 
 	

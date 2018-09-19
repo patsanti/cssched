@@ -37,7 +37,7 @@ function update_profile() {
                 $("#profile").val("Updating...");
                 $("#error_msg").css({ color: 'green' });
                 document.getElementById("error_msg").innerHTML = "Profile Updated";
-                window.setTimeout(function(){ window.location = "index.html"; },3000);
+                window.setTimeout(function(){ window.location = "index.php"; },1000);
 
             }
             else {
@@ -68,7 +68,7 @@ function update_password() {
                 $("#account").val("Updating...");
                 $("#error_msg_acc").css({ color: 'green' });
                 document.getElementById("error_msg_acc").innerHTML = "Account Updated";
-                window.setTimeout(function(){ window.location = "index.html"; },3000);
+                window.setTimeout(function(){ window.location = "index.php"; },1000);
 
             }
             else {

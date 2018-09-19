@@ -21,6 +21,7 @@ if(isset($_SESSION['acc_type_id'])) {
 	<title>login</title>
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="stylesheet" href="login/css/index.css"/>
+	<link rel="shortcut icon" type="image/x-icon" href="global/img/logo.png">
 	<link rel="stylesheet" href="global/css/bootstrap.min.css">
 </head>
 <body>
@@ -29,7 +30,7 @@ if(isset($_SESSION['acc_type_id'])) {
 	<!-- Login form -->
 	<div class="container login_form">
 		<div align="center">
-			<img src="global/img/bucs-logo.png" id="brand-logo1">
+			<img src="global/img/logo.png" id="brand-logo1">
 			<h3>Sign in to CSIT Scheduler</h3>
 		</div>
 		<div class="panel-login">
@@ -41,7 +42,7 @@ if(isset($_SESSION['acc_type_id'])) {
 				<div class="form-group">
 					<label>Password</label>
 					<input type="password" class="form-control" name="pass" id="pass" required>
-					<span class="help-block" id ="error_msg"></span>
+					<span class="help-block" id ="error_msg" style="font-size: 15px;"></span>
 				</div>
 				<input type="submit" class="btn btn-md" name="submit" id="submit" value="Login" onclick="return(login_submit());">
 				<div id="forgot_pass"><a href="#" class="show_hide2"> Forgot Password</a></div>
