@@ -87,12 +87,11 @@ else
 				</section>
 			</div>
 			<div class="col-md-9">
-
-
-				<div class="h4" id="title_name">Schedule of professor</div>
+				<div class="h7" id="request-status"></div>
 				<hr>
+				<div class="h4" id="title_name"></div>
 				<div id="dp"></div>
-				<a href="php/export.php" target="_blank"><button id="export">Export to Excel File</button></a>
+				<a href="../../global/php/export.php" target="_blank"><button id="export">Export to Excel File</button></a>
 			</div>
 		</div>
 	</div>

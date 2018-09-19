@@ -350,7 +350,7 @@ class get_data{
 		$conn = $global_use->connect_db();
 		$id =  $_SESSION['schedule_request'];
 
-		$result = $conn->query("UPDATE schedule_request set request_status = 1 WHERE sched_req_no = '$id'");
+		$result = $conn->query("UPDATE schedule_request set request_status = 2 WHERE sched_req_no = '$id'");
 		echo "Schedule Request Submitted!";
 	}
 	function get_name(){
@@ -368,7 +368,7 @@ class get_data{
 		else
 			$semester = "Summer";
 
-		echo '<p>Schedule: <b>'.$row['school_year'].' - '.$semester.'</b></p>';
+			echo '<p>Schedule: <b>'.$row['school_year'].' - '.$semester.'</b> Status: <b style="color: red;"> PENDING</b></p>';
 
 	}
 
@@ -411,6 +411,7 @@ elseif(isset($_POST['get_name_schedule']))
 
 elseif(isset($_POST['submit_schedule']))
 	$get_data->submit_schedule();
+
 elseif(isset($_POST['get_name']))
 	$get_data->get_name();
 

@@ -4,7 +4,7 @@ session_start();
 class global_use {
   function connect_db(){
     //connect to the database
-    require_once '../../../global/php/connect.php';
+    require_once 'connect.php';
 
     // Check connection
     if ($conn->connect_error) 

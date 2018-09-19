@@ -18,97 +18,6 @@ class global_use {
 	}
 }
 
-
-// class for checking CSP
-class check{
-	function check_conflict($result,$start_time,$end_time,$subject,$professor,$class,$room,$day){
-
-		if ($result->num_rows > 0) {
-			$if_conflict = 0;
-		    while($row = $result->fetch_assoc()) {
-		    	$db_start_time = strtotime($row['start_time']);
-				$db_end_time = strtotime($row['end_time']);
-				$db_start_time = date("H:i",$db_start_time);
-				$db_end_time = date("H:i",$db_end_time);
-				
-		    	if( 
-		    		( (($end_time > $db_start_time) && ($db_end_time > $start_time)) && ($room == $row['room_id']) && ($day == $row['day']) ) 
-
-		    		    ) {
-   					$if_conflict = $if_conflict + 1;
-				}
-		    }
-		    return $if_conflict;
-		}
-
-	}
-	// convert days: ask austin why do this
-	function convert_day($day){
-		if($day == "3")
-			return 7;
-		else if($day == "4")
-			return 1;
-		else if($day == "5")
-			return 2;
-		else if($day == "6")
-			return 3;
-		else if($day == "7")
-			return 4;
-		else if($day == "8")
-			return 5;
-		else if($day == "9")
-			return 6;
-
-	}
-
-}
-
-
-
-// class for add, delete and update
-class alter{
-	// function to add data
-	function alter_add($start_time,$end_time,$subject,$professor,$class,$room,$day){
-  		$global_use = new global_use;
-		$conn = $global_use->connect_db();
-
-		$start_time = strtotime($start_time);
-		$end_time = strtotime($end_time);
-		$start_time = date("H:i:s",$start_time);
-		$end_time = date("H:i:s",$end_time);
-
-
-  		$sql = "SELECT * FROM schedule";
-  		$id = $_SESSION['schedule_request'];
-		$check = new check;
-		$result = $conn->query("SELECT * FROM schedule WHERE sched_req_no = '$id'");
-		$day = $check->convert_day($day);
-		$check_if_conflict = $check->check_conflict($result,$start_time,$end_time,$subject,$professor,$class,$room,$day);
-
-
-
-		if($check_if_conflict == 0){
-			$sql = "INSERT INTO schedule(subject_id,prof_id,room_id,class_id,day,start_time,end_time,sched_req_no) VALUES ('$subject','$professor','$room','$class','$day','$start_time','$end_time','$id')";
-			$result = $conn->query($sql);
-			echo 1;
-		}
-		else
-			echo 0;
-		
-
-	}
-
-	// function to delete data
-	function alter_delete(){
-		// add code here for delete
-	}
-
-	// function to update data
-	function alter_update(){
-		// add code here for update
-	}
-}
-
 class get_data{
 	
 	// function to get all data of scheadule
@@ -141,33 +50,6 @@ class get_data{
 		}
 
 	} 
-
-	function get_data_subject(){
-		$global_use = new global_use;
-		$conn = $global_use->connect_db();
-
-		$sql = "SELECT * FROM subject";
-		$result = $conn->query($sql);
-
-		if ($result->num_rows > 0) {
-		    // output data of each row
-		    $n = 0;
-		    $subject = array();
-		    while($row = $result->fetch_assoc()) {
-		       $subject[$n] = $row['subject_id'];
-		       $n++;
-		       $subject[$n] = $row['subject_name'];
-		       $n++;
-		    }
-		    $array_return = json_encode($subject);
-		    echo $array_return;
-		    
-		} else {
-		    echo "no subject data";
-		}
-
-	}
-
 
 	function get_data_class(){
 		$global_use = new global_use;
@@ -235,16 +117,16 @@ class get_data{
 		$global_use = new global_use;
 		$conn = $global_use->connect_db();
 		$id = $_SESSION['schedule_request'];
+		//echo $append;
 		$sql = "SELECT * FROM schedule WHERE sched_req_no = '$id'".$append;
 		$result = $conn->query($sql);
-
 		if ($result->num_rows > 0) {
 		    // output data of each row
 		    $n = 0;
 		    $schedule = array();
 		    while($row = $result->fetch_assoc()) {
-		    	
-		    	$sql2 = "SELECT * FROM subject WHERE subject_id = ".$row['subject_id']." ";
+		    	$subject_id = $row['subject_id'];
+		    	$sql2 = "SELECT * FROM subject WHERE subject_id = '$subject_id' ";
 				$result2 = $conn->query($sql2);
 				$subject = $result2->fetch_assoc();
 
@@ -281,7 +163,9 @@ class get_data{
 		    $array_return = json_encode($schedule);
 		    echo $array_return;
 		   
-		} 	
+		}
+		else
+			echo 0; 	
 	}
 	// show schedule info in modal
 	function show_schedule($id){
@@ -344,16 +228,7 @@ class get_data{
 		$_SESSION['export_download_name'] = $type;
 		echo $row[$name];
 	}
-
-	function submit_schedule(){
-		$global_use = new global_use;
-		$conn = $global_use->connect_db();
-		$id =  $_SESSION['schedule_request'];
-
-		$result = $conn->query("UPDATE schedule_request set request_status = 1 WHERE sched_req_no = '$id'");
-		echo "Schedule Request Submitted!";
-	}
-	function get_name(){
+	function get_status(){
 		$global_use = new global_use;
 		$conn = $global_use->connect_db();
 		$id = $_SESSION['schedule_request'];
@@ -368,51 +243,47 @@ class get_data{
 		else
 			$semester = "Summer";
 
-		echo '<p>Schedule: <b>'.$row['school_year'].' - '.$semester.'</b></p>';
+		if($row['request_status'] == 2)
+			echo '<p><b> '.$row['school_year'].' - '.$semester.'</b> status:  <b style="color:green;">APPOVED</b></p>';
 
 	}
+
 
 }
 
 // initialize classes
-$alter = new alter;
+
 $get_data = new get_data;
 // get all prof list
-if(isset($_POST['get_prof'])){
+if(isset($_POST['get_prof']))
 	$get_data->get_data_professor();
-}
 // get all subject list
-elseif (isset($_POST['get_subject'])) {
+elseif (isset($_POST['get_subject'])) 
 	$get_data->get_data_subject();
-}
-// get all class list
-elseif (isset($_POST['get_class'])) {
-	$get_data->get_data_class();
-}
-// get all room list
-elseif (isset($_POST['get_room'])) {
-	$get_data->get_data_room();
-}
 
-else if(isset($_POST['get_schedule_data']))
+// get all class list
+elseif (isset($_POST['get_class'])) 
+	$get_data->get_data_class();
+
+// get all room list
+elseif (isset($_POST['get_room'])) 
+	$get_data->get_data_room();
+
+elseif(isset($_POST['get_schedule_data']))
 	$get_data->get_schedule_data($_POST['get_subject_1'],$_POST['get_professor_1'],$_POST['get_class_1'],$_POST['get_room_1']);
-else if(isset($_POST['get_schedule_data_all']))
+
+elseif(isset($_POST['get_schedule_data_all']))
 	$get_data->get_schedule_data_all($_POST['query']);
 
-else if(isset($_POST['show_schedule']))
+elseif(isset($_POST['show_schedule']))
 	$get_data->show_schedule($_POST['show_schedule']);
 
-// add schedule
-elseif (isset($_POST['add_schedule'])) {
-	$alter->alter_add($_POST['start_time'],$_POST['end_time'],$_POST['subject'],$_POST['professor'],$_POST['class_1'],$_POST['room'],$_POST['day']);
-}
 elseif(isset($_POST['get_name_schedule']))
 	$get_data->get_title($_POST['sql'],$_POST['data'],$_POST['session_id'],$_POST['type_data']);
 
-elseif(isset($_POST['submit_schedule']))
-	$get_data->submit_schedule();
-elseif(isset($_POST['get_name']))
-	$get_data->get_name();
+elseif(isset($_POST['get_status']))
+	$get_data->get_status();
+
 
 
 ?>

@@ -94,6 +94,20 @@ $(document).ready(function() {
             }
         }
     });
+    // get schedule name
+    $.ajax({
+        type: "POST",
+        url: "php/functions.php",
+        data: {
+            get_name: "1"
+        },
+        success: function (result) {
+           document.getElementById('request-name').innerHTML = result;
+        },
+        error: function (result) {
+
+        }
+    });
 });
 
 

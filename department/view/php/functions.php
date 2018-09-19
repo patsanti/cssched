@@ -228,6 +228,27 @@ class get_data{
 		$_SESSION['export_download_name'] = $type;
 		echo $row[$name];
 	}
+	function get_status(){
+		$global_use = new global_use;
+		$conn = $global_use->connect_db();
+		$id = $_SESSION['schedule_request'];
+
+		$result = $conn->query("SELECT * FROM schedule_request WHERE sched_req_no = '$id'");
+		$row = $result->fetch_assoc();
+
+		if($row['semester'] == 1)
+			$semester = "1st Semester";
+		elseif($row['semester'] == 2)
+			$semester = "2nd Semester";
+		else
+			$semester = "Summer";
+
+		if($row['request_status'] == 1)
+			echo '<p> <b>'.$row['school_year'].' - '.$semester.'</b> status: <b style="color:red;">PENDING</b></p>';
+		elseif($row['request_status'] == 2)
+			echo '<p><b> '.$row['school_year'].' - '.$semester.'</b> status:  <b style="color:green;">APPOVED</b></p>';
+
+	}
 
 
 }
@@ -261,6 +282,9 @@ elseif(isset($_POST['show_schedule']))
 
 elseif(isset($_POST['get_name_schedule']))
 	$get_data->get_title($_POST['sql'],$_POST['data'],$_POST['session_id'],$_POST['type_data']);
+
+elseif(isset($_POST['get_status']))
+	$get_data->get_status();
 
 
 

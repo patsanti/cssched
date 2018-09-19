@@ -6,7 +6,7 @@ if(session_status() == PHP_SESSION_NONE) {
 
 if(isset($_SESSION['acc_type_id'])) {
 
-	if ($_SESSION['acc_type_id'] == 3) 
+	if ($_SESSION['acc_type_id'] == 2) 
 		header("Location: ../../");
 	elseif ($_SESSION['acc_type_id'] == 4) 
 		header("Location: ../../");
@@ -57,44 +57,10 @@ else
 	</nav> <!-- END OF TNAVIGATION BAR -->
 	<div class="container">
 		<div class="row">
-			<div class="col-md-2">
-					<section id="add-schedule">
-						<a href="../" >Go Back</a>
-						<hr>
-					<header>
 
-						<h2>ADD CLASS SCHEDULE</h2>
-					</header>
-					<form action="php/functions.php" method="POST">
-						<p style="color:green;font-size: 15px;">Select schedule information here before adding schedule</p>
-						<input type="hidden" name="add_schedule" id="add_schedule" value="1">
-						<label for="select-course">Course Code</label>
-						<select id="select-course" class="form-control form-control-sm" required>
-						</select>
-
-						<label for="select-prof">Professor</label>
-						<select id="select-prof" class="form-control form-control-sm" required></select>
-
-						<label for="select-class">Class</label>
-						<select id="select-class" class="form-control form-control-sm" required></select>
-
-
-						<label for="select-room">Room</label>
-						<select id="select-room" class="form-control form-control-sm" required></select>
-						<div id="error_msg"></div>
-
-					</form>
-				</section>
-			</div>
-			<div class="col-md-8">
-				<div class="h7" id="request-name"></div>
-				<hr>
-				<div class="h4" id="title_name">Schedule of professor</div>
-				<div id="dp"></div>
-			</div>
 			<div class="col-md-2">
 				<header>
-					<div> &nbsp</div>
+					<a href="../" >Go Back</a>
 					<hr>
 					<h2>SELECT SCHEDULE</h2>
 				</header>
@@ -107,13 +73,20 @@ else
 				
 				<label>Select by Room</label>
 				<select class="form-control form-control-sm" id="select-room-view" class="form-control" required></select>
+			</div>	
+		
+			<div class="col-md-10">
+				<div class="h7" id="request-name"></div>
+				<hr>
+				<div class="h4" id="title_name"></div>
+				<div id="dp"></div>
 			</div>
+
 			<div class="col-md-2"></div>
-			<div class="col-md-8">
-				<button class="form-control btn-success form-control-sm" id="btn-confirm" type="submit">Submit Schedule Request to College Dean</button>
+			<div class="col-md-10">
+				<button class="form-control btn-success form-control-sm" id="btn-confirm" type="submit">Approve Schedule Request</button>
 				<div id="success_msg"></div>
 			</div>
-			<div class="col-md-2"></div>
 		</div>
 
 
@@ -152,9 +125,8 @@ else
 	      <div class="modal-content">
 	      	<div class="modal-body">
 	      		<div><p>
-	      			Are you sure you want to submit schedule request to College Dean?<br><br></p>
-	      			<p style="color: red; font-size: 12px;"> Reminder: Make sure
-	      		    the schedule request you're submitting is FINAL. Submitted request CANNOT be cancelled!! </p>
+	      			Are you sure you want to approve this schedule request?<br><br></p>
+	      			<p style="color: red; font-size: 12px;"> Reminder: once approved, it cannot be reverted </p>
 	      		</div>
 	      	</div>
 	      </div>

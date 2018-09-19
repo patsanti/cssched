@@ -337,7 +337,7 @@ $(document).ready(function() {
 
         }
     });
-    // get schedule status
+
     $.ajax({
         type: "POST",
         url: "php/functions.php",

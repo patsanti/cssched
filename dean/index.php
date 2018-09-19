@@ -6,7 +6,7 @@ if(session_status() == PHP_SESSION_NONE) {
 
 if(isset($_SESSION['acc_type_id'])) {
 
-	if ($_SESSION['acc_type_id'] == 3) 
+	if ($_SESSION['acc_type_id'] == 2) 
 		header("Location: ../");
 	elseif ($_SESSION['acc_type_id'] == 4) 
 		header("Location: ../");
@@ -63,34 +63,8 @@ else
 			<hr>
 		<div class="row">
 
-			<div class="col-md-3" style="margin-top: 30px;">
-				<form class="form-horizontal" method="post" enctype="multipart/form-data">
-					<h2>Create Schedule Request</h2>
-
-					    <div class="form-group">
-					    	<label>Year</label>
-					          <select class="form-control" id="year">
-					          </select>
-
-					       <label>Semester</label>
-					          <select class="form-control" id="semester">
-					          	<option value="1">1st Semester</option>
-					          	<option value="2">2nd Semester</option>
-					          	<option value="3">Summer</option>
-					          </select>
-
-					    </div>
-					    <div id="error_msg"></div>
-					    <div class="form-group">        
-					      <div class="col-sm-offset-2 col-sm-10">
-					        <button class="btn btn-primary" id="create" type="submit"
-							onclick="return(create_schedule());">Create Schedule Request</button>
-					      </div>
-					    </div>
-  				</form>
-  			</div>
-  			<div class="col-md-3" style="margin-top: 30px;">
-  				<h2>Open Unfinished Schedule Request</h2>
+  			<div class="col-md-5" style="margin-top: 30px;">
+  				<h2>Open Pending Schedule Request</h2>
 				<form class="form-horizontal" method="post" enctype="multipart/form-data">
 					    <div class="form-group">
 
@@ -106,29 +80,13 @@ else
 					    </div>
   				</form>
   			</div>
-  			<div class="col-md-3" style="margin-top: 30px;">
-  					<h2>View Pending Schedule Request</h2>
-				<form class="form-horizontal" method="post" enctype="multipart/form-data">
-					    <div class="form-group">
-
-					       <select class="form-control" id="sched_name_view_pending" style="margin-top: 50px;">
-					       </select>
-					    </div>
-					    <div id="error_msg_view_pending" style="position: absolute;"></div>
-					    <div class="form-group">        
-					      <div class="col-sm-offset-2 col-sm-10">
-					        <button class="form-control btn btn-primary" style="margin-top: 35px;" id="view" type="submit"
-							onclick="return(view_schedule_pending(document.getElementById('sched_name_view_pending').value));">View</button>
-					      </div>
-					    </div>
-  				</form>
-  			</div>
-  				<div class="col-md-3" style="margin-top: 30px;">
+  				<div class="col-md-2"></div>
+  				<div class="col-md-5" style="margin-top: 30px;">
   					<h2>View Approved Schedules</h2>
 				<form class="form-horizontal" method="post" enctype="multipart/form-data">
 					    <div class="form-group">
 
-					       <select class="form-control" id="sched_name_view" style="margin-top: 75px;">
+					       <select class="form-control" id="sched_name_view" style="margin-top: 50px;">
 					       </select>
 					    </div>
 					    <div id="error_msg_view" style="position: absolute;"></div>
@@ -140,7 +98,6 @@ else
 					    </div>
   				</form>
   			</div>
-
 		</div>
 	</div>
 	<div><br><br><br><br><br><br></div>

@@ -1,12 +1,131 @@
-// initialize calendar
+//////////////////////////////////////////////////////////////
+$(document).ready(function() {
+
+     // get list of courses
+    $.ajax({
+        type: "POST",
+        url: "php/functions.php",
+        data: {
+            get_subject: "1"
+        },
+        success: function (result) {
+            var course = eval(result);
+            var Length = course.length / 2;
+            var n = 0;
+
+            for (var i = 0; i < Length; i++) {
+                var option = '<option  value="' + course[n] + '"> ' + course[n + 1] + ' </option>';
+                n = n + 2;
+                $("#select-course").append(option);
+            }
+        },
+        error: function (result) {
+
+        }
+    });
+    // get list of professors
+    $.ajax({
+        type: "POST",
+        url: "php/functions.php",
+        data: {
+            get_prof: "1"
+        },
+        success: function (result) {
+
+            var professor = eval(result);
+            var Length = professor.length / 2;
+            var n = 0;
+
+            for (var i = 0; i < Length; i++) {
+                var option = '<option  value="' + professor[n] + '"> ' + professor[n + 1] + ' </option>';
+                n = n + 2;
+                $("#select-prof").append(option);
+                $("#select-prof-view").append(option);
+
+            }
+        },
+        error: function (result) {
+
+        }
+    });
+
+    // get list of class
+    $.ajax({
+        type: "POST",
+        url: "php/functions.php",
+        data: {
+            get_class: "1"
+        },
+        success: function (result) {
+            var class_name = eval(result);
+            var Length = class_name.length / 2;
+            var n = 0;
+
+            for (var i = 0; i < Length; i++) {
+                var option = '<option  value="' + class_name[n] + '"> ' + class_name[n + 1] + ' </option>';
+                n = n + 2;
+                $("#select-class").append(option);
+                $("#select-class-view").append(option);
+
+            }
+        },
+        error: function (result) {
+
+        }
+    });
+    // get list of room
+    $.ajax({
+        type: "POST",
+        url: "php/functions.php",
+        data: {
+            get_room: "1"
+        },
+        success: function (result) {
+            var room = eval(result);
+            var Length = room.length / 2;
+            var n = 0;
+
+            for (var i = 0; i < Length; i++) {
+                var option = '<option  value="' + room[n] + '"> ' + room[n + 1] + ' </option>';
+                n = n + 2;
+                $("#select-room").append(option);
+                $("#select-room-view").append(option);
+
+            }
+        }
+    });
+     $.ajax({
+        type: "POST",
+        url: "php/functions.php",
+        data: {
+            get_name: "1"
+        },
+        success: function (result) {
+           document.getElementById('request-name').innerHTML = result;
+        },
+        error: function (result) {
+
+        }
+    });
+});
+
+
+
+
+
+
+
+
+
 var dp = new DayPilot.Calendar("dp");
 dp.startDate = "2013-03-04";  // DO NOT CHANGE!!
 dp.viewType = "Week";
 dp.headerDateFormat = "dddd";
 dp.init();
 
-//start up display when visiting view page 
+
 get_title("SELECT prof_lname FROM professor WHERE prof_id = 1 ","prof_lname",1,"professor");
+// for getting all schedule data and displays
 $.ajax({
     type: "POST",
     url: "php/functions.php",
@@ -59,8 +178,10 @@ dp.onEventClick = function(args) {
 
 
 
-// display schedule when user chooses professor
-$('#select-prof').on('change', function() {
+//////////////////////////////////////////////////////////////
+
+
+$('#select-prof-view').on('change', function() {
     var dp = new DayPilot.Calendar("dp");
     dp.startDate = "2013-03-04";  // DO NOT CHANGE!!
     dp.viewType = "Week";
@@ -97,6 +218,8 @@ $('#select-prof').on('change', function() {
         }
     });
 
+
+
     dp.onEventClick = function(args) {
     var start = args.e.id();
     $.ajax({
@@ -126,7 +249,7 @@ $('#select-prof').on('change', function() {
 
 
 // display schedule when user chooses professor
-$('#select-class').on('change', function() {
+$('#select-class-view').on('change', function() {
     var dp = new DayPilot.Calendar("dp");
     dp.startDate = "2013-03-04";  // DO NOT CHANGE!!
     dp.viewType = "Week";
@@ -192,7 +315,7 @@ $('#select-class').on('change', function() {
 
 
 //by room
-$('#select-room').on('change', function() {
+$('#select-room-view').on('change', function() {
     var dp = new DayPilot.Calendar("dp");
     dp.startDate = "2013-03-04";  // DO NOT CHANGE!!
     dp.viewType = "Week";
@@ -228,6 +351,7 @@ $('#select-room').on('change', function() {
         }
     });
 
+
     dp.onEventClick = function(args) {
     var start = args.e.id();
     $.ajax({
@@ -256,108 +380,6 @@ $('#select-room').on('change', function() {
 
 
 
-
-
-    
-$(document).ready(function() {
-
-    var url = window.location.href;
-    var filename = url.substring(url.lastIndexOf('/')+1);
-    if (filename === "") filename = "index.html";
-    $(".menu a[href='" + filename + "']").addClass("selected");
-
-
-
-    // get list of professors
-    $.ajax({
-        type: "POST",
-        url: "php/functions.php",
-        data: {
-            get_prof: "1"
-        },
-        success: function (result) {
-
-            var professor = eval(result);
-            var Length = professor.length / 2;
-            var n = 0;
-
-            for (var i = 0; i < Length; i++) {
-                var option = '<option  value="' + professor[n] + '"> ' + professor[n + 1] + ' </option>';
-                n = n + 2;
-                $("#select-prof").append(option);
-            }
-        },
-        error: function (result) {
-
-        }
-    });
-
-    // get list of class
-    $.ajax({
-        type: "POST",
-        url: "php/functions.php",
-        data: {
-            get_class: "1"
-        },
-        success: function (result) {
-            var class_name = eval(result);
-            var Length = class_name.length / 2;
-            var n = 0;
-
-            for (var i = 0; i < Length; i++) {
-                var option = '<option  value="' + class_name[n] + '"> ' + class_name[n + 1] + ' </option>';
-                n = n + 2;
-                $("#select-class").append(option);
-            }
-        },
-        error: function (result) {
-
-        }
-    });
-
-    // get list of room
-    $.ajax({
-        type: "POST",
-        url: "php/functions.php",
-        data: {
-            get_room: "1"
-        },
-        success: function (result) {
-            var room = eval(result);
-            var Length = room.length / 2;
-            var n = 0;
-
-            for (var i = 0; i < Length; i++) {
-                var option = '<option  value="' + room[n] + '"> ' + room[n + 1] + ' </option>';
-                n = n + 2;
-                $("#select-room").append(option);
-            }
-        },
-        error: function (result) {
-
-        }
-    });
-    // get schedule status
-    $.ajax({
-        type: "POST",
-        url: "php/functions.php",
-        data: {
-            get_status: "1"
-        },
-        success: function (result) {
-           document.getElementById('request-status').innerHTML = result;
-        },
-        error: function (result) {
-
-        }
-    });
-
-   
-
-
-});
-
-
 // Display title
 function get_title(query,name,id,type){
     $.ajax({
@@ -377,3 +399,38 @@ function get_title(query,name,id,type){
     });
 }
 
+
+var modalConfirm = function(callback){
+  
+  $("#btn-confirm").on("click", function(){
+    $("#mi-modal").modal('show');
+  });
+
+  $("#modal-btn-si").on("click", function(){
+    callback(true);
+    $("#mi-modal").modal('hide');
+  });
+  
+  $("#modal-btn-no").on("click", function(){
+    callback(false);
+    $("#mi-modal").modal('hide');
+  });
+};
+
+modalConfirm(function(confirm){
+  if(confirm){
+    $.ajax({
+        type: "POST",
+        url: "php/functions.php",
+        data: {
+            submit_schedule: "1",
+        },
+        success: function (result) {
+            $("#success_msg").css({ color: 'green' });
+            document.getElementById('success_msg').innerHTML = result;
+            window.setTimeout(function(){ window.location = "../index.php"; },1000);
+        }
+
+    });
+  }
+});

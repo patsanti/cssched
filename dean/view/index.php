@@ -6,7 +6,7 @@ if(session_status() == PHP_SESSION_NONE) {
 
 if(isset($_SESSION['acc_type_id'])) {
 
-	if ($_SESSION['acc_type_id'] == 3) 
+	if ($_SESSION['acc_type_id'] == 2) 
 		header("Location: ../../");
 	elseif ($_SESSION['acc_type_id'] == 4) 
 		header("Location: ../../");
@@ -21,7 +21,7 @@ else
 	<meta charset="utf-8">
 	<meta http-equiv="Content-Type" content="text/html;charset=ISO-8859-1">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-	<link rel="shortcut icon" type="image/x-icon" href="../../global/img/logo.png">
+	<link rel="shortcut icon" type="image/x-icon" href="../global/img/logo.png">
 	<link rel="stylesheet" href="../../global/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../../global/css/navbar.css">
 	<link rel="stylesheet" href="../../global/css/default-theme.css">
@@ -57,70 +57,48 @@ else
 	</nav> <!-- END OF TNAVIGATION BAR -->
 	<div class="container">
 		<div class="row">
-			<div class="col-md-2">
+			<div class="col-md-3">
 					<section id="add-schedule">
-						<a href="../" >Go Back</a>
-						<hr>
+						<a href="../">Go back</a>
 					<header>
-
-						<h2>ADD CLASS SCHEDULE</h2>
+						<h2>VIEW SCHEDULE</h2>
 					</header>
+					<hr>
 					<form action="php/functions.php" method="POST">
-						<p style="color:green;font-size: 15px;">Select schedule information here before adding schedule</p>
+						<p>Filter Schedule </p>
 						<input type="hidden" name="add_schedule" id="add_schedule" value="1">
-						<label for="select-course">Course Code</label>
-						<select id="select-course" class="form-control form-control-sm" required>
+
+						<label for="select-prof">By Professor</label>
+						<select multiple class="form-control" id="select-prof" class="form-control" required>
+							
 						</select>
-
-						<label for="select-prof">Professor</label>
-						<select id="select-prof" class="form-control form-control-sm" required></select>
-
-						<label for="select-class">Class</label>
-						<select id="select-class" class="form-control form-control-sm" required></select>
-
-
-						<label for="select-room">Room</label>
-						<select id="select-room" class="form-control form-control-sm" required></select>
+						<hr>
+						<label for="select-class">By Class</label>
+						<select multiple class="form-control" id="select-class" class="form-control" required>
+							
+						</select>
+						<hr>
+						<label for="select-room">By Room</label>
+						<select multiple class="form-control" id="select-room" class="form-control" required>
+						</select>
 						<div id="error_msg"></div>
 
 					</form>
 				</section>
 			</div>
-			<div class="col-md-8">
-				<div class="h7" id="request-name"></div>
+			<div class="col-md-9">
+				<div class="h7" id="request-status"></div>
 				<hr>
-				<div class="h4" id="title_name">Schedule of professor</div>
+				<div class="h4" id="title_name"></div>
 				<div id="dp"></div>
+				<a href="../../global/php/export.php" target="_blank"><button id="export">Export to Excel File</button></a>
 			</div>
-			<div class="col-md-2">
-				<header>
-					<div> &nbsp</div>
-					<hr>
-					<h2>SELECT SCHEDULE</h2>
-				</header>
-				<p style="color:green; font-size: 15px;">Select the name of the professor/class to add schedule.</p>
-				<label>Select by Professor</label>
-				<select class="form-control form-control-sm" id="select-prof-view" class="form-control" required></select>
-				
-				<label>Select by Class</label>
-				<select class="form-control form-control-sm" id="select-class-view" class="form-control" required></select>
-				
-				<label>Select by Room</label>
-				<select class="form-control form-control-sm" id="select-room-view" class="form-control" required></select>
-			</div>
-			<div class="col-md-2"></div>
-			<div class="col-md-8">
-				<button class="form-control btn-success form-control-sm" id="btn-confirm" type="submit">Submit Schedule Request to College Dean</button>
-				<div id="success_msg"></div>
-			</div>
-			<div class="col-md-2"></div>
 		</div>
-
-
 	</div>
 
 	<div class="modal fade" id="myModal" role="dialog">
 	    <div class="modal-dialog">
+	    
 	      <!-- Modal content-->
 	      <div class="modal-content">
 	        <div class="modal-header">
@@ -139,32 +117,9 @@ else
 	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	        </div>
 	      </div>
-	    </div>
-	</div>
-	<!--another modal -->
-	<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
-	  <div class="modal-dialog modal-sm">
-	    <div class="modal-content">
-	      <div class="modal-header">
-	      	<h4 class="modal-title" id="myModalLabel">Schedule Request</h4>
-	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-	      </div>
-	      <div class="modal-content">
-	      	<div class="modal-body">
-	      		<div><p>
-	      			Are you sure you want to submit schedule request to College Dean?<br><br></p>
-	      			<p style="color: red; font-size: 12px;"> Reminder: Make sure
-	      		    the schedule request you're submitting is FINAL. Submitted request CANNOT be cancelled!! </p>
-	      		</div>
-	      	</div>
-	      </div>
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-success" id="modal-btn-si">Submit</button>
-	        <button type="button" class="btn btn-default" id="modal-btn-no">Cancel</button>
-	      </div>
+	      
 	    </div>
 	  </div>
-	</div>
 
 	<footer><i>Footer here (work in progress).</i></footer>
 	<script type="text/javascript" src="js/script.js"></script>
