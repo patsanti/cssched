@@ -120,8 +120,8 @@ $("#select-room").show();
 $("#label-room").show();
 
 get_title("SELECT prof_lname FROM professor WHERE prof_id = 1 ","prof_lname",1,"professor");
-var test = "1";
-display_all_schedule("AND prof_id="+test,"prof",test);
+
+display_all_schedule("AND prof_id=1","prof",1);
 });
 
 
@@ -278,29 +278,29 @@ function display_all_schedule(id,type,value){
         }
     });
 
-    if(type == "prof"){
-            var subject = document.getElementById('select-course').value;
-            var class_data = document.getElementById('select-class').value;
-            var room = document.getElementById('select-room').value;
-            var professor = value;
-    }
-    else if(type == "class"){
-            var subject = document.getElementById('select-course').value;
-            var class_data = value
-            var room = document.getElementById('select-room').value;
-            var professor = document.getElementById('select-prof').value;
-    }
-    else if(type == "room"){
-            var subject = document.getElementById('select-course').value;
-            var class_data = document.getElementById('select-class').value;
-            var room = value
-            var professor = document.getElementById('select-prof').value;
-    }
 
 // event creating schedule
     dp.onTimeRangeSelected = function (args) {
 
-        
+        if(type == "prof"){
+                var subject = document.getElementById('select-course').value;
+                var class_data = document.getElementById('select-class').value;
+                var room = document.getElementById('select-room').value;
+                var professor = value;
+        }
+        else if(type == "class"){
+                var subject = document.getElementById('select-course').value;
+                var class_data = value
+                var room = document.getElementById('select-room').value;
+                var professor = document.getElementById('select-prof').value;
+        }
+        else if(type == "room"){
+                var subject = document.getElementById('select-course').value;
+                var class_data = document.getElementById('select-class').value;
+                var room = value
+                var professor = document.getElementById('select-prof').value;
+        }
+        //  check schedule if no conflict
         $.ajax({
             type: "POST",
             url: "php/functions.php",
@@ -312,7 +312,7 @@ function display_all_schedule(id,type,value){
                 get_room_1: room
             },
             success: function(result) {
-
+                // initailize calendar data
                 var name = result;
                 if (!name) return;
                 var e = new DayPilot.Event({
@@ -327,7 +327,7 @@ function display_all_schedule(id,type,value){
                 start_time = start_time.split("T");
                 end_time = end_time.split("T");
                 var day = start_time[0].split("-");
-                
+                // chech CSP
                 $.ajax({
                     type: "POST",
                     url: "php/functions.php",
@@ -343,6 +343,7 @@ function display_all_schedule(id,type,value){
 
                     },
                     success: function(result) {
+                        // if no conflict then add
                         if(result == 1){
                             dp.events.add(e);
                             dp.clearSelection();
@@ -350,6 +351,7 @@ function display_all_schedule(id,type,value){
                             document.getElementById('error_msg').innerHTML = " Schedule Added";
                             //window.setTimeout(function(){ window.location = "index.php"; },1000);
                             display_all_schedule(id,type,value);
+
                         }
                         else{
                             $("#error_msg").css({ color: 'red' });
