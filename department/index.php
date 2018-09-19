@@ -59,7 +59,7 @@ else
 		</ul>
 	</nav> <!-- END OF TNAVIGATION BAR -->
 	<div class="container">
-		<h2>Select Schedule Options</h2>
+		<h3>Select Schedule Options</h3>
 			<hr>
 		<div class="row">
 
@@ -142,9 +142,46 @@ else
   			</div>
 
 		</div>
+	<hr><hr>
+	<div id="subjects">
+	<h3 style="margin-top: 60px;">Manage Subjects</h3>
+	<hr>
+	<button class="btn-success form-control-sm" id="btn-confirm" type="submit" style="float: right">Add Subject</button>	
+	<div id="all-subjects-table"></div>
 	</div>
-	<div><br><br><br><br><br><br></div>
 	<footer><i>Footer here (work in progress).</i></footer>
+
+	<div class="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	      	<h4 class="modal-title" id="myModalLabel">Add Subject</h4>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	      </div>
+	      <div class="modal-content">
+	      	<div class="modal-body">
+	      		<div>
+	      			<label>Subject Code</label>
+	      			<input type="text" id="subject_name" class="form-control" required>
+	      			<label>Subject Description</label>
+	      			<input type="text" id="subject_description" class="form-control" required>
+	      			<label>Lecture Unit</label>
+	      			<input type="number" id="lecture_unit" class="form-control" min="0" required>
+	      			<label>Lab Unit</label>
+	      			<input type="number" id="lab_unit" class="form-control" min="0" required>
+	      			<label>Credit Unit</label>
+	      			<input type="number" id="credit_unit" class="form-control" min="0" required>
+	      		</div>
+	      	</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-success" id="modal-btn-si">Add</button>
+	        <button type="button" class="btn btn-default" id="modal-btn-no">Cancel</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
 	<script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>

@@ -72,14 +72,14 @@ else
 						<select id="select-course" class="form-control form-control-sm" required>
 						</select>
 
-						<label for="select-prof">Professor</label>
+						<label id="label-prof">Professor</label>
 						<select id="select-prof" class="form-control form-control-sm" required></select>
 
-						<label for="select-class">Class</label>
+						<label id="label-class">Class</label>
 						<select id="select-class" class="form-control form-control-sm" required></select>
 
 
-						<label for="select-room">Room</label>
+						<label id="label-room">Room</label>
 						<select id="select-room" class="form-control form-control-sm" required></select>
 						<div id="error_msg"></div>
 

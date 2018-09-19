@@ -67,6 +67,51 @@ class request{
 		    echo $array_return;
 		}
 	}
+
+	function all_subjects(){
+		$global_use = new global_use;
+		$conn = $global_use->connect_db();
+
+		echo '<table class="table table-striped">
+			    <thead>
+			      <tr>
+			        <th>Subject Code</th>
+			        <th>Subject Description</th>
+			        <th>Lecture Unit</th>
+			        <th>Lab Unit</th>
+			        <th>Credit</th>
+			      </tr>
+			    </thead>
+			    <tbody>';
+		$result = $conn->query("SELECT * FROM subject ORDER BY subject_name ASC");
+		if ($result->num_rows > 0) {
+			while($row = $result->fetch_assoc()) {
+				echo '
+			      <tr>
+			        <td><a href="manage/index.php?id='.$row['subject_id'].'">'.$row['subject_name'].'</a></td>
+			        <td>'.$row['subject_description'].'</td>
+			        <td>'.$row['lecture_unit'].'</td>
+			        <td>'.$row['lab_unit'].'</td>
+			        <td>'.$row['credit_unit'].'</td>
+			      </tr>
+					';
+			}
+			echo '</tbody></table>';
+		
+		}
+		else{
+			echo '<tr>
+					<td>No subject data</td>
+			      </tr></tbody></table>';
+		}
+	}
+	function add_subject($sub_code,$sub_des,$lec_unit,$lab_unit,$cre_unit){
+		$global_use = new global_use;
+		$conn = $global_use->connect_db();
+
+		$result = $conn->query("INSERT INTO subject (subject_name,subject_description,lecture_unit,lab_unit,credit_unit) VALUES ('$sub_code','$sub_des','$lec_unit','$lab_unit','$cre_unit')");
+		echo 1;
+	}
 }
 
 
@@ -80,6 +125,13 @@ else if(isset($_POST['schedule_name']))
 
 else if(isset($_POST['open']))
 	$_SESSION['schedule_request'] = $_POST['open_schedule_id'];
+
+else if(isset($_POST['subjects']))
+	$request->all_subjects();
+
+else if(isset($_POST['addsubject']))
+	$request->add_subject($_POST['subcode'],$_POST['subdes'],$_POST['lecunit'],$_POST['labunit'],$_POST['creunit']);	
+
 
 
 

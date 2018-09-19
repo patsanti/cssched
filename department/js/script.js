@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    
+all_subjects();
     var Year = 2018;
     for (var i = 0; i < 50; i++) {
         var option = '<option  value="' + Year + '"> ' + Year + ' </option>';
@@ -26,7 +26,7 @@ $(document).ready(function() {
                 }
         }
     });
-        $.ajax({
+    $.ajax({
         type: "POST",
         url: "php/functions.php",
         data: {
@@ -45,7 +45,7 @@ $(document).ready(function() {
         }
     });
 
-        $.ajax({
+    $.ajax({
         type: "POST",
         url: "php/functions.php",
         data: {
@@ -63,6 +63,8 @@ $(document).ready(function() {
                 }
         }
     });
+
+   
 
 
 
@@ -178,4 +180,63 @@ function view_schedule_pending(sched) {
     }
     if (!stat)
         return false;
+}
+
+
+
+
+var modalConfirm = function(callback){
+  
+  $("#btn-confirm").on("click", function(){
+    $("#mi-modal").modal('show');
+  });
+
+  $("#modal-btn-si").on("click", function(){
+    callback(true);
+    $("#mi-modal").modal('hide');
+  });
+  
+  $("#modal-btn-no").on("click", function(){
+    callback(false);
+    $("#mi-modal").modal('hide');
+  });
+};
+
+modalConfirm(function(confirm){
+  if(confirm){
+    $.ajax({
+        type: "POST",
+        url: "php/functions.php",
+        data: {
+            addsubject: 1,
+            subcode: $('#subject_name').val(),
+            subdes:  $('#subject_description').val(),
+            lecunit: $('#lecture_unit').val(),
+            labunit: $('#lab_unit').val(),
+            creunit: $('#credit_unit').val()
+        },
+        success: function (result) {
+            //window.setTimeout(function(){ window.location = "index.php"; },1000);
+            all_subjects();
+        },
+        error: function(){
+            alert("error encountered");
+        }
+
+    });
+  }
+});
+
+
+function all_subjects(){
+     $.ajax({
+        type: "POST",
+        url: "php/functions.php",
+        data: {
+            subjects: 1
+        },
+        success: function(result) {
+            document.getElementById('all-subjects-table').innerHTML = result;
+        }
+    });
 }
