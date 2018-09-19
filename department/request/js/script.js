@@ -108,9 +108,7 @@ $(document).ready(function() {
 
         }
     });
-});
-
-// start up display
+    // start up display
 // for getting all schedule data and displays
 $("#select-prof").hide();
 $("#label-prof").hide();
@@ -122,7 +120,11 @@ $("#select-room").show();
 $("#label-room").show();
 
 get_title("SELECT prof_lname FROM professor WHERE prof_id = 1 ","prof_lname",1,"professor");
-display_all_schedule("AND prof_id = 1","prof",1);
+var test = "1";
+display_all_schedule("AND prof_id="+test,"prof",test);
+});
+
+
 
 //////////////////////////////////////////////////////////////
 
@@ -137,12 +139,6 @@ $('#select-prof-view').on('change', function() {
     $("#select-room").show();
     $("#label-room").show();
 
-    var dp = new DayPilot.Calendar("dp");
-    dp.startDate = "2013-03-04";  // DO NOT CHANGE!!
-    dp.viewType = "Week";
-    dp.headerDateFormat = "dddd";
-    dp.init();
-    
     var id = this.value;
     var id_glo = id;
     get_title("SELECT prof_lname FROM professor WHERE prof_id ="+id,"prof_lname",id,"professor");
@@ -162,12 +158,6 @@ $('#select-class-view').on('change', function() {
 
     $("#select-room").show();
     $("#label-room").show();
-
-    var dp = new DayPilot.Calendar("dp");
-    dp.startDate = "2013-03-04";  // DO NOT CHANGE!!
-    dp.viewType = "Week";
-    dp.headerDateFormat = "dddd";
-    dp.init();
     
     var id = this.value;
     get_title("SELECT class_yr_blk FROM class WHERE class_id ="+id,"class_yr_blk",id,"class");
@@ -188,12 +178,6 @@ $('#select-room-view').on('change', function() {
     $("#select-room").hide();
     $("#label-room").hide();
 
-    var dp = new DayPilot.Calendar("dp");
-    dp.startDate = "2013-03-04";  // DO NOT CHANGE!!
-    dp.viewType = "Week";
-    dp.headerDateFormat = "dddd";
-    dp.init();
-    
     var id = this.value;
     get_title("SELECT room_name FROM room WHERE room_id ="+id,"room_name",id,"room");
     display_all_schedule("AND room_id="+id,"room",id);
@@ -265,6 +249,7 @@ function display_all_schedule(id,type,value){
     dp.viewType = "Week";
     dp.headerDateFormat = "dddd";
     dp.init();
+
           $.ajax({
         type: "POST",
         url: "php/functions.php",
@@ -364,7 +349,7 @@ function display_all_schedule(id,type,value){
                             $("#error_msg").css({ color: 'green' });
                             document.getElementById('error_msg').innerHTML = " Schedule Added";
                             //window.setTimeout(function(){ window.location = "index.php"; },1000);
-                            display_all_schedule(id);
+                            display_all_schedule(id,type,value);
                         }
                         else{
                             $("#error_msg").css({ color: 'red' });
