@@ -77,7 +77,14 @@ $(document).ready(function() {
             get_status: "1"
         },
         success: function (result) {
-           document.getElementById('request-status').innerHTML = result;
+            var result = eval(result);
+            if(result[0] == 1){
+                document.getElementById('request-status').innerHTML = result[1];
+            }
+            else{
+                $("#export-cvs-display").append(result[2]);
+                document.getElementById('request-status').innerHTML = result[1];
+            }
         },
         error: function (result) {
 
@@ -190,4 +197,38 @@ function display_all_schedule(id){
             }
         });
     };
+}
+
+
+function check_password(){
+    if($('#pass').val() == $('#pass2').val() ){
+        $.ajax({
+            type: "POST",
+            url: "../../global/php/all_functions.php",
+            data: {
+                check_password: 1,
+                pass: $('#pass').val()
+            },
+            success: function(result) {
+                if(result == 1){
+                    var redirectWindow = window.open('../../global/php/export-csv.php', '_blank');
+                    redirectWindow.location;
+
+                window.setTimeout(function(){ window.location = "../"; },2000);
+                }
+                else{
+                    $("#delete_error").css({ color: 'red' });
+                    document.getElementById('delete_error').innerHTML = "Incorrect Password"
+                }
+
+                
+            }
+        });
+    }
+    else{
+        $("#delete_error").css({ color: 'red' });
+        document.getElementById('delete_error').innerHTML = "Password is not the same!!"
+    }
+
+
 }

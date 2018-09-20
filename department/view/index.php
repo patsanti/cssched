@@ -91,7 +91,9 @@ else
 				<hr>
 				<div class="h4" id="title_name"></div>
 				<div id="dp"></div>
-				<a href="../../global/php/export.php" target="_blank"><button id="export">Export to Excel File</button></a>
+				<a href="../../global/php/export.php" target="_blank"><button id="export"  class="btn btn-success">Export to Excel File</button></a>
+				<div style="margin-top: 10px;" id="export-cvs-display"></div>
+		
 			</div>
 		</div>
 	</div>

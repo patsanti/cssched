@@ -31,7 +31,7 @@ if(isset($_SESSION['acc_type_id'])) {
 	<div class="container login_form">
 		<div align="center">
 			<img src="global/img/logo.png" id="brand-logo1">
-			<h3>Sign in to CSIT Scheduler</h3>
+			<h4>Sign in to BU Class Scheduler</h4>
 		</div>
 		<div class="panel-login">
 			<form method="post" enctype="multipart/form-data">

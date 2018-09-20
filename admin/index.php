@@ -63,7 +63,6 @@ else
   			<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
 			  <a class="nav-link active" id="v-pills-home-tab" data-toggle="pill" href="#add-user" role="tab" aria-controls="v-pills-home" aria-selected="true">Add User</a>
 			  <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#manage-user" role="tab" aria-controls="v-pills-profile" aria-selected="false">Manage Users</a>
-			  <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#manage-database" role="tab" aria-controls="v-pills-profile" aria-selected="false">Manage Database</a>
 			  <a class="nav-link" id="v-pills-profile-tab" data-toggle="pill" href="#website-setting" role="tab" aria-controls="v-pills-profile" aria-selected="false">Website Settings</a>
 			</div>
 
@@ -112,34 +111,11 @@ else
 						</div>
 
 			  </div>
-			  <div class="tab-pane fade" id="manage-database" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-				  	
-				  	
-				  			<table class="table">
-				  		<thead>
-				  			<tr>
-				  				<th>aa</th>
-				  			</tr>
-				  		</thead>
-				  		<tbody>
-				  			<tr>
-				  				<td>aa</td>
-				  			</tr>
-				  		</tbody>
-				  	</table>
-
-
-
-			  </div>
 			  <div class="tab-pane fade" id="website-setting" role="tabpanel" aria-labelledby="v-pills-profile-tab">
 			  	<form id="website-settings">
 			  		<div id="preview"><img src="../global/img/logo.png" /></div>
 				  	<h4>Change Logo</h4>
 					 <input class="form-control" id="site-logo" type="file" accept="image/*" name="site-logo">
-					<hr>
-					<h4>Change Application Name</h4>
-					<input type="text" class="form-control" name="change-name" value="BUCS CLASS SCHEDULER">
-					<button class="form-control btn-primary" type="submit">Change</button>
 				</form>
 			  </div>
 

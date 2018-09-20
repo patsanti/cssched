@@ -58,6 +58,26 @@ class check{
 
 	}
 
+	function check_password($pass){
+		$global_use = new global_use;
+		$conn = $global_use->connect_db();
+		include "encrypt.php";
+
+		$id = $_SESSION['account_id'];
+		$pass = encrypt(encode($_POST['pass']));
+
+		$result = $conn->query("SELECT account_pass FROM account WHERE account_id = '$id'");
+
+		$row = mysqli_fetch_assoc($result);
+
+
+		if($row['account_pass'] == $pass){
+			echo 1;
+		}
+		else
+			echo 0;
+	}
+
 }
 
 
@@ -360,12 +380,40 @@ class get_data{
 			$semester = "2nd Semester";
 		else
 			$semester = "Summer";
+		$arr = array();
 
-		if($row['request_status'] == 1)
-			echo '<p> <b>'.$row['school_year'].' - '.$semester.'</b> status: <b style="color:red;">PENDING</b></p>';
-		elseif($row['request_status'] == 2)
-			echo '<p><b> '.$row['school_year'].' - '.$semester.'</b> status:  <b style="color:green;">APPOVED</b></p>';
-
+		if($row['request_status'] == 1){
+			$arr[0] = 1;
+			$arr[1] = '<p> <b>'.$row['school_year'].' - '.$semester.'</b> status: <b style="color:red;">PENDING</b></p>';
+		}
+		elseif($row['request_status'] == 2){
+			$arr[0] = 2;
+			$arr[1] = '<p><b> '.$row['school_year'].' - '.$semester.'</b> status:  <b style="color:green;">APPOVED</b></p>';
+		}
+		$arr[2]= '		<a class="deactivate_btn" data-toggle="collapse" href="#collapse3" name="deactivate_btn" id="deactivate_btn"><button id="export-csv" class="btn btn-danger">Export This Schedule and delete</button></a>
+				<div id="collapse3" class="panel-collapse collapse">
+					<ul class="list-group">
+						<li class="list-group-item">
+							<b style="color: red;">note: Make sure you download the CSV file!
+								Failure will lose the Schedule data!
+							</b><br>
+						Please Enter your Password to proceed</li>
+						<label for="deac_pass1"> Password</label>
+						<li class="list-group-item">
+							<input type="password" id="pass" class="form-control" />
+						</li>
+						<label for="deac_pass1">Re-enter Password</label>
+						<li class="list-group-item">
+							<input type="password" id="pass2" class="form-control" />
+						</li>
+						<div id="delete_error"></div>
+						<li class="list-group-item">
+							<input type="button" name="deactivate" id="deactivate" value="Export This Schedule and delete" class="btn btn-danger" onclick="return(check_password());">
+						</li>
+					</ul>
+				</div>';
+		$array_return = json_encode($arr);
+		echo $array_return;
 	}
 	// submitting schedule
 	function submit_schedule($stat){
@@ -401,6 +449,7 @@ class get_data{
 // initialize classes
 $alter = new alter;
 $get_data = new get_data;
+$check = new check;
 
 // get all prof list
 if(isset($_POST['get_prof']))
@@ -440,5 +489,6 @@ elseif(isset($_POST['get_name']))
 
 elseif(isset($_POST['get_status']))
 	$get_data->get_status();
-
+elseif(isset($_POST['check_password']))
+	$check->check_password($_POST['pass']);
 ?>

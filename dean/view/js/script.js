@@ -76,7 +76,13 @@ $(document).ready(function() {
             get_status: "1"
         },
         success: function (result) {
-           document.getElementById('request-status').innerHTML = result;
+            var result = eval(result);
+            if(result[0] == 1){
+                document.getElementById('request-status').innerHTML = result[1];
+            }
+            else{
+                document.getElementById('request-status').innerHTML = result[1];
+            }
         },
         error: function (result) {
 

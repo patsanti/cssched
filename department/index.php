@@ -63,7 +63,7 @@ else
 			<hr>
 		<div class="row">
 
-			<div class="col-md-3" style="margin-top: 30px;">
+			<div class="col-md-4 jumbotron" style="margin-top: 10px;">
 				<form class="form-horizontal" method="post" enctype="multipart/form-data">
 					<h2>Create Schedule Request</h2>
 
@@ -89,12 +89,12 @@ else
 					    </div>
   				</form>
   			</div>
-  			<div class="col-md-3" style="margin-top: 30px;">
+  			<div class="col-md-4 jumbotron" style="margin-top: 10px;">
   				<h2>Open Unfinished Schedule Request</h2>
 				<form class="form-horizontal" method="post" enctype="multipart/form-data">
 					    <div class="form-group">
 
-					       <select class="form-control" id="sched_name" style="margin-top: 50px;">
+					       <select class="form-control" id="sched_name" style="margin-top: 75px;">
 					       </select>
 					    </div>
 					    <div id="error_msg_open" style="position: absolute;"></div>
@@ -106,7 +106,20 @@ else
 					    </div>
   				</form>
   			</div>
-  			<div class="col-md-3" style="margin-top: 30px;">
+
+  			<div class="col-md-4 jumbotron" style="margin-top: 10px;"	>
+  				 <h2>Import Schedule data from cvs file </h2>
+  				<form class="form-horizontal" action="../global/php/import.php" method="post" name="upload_excel" enctype="multipart/form-data">
+                    <fieldset>
+                                <input type="file" name="file" id="file" class=" form-control input-large" style="margin-top: 65px;">
+                                
+                                <button type="submit" id="submit" name="Import" class="btn btn-primary button-loading" data-loading-text="Loading..." style="margin-top: 47px;">Import</button>
+
+                    </fieldset>
+                </form>
+  			</div>
+  			<div class="col-md-12"><hr></div>
+  			<div class="col-md-6 jumbotron" style="margin-top: 10px;">
   					<h2>View Pending Schedule Request</h2>
 				<form class="form-horizontal" method="post" enctype="multipart/form-data">
 					    <div class="form-group">
@@ -123,12 +136,12 @@ else
 					    </div>
   				</form>
   			</div>
-  				<div class="col-md-3" style="margin-top: 30px;">
+  				<div class="col-md-6 jumbotron" style="margin-top: 10px;">
   					<h2>View Approved Schedules</h2>
 				<form class="form-horizontal" method="post" enctype="multipart/form-data">
 					    <div class="form-group">
 
-					       <select class="form-control" id="sched_name_view" style="margin-top: 75px;">
+					       <select class="form-control" id="sched_name_view" style="margin-top: 50px;">
 					       </select>
 					    </div>
 					    <div id="error_msg_view" style="position: absolute;"></div>

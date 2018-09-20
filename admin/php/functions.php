@@ -40,7 +40,7 @@ class admin{
 				  				<th>Account Type</th>
 				  				<th>Username</th>
 				  				<th>Full name</th>
-				  				<th>Action</th>
+				  				<th>Status</th>
 				  			</tr>
 				  		</thead>
 				  		<tbody>';
@@ -49,16 +49,16 @@ class admin{
     		while($row = $result->fetch_assoc()) {
     			echo '
 				  			<tr>
-				  				<td>'.$row['acc_type_name'].'</td>
+				  				<td><a href="info/index.php?user=1&id='.$row['account_id'].'">'.$row['acc_type_name'].'</a></td>
 				  				<td>'.$row['account_usern'].'</td>
 				  				<td>'.$row['acc_fname'].' '.$row['acc_lname'].'</td>
 				  				';
 				  				if($row['acc_status'] == 1)
-				  					echo '<td><a href="php/functions.php?ban=1">BAN</a></td>';
+				  					echo '<td><p style="color:green;">Active</p></td>';
 				  				elseif($row['acc_status'] == 2)
-				  					echo '<td><a href="php/functions.php?unban=1">UNBAN</a></td>';
+				  					echo '<td><p style="color: red">Deactivated</p></td>';
 				  				elseif($row['acc_status'] == 3)
-				  					echo '<td><a class="deactivate_btn" data-toggle="collapse" href="#collapse3" name="deactivate_btn" id="deactivate_btn">Change Password</a></td>';
+				  					echo '<td><p style="color:red">For Password Reset</p></td>';
 
 
 				  			echo '</tr>';
