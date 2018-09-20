@@ -68,17 +68,17 @@ else
 						<p>Filter Schedule </p>
 						<input type="hidden" name="add_schedule" id="add_schedule" value="1">
 
-						<label for="select-prof">By Professor</label>
+						<b>By Professor</b>
 						<select multiple class="form-control" id="select-prof" class="form-control" required>
 							
 						</select>
 						<hr>
-						<label for="select-class">By Class</label>
+						<b>By Class</b>
 						<select multiple class="form-control" id="select-class" class="form-control" required>
 							
 						</select>
 						<hr>
-						<label for="select-room">By Room</label>
+						<b>By Room</b>
 						<select multiple class="form-control" id="select-room" class="form-control" required>
 						</select>
 						<div id="error_msg"></div>

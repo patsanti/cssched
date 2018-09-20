@@ -1,61 +1,9 @@
-// initialize calendar
-var dp = new DayPilot.Calendar("dp");
-dp.startDate = "2013-03-04";  // DO NOT CHANGE!!
-dp.viewType = "Week";
-dp.headerDateFormat = "dddd";
-dp.init();
-
-//start up display when visiting view page 
-get_title("SELECT prof_lname FROM professor WHERE prof_id = 1 ","prof_lname",1,"professor");
-display_all_schedule("AND prof_id=1");
-
-
-// display schedule when user chooses professor
-$('#select-prof').on('change', function() {
-    var id = this.value;
-    var id_glo = id;
-    get_title("SELECT prof_lname FROM professor WHERE prof_id ="+id,"prof_lname",id,"professor");
-    display_all_schedule("AND prof_id="+id);
-});
-
-
-
-
-// display schedule when user chooses professor
-$('#select-class').on('change', function() {
-    var id = this.value;
-    get_title("SELECT class_yr_blk FROM class WHERE class_id ="+id,"class_yr_blk",id,"class");
-    display_all_schedule("AND class_id="+id);
-});
-
-
-
-
-//by room
-$('#select-room').on('change', function() {
-    var id = this.value;
-    get_title("SELECT room_name FROM room WHERE room_id ="+id,"room_name",id,"room");
-    display_all_schedule("AND room_id="+id);
-
-});
-
-
-
-
-
 $(document).ready(function() {
-
-    var url = window.location.href;
-    var filename = url.substring(url.lastIndexOf('/')+1);
-    if (filename === "") filename = "index.html";
-    $(".menu a[href='" + filename + "']").addClass("selected");
-
-
 
     // get list of professors
     $.ajax({
         type: "POST",
-        url: "php/functions.php",
+        url: "../../global/php/all_functions.php",
         data: {
             get_prof: "1"
         },
@@ -79,7 +27,7 @@ $(document).ready(function() {
     // get list of class
     $.ajax({
         type: "POST",
-        url: "php/functions.php",
+        url: "../../global/php/all_functions.php",
         data: {
             get_class: "1"
         },
@@ -102,7 +50,7 @@ $(document).ready(function() {
     // get list of room
     $.ajax({
         type: "POST",
-        url: "php/functions.php",
+        url: "../../global/php/all_functions.php",
         data: {
             get_room: "1"
         },
@@ -124,7 +72,7 @@ $(document).ready(function() {
     // get schedule status
     $.ajax({
         type: "POST",
-        url: "php/functions.php",
+        url: "../../global/php/all_functions.php",
         data: {
             get_status: "1"
         },
@@ -135,18 +83,44 @@ $(document).ready(function() {
 
         }
     });
-
-   
-
-
 });
 
+
+
+get_title("SELECT prof_lname FROM professor WHERE prof_id = 1 ","prof_lname",1,"professor");
+display_all_schedule("AND prof_id=1");
+
+
+// display schedule when user chooses professor
+$('#select-prof').on('change', function() {
+    var id = this.value;
+    var id_glo = id;
+    get_title("SELECT prof_lname FROM professor WHERE prof_id ="+id,"prof_lname",id,"professor");
+    display_all_schedule("AND prof_id="+id);
+});
+
+
+// display schedule when user chooses professor
+$('#select-class').on('change', function() {
+    var id = this.value;
+    get_title("SELECT class_yr_blk FROM class WHERE class_id ="+id,"class_yr_blk",id,"class");
+    display_all_schedule("AND class_id="+id);
+});
+
+
+//by room
+$('#select-room').on('change', function() {
+    var id = this.value;
+    get_title("SELECT room_name FROM room WHERE room_id ="+id,"room_name",id,"room");
+    display_all_schedule("AND room_id="+id);
+
+});
 
 // Display title
 function get_title(query,name,id,type){
     $.ajax({
         type: "POST",
-        url: "php/functions.php",
+        url: "../../global/php/all_functions.php",
         data: {
             get_name_schedule: "1",
             sql: query,
@@ -161,9 +135,6 @@ function get_title(query,name,id,type){
     });
 }
 
-
-
-
 function display_all_schedule(id){
     var dp = new DayPilot.Calendar("dp");
     dp.startDate = "2013-03-04";  // DO NOT CHANGE!!
@@ -172,7 +143,7 @@ function display_all_schedule(id){
     dp.init();
           $.ajax({
         type: "POST",
-        url: "php/functions.php",
+        url: "../../global/php/all_functions.php",
         data: {
             get_schedule_data_all: 1,
             query: id
@@ -203,7 +174,7 @@ function display_all_schedule(id){
         var start = args.e.id();
         $.ajax({
             type: "POST",
-            url: "php/functions.php",
+            url: "../../global/php/all_functions.php",
             data: {
                 show_schedule: start
             },

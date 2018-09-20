@@ -2,7 +2,7 @@ $(document).ready(function() {
      // get list of courses
     $.ajax({
         type: "POST",
-        url: "php/functions.php",
+        url: "../../global/php/all_functions.php",
         data: {
             get_subject: "1"
         },
@@ -24,7 +24,7 @@ $(document).ready(function() {
     // get list of professors
     $.ajax({
         type: "POST",
-        url: "php/functions.php",
+        url: "../../global/php/all_functions.php",
         data: {
             get_prof: "1"
         },
@@ -50,7 +50,7 @@ $(document).ready(function() {
     // get list of class
     $.ajax({
         type: "POST",
-        url: "php/functions.php",
+        url: "../../global/php/all_functions.php",
         data: {
             get_class: "1"
         },
@@ -74,7 +74,7 @@ $(document).ready(function() {
     // get list of room
     $.ajax({
         type: "POST",
-        url: "php/functions.php",
+        url: "../../global/php/all_functions.php",
         data: {
             get_room: "1"
         },
@@ -94,7 +94,7 @@ $(document).ready(function() {
     });
      $.ajax({
         type: "POST",
-        url: "php/functions.php",
+        url: "../../global/php/all_functions.php",
         data: {
             get_name: "1"
         },
@@ -139,7 +139,7 @@ $('#select-room-view').on('change', function() {
 function get_title(query,name,id,type){
     $.ajax({
         type: "POST",
-        url: "php/functions.php",
+        url: "../../global/php/all_functions.php",
         data: {
             get_name_schedule: "1",
             sql: query,
@@ -176,9 +176,10 @@ modalConfirm(function(confirm){
   if(confirm){
     $.ajax({
         type: "POST",
-        url: "php/functions.php",
+        url: "../../global/php/all_functions.php",
         data: {
             submit_schedule: "1",
+            status: 2
         },
         success: function (result) {
             $("#success_msg").css({ color: 'green' });
@@ -202,7 +203,7 @@ function display_all_schedule(id){
     dp.init();
           $.ajax({
         type: "POST",
-        url: "php/functions.php",
+        url: "../../global/php/all_functions.php",
         data: {
             get_schedule_data_all: 1,
             query: id
@@ -233,7 +234,7 @@ function display_all_schedule(id){
         var start = args.e.id();
         $.ajax({
             type: "POST",
-            url: "php/functions.php",
+            url: "../../global/php/all_functions.php",
             data: {
                 show_schedule: start
             },
