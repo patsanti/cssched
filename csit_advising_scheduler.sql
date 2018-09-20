@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Sep 11, 2018 at 11:12 PM
+-- Generation Time: Sep 20, 2018 at 10:46 AM
 -- Server version: 10.1.34-MariaDB-0ubuntu0.18.04.1
 -- PHP Version: 7.2.7-0ubuntu0.18.04.2
 
@@ -41,8 +41,9 @@ CREATE TABLE `account` (
 --
 
 INSERT INTO `account` (`account_id`, `account_usern`, `account_pass`, `acc_fname`, `acc_lname`, `acc_type_id`, `acc_status`) VALUES
-(1, 'chair', 'ca4c3d16284c44d113d05b8d43beba89', 'Naza', 'Naz', 2, 1),
-(2, 'dean', '8d0f1de01fe57bc432ec5b8cbca39ec6', 'first name', 'last name', 3, 1);
+(1, 'admin', '8d0f1de01fe57bc432ec5b8cbca39ec6', 'Super', 'admin', 4, 1),
+(2, 'chair', '8d0f1de01fe57bc432ec5b8cbca39ec6', 'Rodel', 'Naz', 2, 1),
+(3, 'dean', '8d0f1de01fe57bc432ec5b8cbca39ec6', 'first name', 'last name', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -62,7 +63,8 @@ CREATE TABLE `acc_type` (
 INSERT INTO `acc_type` (`acc_type_id`, `acc_type_name`) VALUES
 (1, 'Adviser'),
 (2, 'Department Chair'),
-(3, 'Dean');
+(3, 'Dean'),
+(4, 'Administrator');
 
 -- --------------------------------------------------------
 
@@ -196,13 +198,6 @@ CREATE TABLE `schedule` (
   `sched_req_no` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `schedule`
---
-
-INSERT INTO `schedule` (`sched_no`, `subject_id`, `prof_id`, `room_id`, `class_id`, `day`, `start_time`, `end_time`, `sched_req_no`) VALUES
-(1, 1, 1, 1, 1, '1', '09:00:00.000000', '12:00:00.000000', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -214,15 +209,8 @@ CREATE TABLE `schedule_request` (
   `account_id` int(11) NOT NULL,
   `school_year` year(4) NOT NULL,
   `semester` tinyint(2) NOT NULL,
-  `request_status` int(11) NOT NULL
+  `request_status` int(11) NOT NULL COMMENT '0  for unfinished; 1 for sumbitted; 2 for approved'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `schedule_request`
---
-
-INSERT INTO `schedule_request` (`sched_req_no`, `account_id`, `school_year`, `semester`, `request_status`) VALUES
-(1, 1, 2018, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -284,7 +272,7 @@ CREATE TABLE `subject` (
 --
 
 INSERT INTO `subject` (`subject_id`, `subject_name`, `subject_description`, `lecture_unit`, `lab_unit`, `credit_unit`) VALUES
-(1, 'CS101', 'Introduction to Computing', 3, 0, 3),
+(1, 'CS 101', 'Introduction to Computing', 3, 0, 3),
 (2, 'CS 102', 'Computer Programming 1', 2, 1, 3),
 (3, 'CS 28', 'Special Problem 1', 3, 0, 3),
 (4, 'CS 29', 'Software Engineering', 3, 0, 3),
@@ -368,11 +356,11 @@ ALTER TABLE `room`
 --
 ALTER TABLE `schedule`
   ADD PRIMARY KEY (`sched_no`),
-  ADD KEY `subject_id` (`subject_id`),
   ADD KEY `prof_id` (`prof_id`),
   ADD KEY `room_id` (`room_id`),
   ADD KEY `class_id` (`class_id`),
-  ADD KEY `sched_req_no` (`sched_req_no`);
+  ADD KEY `sched_req_no` (`sched_req_no`),
+  ADD KEY `subject_id` (`subject_id`);
 
 --
 -- Indexes for table `schedule_request`
@@ -428,12 +416,12 @@ ALTER TABLE `subject_preq`
 -- AUTO_INCREMENT for table `account`
 --
 ALTER TABLE `account`
-  MODIFY `account_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `account_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `acc_type`
 --
 ALTER TABLE `acc_type`
-  MODIFY `acc_type_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `acc_type_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `class`
 --
@@ -463,17 +451,22 @@ ALTER TABLE `room`
 -- AUTO_INCREMENT for table `schedule`
 --
 ALTER TABLE `schedule`
-  MODIFY `sched_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `sched_no` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `schedule_request`
 --
 ALTER TABLE `schedule_request`
-  MODIFY `sched_req_no` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `sched_req_no` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `student_schlyr`
 --
 ALTER TABLE `student_schlyr`
   MODIFY `student_schlyr_id` int(255) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT for table `subject`
+--
+ALTER TABLE `subject`
+  MODIFY `subject_id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
 -- Constraints for dumped tables
 --
@@ -488,11 +481,11 @@ ALTER TABLE `account`
 -- Constraints for table `schedule`
 --
 ALTER TABLE `schedule`
-  ADD CONSTRAINT `schedule_ibfk_1` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`subject_id`),
   ADD CONSTRAINT `schedule_ibfk_2` FOREIGN KEY (`prof_id`) REFERENCES `professor` (`prof_id`),
   ADD CONSTRAINT `schedule_ibfk_3` FOREIGN KEY (`room_id`) REFERENCES `room` (`room_id`),
   ADD CONSTRAINT `schedule_ibfk_4` FOREIGN KEY (`class_id`) REFERENCES `class` (`class_id`),
-  ADD CONSTRAINT `schedule_ibfk_5` FOREIGN KEY (`sched_req_no`) REFERENCES `schedule_request` (`sched_req_no`);
+  ADD CONSTRAINT `schedule_ibfk_5` FOREIGN KEY (`sched_req_no`) REFERENCES `schedule_request` (`sched_req_no`),
+  ADD CONSTRAINT `schedule_ibfk_6` FOREIGN KEY (`subject_id`) REFERENCES `subject` (`subject_id`);
 
 --
 -- Constraints for table `schedule_request`
