@@ -1,6 +1,5 @@
 //////////////////////////////////////////////////////////////
 $(document).ready(function() {
-
      // get list of courses
     $.ajax({
         type: "POST",
@@ -122,7 +121,14 @@ $("#label-room").show();
 get_title("SELECT prof_lname FROM professor WHERE prof_id = 1 ","prof_lname",1,"professor");
 
 display_all_schedule("AND prof_id=1","prof",1);
+
+
+
+
+
+
 });
+
 
 
 
@@ -164,9 +170,6 @@ $('#select-class-view').on('change', function() {
     display_all_schedule("AND class_id="+id,"class",id);
 });
 
-
-
-
 //by room
 $('#select-room-view').on('change', function() {
     $("#select-class").show();
@@ -183,6 +186,26 @@ $('#select-room-view').on('change', function() {
     display_all_schedule("AND room_id="+id,"room",id);
 });
 
+
+$('#delete_button').on('click', function() {
+    var idd = $('#delete_here_id').val();
+    var typee = $('#delete_here_type').val();
+    var valuee = $('#delete_here_value').val();
+
+    $.ajax({
+        type: "POST",
+        url: "../../global/php/all_functions.php",
+        data: {
+            delete_schedule: $("#delete_here").val()
+        },
+        success: function (result) {
+    display_all_schedule(idd,typee,valuee);
+        },
+        error: function (result) {
+
+        }
+    });
+});
 
 
 
@@ -383,7 +406,11 @@ function display_all_schedule(id,type,value){
                 document.getElementById('professor').innerHTML = "<b>Faculty:</b> " + schedule[2];
                 document.getElementById('class').innerHTML = "<b>Class:</b> " + schedule[3];
                 document.getElementById('room').innerHTML = "<b>Room:</b> " + schedule[4];
-                document.getElementById('schedule').innerHTML = "<b>Schedule:</b> " + schedule[5];      
+                document.getElementById('schedule').innerHTML = "<b>Schedule:</b> " + schedule[5];  
+                document.getElementById('delete_here').value = start;
+                document.getElementById('delete_here_id').value = id;
+                document.getElementById('delete_here_type').value = type;
+                document.getElementById('delete_here_value').value = value;
                 $("#myModal").modal();
 
             }

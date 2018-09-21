@@ -115,14 +115,14 @@ class alter{
 	}
 
 	// function to delete data
-	function alter_delete(){
-		// add code here for delete
+	function alter_delete($id){
+		$global_use = new global_use;
+		$conn = $global_use->connect_db();
+
+		$result = $conn->query("DELETE FROM schedule WHERE sched_no = '$id'");
+		echo 1;
 	}
 
-	// function to update data
-	function alter_update(){
-		// add code here for update
-	}
 }
 
 class get_data{
@@ -267,6 +267,13 @@ class get_data{
 				$result2 = $conn->query($sql2);
 				$subject = $result2->fetch_assoc();
 
+				$sql3 = "SELECT * FROM class WHERE class_id = ".$row['class_id']." ";
+				$result3 = $conn->query($sql3);
+				$class = $result3->fetch_assoc();
+
+				$prof = $conn->query("SELECT * FROM professor WHERE prof_id = ".$row['prof_id']." ");
+				$prof = $prof->fetch_assoc();
+
 				$start_time = strtotime($row['start_time']);
 				$end_time = strtotime($row['end_time']);
 				$start_time = date("H:i:s",$start_time);
@@ -290,7 +297,7 @@ class get_data{
 
 		       	$schedule[$n] = $row['sched_no'];
 		       	$n++;
-		       	$schedule[$n] = $subject['subject_name'].' - '.$subject['subject_description'];
+		       	$schedule[$n] = '<b><center>'.$subject['subject_name'].'<br>'.$class['class_yr_blk'].'<br><br>Prof. '.$prof['prof_fname'].' '.$prof['prof_mname'].'. '.$prof['prof_lname'].'</b></center>';
 		       	$n++;
 		       	$schedule[$n] = $concat.$start_time;
 		       	$n++;
@@ -491,4 +498,6 @@ elseif(isset($_POST['get_status']))
 	$get_data->get_status();
 elseif(isset($_POST['check_password']))
 	$check->check_password($_POST['pass']);
+elseif(isset($_POST['delete_schedule']))
+	$alter->alter_delete($_POST['delete_schedule']);
 ?>

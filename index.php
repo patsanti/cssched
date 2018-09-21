@@ -53,7 +53,7 @@ if(isset($_SESSION['acc_type_id'])) {
 	<!-- Password Reset Form-->
 	<div class="container email_d" >
 		<div align="center">
-			<img src="global/img/bucs-logo.png" id="brand-logo1">
+			<img src="global/img/logo.png" id="brand-logo1">
 			<h3>Recover Account</h3>
 		</div>
 		<div class="panel-login">

@@ -134,8 +134,14 @@ else
 	          <div id="class">class here</div>
 	          <div id="room">room here</div>
 	          <div id="schedule">Schedule here</div>
+	          <input type="hidden" id="delete_here" value="0">
+	          <input type="hidden" id="delete_here_id" value="0">
+	          <input type="hidden" id="delete_here_type" value="0">
+	          <input type="hidden" id="delete_here_value" value="0">
+
 	        </div>
 	        <div class="modal-footer">
+	        	<button type="button" id="delete_button" class="btn btn-danger" data-dismiss="modal">Delete</button>
 	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	        </div>
 	      </div>

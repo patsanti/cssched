@@ -5,7 +5,6 @@
 function get_subject($id){
 	include "../../../global/php/connect.php";
 
-	echo $id;
 	$result = $conn->query("SELECT * FROM subject WHERE subject_id = '$id'");
 	$row = $result->fetch_assoc();
 	echo '
@@ -25,8 +24,6 @@ function get_subject($id){
 		<input type="number" min="0" class="form-control" id="cre_unit" value="'.$row['lecture_unit'].'">
 		<div id="msg" style="position:absolute"> </div>
 		<button style="margin-top: 30px;" type="submit" class="btn btn-success" onclick="return(update());">Update </button>
-		<button  style="margin-top: 30px;" class="btn btn-danger" onclick="return(delete_subject());">Delete Subject </button>
-
 		';
 }
 

@@ -59,7 +59,7 @@ else
 		</ul>
 	</nav> <!-- END OF TNAVIGATION BAR -->
 	<div class="container">
-		<h3>Select Schedule Options</h3>
+		<h3><ins>Select Schedule Options</ins></h3>
 			<hr>
 		<div class="row">
 
@@ -157,12 +157,13 @@ else
 		</div>
 	<hr><hr>
 	<div id="subjects">
-	<h3 style="margin-top: 60px;">Manage Subjects</h3>
+	<h3 style="margin-top: 60px;"><ins>Manage Subjects</ins></h3>
 	<hr>
 	<button class="btn-success form-control-sm" id="btn-confirm" type="submit" style="float: right">Add Subject</button>	
 	<div id="all-subjects-table"></div>
 	</div>
-	<footer><i>Footer here (work in progress).</i></footer>
+	    <div class="footer-copyright text-center py-3" style="color:grey;">© 2018 Copyright:
+    </div>
 
 	<div class="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
 	  <div class="modal-dialog modal-sm">
