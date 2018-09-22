@@ -112,11 +112,13 @@ else
 
 			  </div>
 			  <div class="tab-pane fade" id="website-setting" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-			  	<form id="website-settings">
 			  		<div id="preview"><img src="../global/img/logo.png" /></div>
 				  	<h4>Change Logo</h4>
-					 <input class="form-control" id="site-logo" type="file" accept="image/*" name="site-logo">
-				</form>
+					<form action="php/functions.php" method="post" enctype="multipart/form-data">
+					    <input class="form-control" type="file" name="fileToUpload" id="fileToUpload">
+					    <input class="form-control" type="submit" value="Upload" name="submit">
+					</form>
+
 			  </div>
 
 		</div>

@@ -4,7 +4,12 @@ $(document).ready(function() {
 fetch_data($('#type').val(),$('#value').val());
 
 
+$("#reset_pass").click(function(){
+    alert("The paragraph was clicked.");
+}); 
+
 });
+
 
 
 

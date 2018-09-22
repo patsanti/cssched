@@ -53,7 +53,7 @@ class fetch_data{
 		<label>Full Name</label>
 		<input class="form-control" type="text" id="fname" value="'.$row['acc_fname'].' '.$row['acc_mname'].' '.$row['acc_lname'].'" disabled>
 			
-		<button id="reset_pass" class="btn btn-success"> Reset Password </button>
+		
 		'.$button.'
 			';
 

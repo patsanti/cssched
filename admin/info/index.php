@@ -68,6 +68,9 @@ else
   	echo '<input type="hidden" id="value" value="'.$_GET['id'].'">';
   	?>
   	<div id="data_here"></div>
+  	<button id="reset_pass" class="btn btn-success"> Reset Password </button>
+  	
+
 </div>
 
 </body>
