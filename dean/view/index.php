@@ -1,11 +1,8 @@
 <?php
-
 if(session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-
 if(isset($_SESSION['acc_type_id'])) {
-
 	if ($_SESSION['acc_type_id'] == 2) 
 		header("Location: ../../");
 	elseif ($_SESSION['acc_type_id'] == 4) 
@@ -40,9 +37,7 @@ else
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-	  	<div class="collapse navbar-collapse" id="navbarNav">
-
-	  	</div>
+	  	<div class="collapse navbar-collapse" id="navbarNav"></div>
 	  	<ul class="nav navbar-nav navbar-right">
 			<li class="dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -86,12 +81,12 @@ else
 								<select multiple class="form-control" id="select-room" class="form-control" required>
 								</select>
 								<div id="error_msg"></div>
-
 							</form>
 						</div>
 					</div>
 				</section>
 			</div>
+			
 		</div>
 	</div>
 

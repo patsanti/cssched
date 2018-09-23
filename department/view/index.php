@@ -40,9 +40,7 @@ else
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-	  	<div class="collapse navbar-collapse" id="navbarNav">
-
-	  	</div>
+	  	<div class="collapse navbar-collapse" id="navbarNav"></div>
 	  	<ul class="nav navbar-nav navbar-right">
 			<li class="dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -66,36 +64,33 @@ else
 				<div id="dp"></div>
 				<a href="../../global/php/export.php" target="_blank"><button id="export"  class="btn btn-success">Export to Excel File</button></a>
 				<div style="margin-top: 10px;" id="export-cvs-display"></div>
-		
 			</div>
 			
 			<div class="col-md-3">
-					<section id="add-schedule">
-						<div class="card border-dark mb-3" style="width: 17rem;">
+				<section id="add-schedule">
+					<div class="card border-dark mb-3" style="width: 17rem;">
 						<h2 class="card-header"><b>Filter Schedule: </b></h2>
+						<div class="card-body">
+							<form action="php/functions.php" method="POST">
+								<input type="hidden" name="add_schedule" id="add_schedule" value="1">
 
-					<div class="card-body">
-					<form action="php/functions.php" method="POST">
-						<input type="hidden" name="add_schedule" id="add_schedule" value="1">
-
-						<label for="select-prof" style="font-size: 20px;"><b>By Professor</b></label>
-						<select multiple class="form-control" id="select-prof" class="form-control" required>
-							
-						</select>
-						<hr>
-						<label for="select-class" style="font-size: 20px;"><b>By Class</b></label>
-						<select multiple class="form-control" id="select-class" class="form-control" required>
-							
-						</select>
-						<hr>
-						<label for="select-room" style="font-size: 20px;"><b>By Room</b></label>
-						<select multiple class="form-control" id="select-room" class="form-control" required>
-						</select>
-						<div id="error_msg"></div>
-
-					</form>
-				</div>
-				</div>
+								<label for="select-prof" style="font-size: 20px;"><b>By Professor</b></label>
+								<select multiple class="form-control" id="select-prof" class="form-control" required>
+									
+								</select>
+								<hr>
+								<label for="select-class" style="font-size: 20px;"><b>By Class</b></label>
+								<select multiple class="form-control" id="select-class" class="form-control" required>
+									
+								</select>
+								<hr>
+								<label for="select-room" style="font-size: 20px;"><b>By Room</b></label>
+								<select multiple class="form-control" id="select-room" class="form-control" required>
+								</select>
+								<div id="error_msg"></div>
+							</form>
+						</div>
+					</div>
 				</section>
 			</div>	
 		</div>
@@ -103,7 +98,6 @@ else
 
 	<div class="modal fade" id="myModal" role="dialog">
 	    <div class="modal-dialog">
-	    
 	      <!-- Modal content-->
 	      <div class="modal-content">
 	        <div class="modal-header">
@@ -122,9 +116,8 @@ else
 	          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 	        </div>
 	      </div>
-	      
 	    </div>
-	  </div>
+	</div>
 
 	<footer><i>Footer here (work in progress).</i></footer>
 	<script type="text/javascript" src="js/script.js"></script>

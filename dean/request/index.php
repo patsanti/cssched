@@ -40,9 +40,7 @@ else
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-	  	<div class="collapse navbar-collapse" id="navbarNav">
-
-	  	</div>
+	  	<div class="collapse navbar-collapse" id="navbarNav"></div>
 	  	<ul class="nav navbar-nav navbar-right">
 			<li class="dropdown">
 				<a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -57,8 +55,6 @@ else
 	</nav> <!-- END OF TNAVIGATION BAR -->
 	<div class="container">
 		<div class="row">
-
-
 		
 			<div class="col-md-10">
 				<a href="../" >Go Back</a>
@@ -67,21 +63,22 @@ else
 				<div class="h4" id="title_name"></div>
 				<div id="dp"></div>
 			</div>
+
 			<div class="col-md-2" style="margin-top: 90px;">
-					<div class="card border-dark mb-3" style="width: 16rem;">
+				<div class="card border-dark mb-3" style="width: 16rem;">
 					<h2 class="card-header"><b>SELECT SCHEDULE</b></h2>
 					<div class="card-body">
-				<p style="color:green; font-size: 18px;">Select the name of the professor/class to add schedule.</p>
-				<label style="font-size: 20px;"><b>Select by Professor</b></label>
-				<select class="form-control form-control-md" id="select-prof-view" class="form-control" required></select>
-				
-				<label style="font-size: 20px;"><b>Select by Class</b></label>
-				<select class="form-control form-control-md" id="select-class-view" class="form-control" required></select>
-				
-				<label style="font-size: 20px;"><b>Select by Room</b></label>
-				<select class="form-control form-control-md" id="select-room-view" class="form-control" required></select>
-			</div>
-			</div>
+						<p style="color:green; font-size: 18px;">Select the name of the professor/class to add schedule.</p>
+						<label style="font-size: 20px;"><b>Select by Professor</b></label>
+						<select class="form-control form-control-md" id="select-prof-view" class="form-control" required></select>
+						
+						<label style="font-size: 20px;"><b>Select by Class</b></label>
+						<select class="form-control form-control-md" id="select-class-view" class="form-control" required></select>
+						
+						<label style="font-size: 20px;"><b>Select by Room</b></label>
+						<select class="form-control form-control-md" id="select-room-view" class="form-control" required></select>
+					</div>
+				</div>
 			</div>	
 
 			
@@ -89,9 +86,8 @@ else
 				<button class="form-control btn-success form-control-md" id="btn-confirm" type="submit">Approve Schedule Request</button>
 				<div id="success_msg"></div>
 			</div>
+			
 		</div>
-
-
 	</div>
 
 	<div class="modal fade" id="myModal" role="dialog">

@@ -58,36 +58,33 @@ else
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-2">
-					<section id="add-schedule">
-						<a href="../" >Go Back</a>
-						<hr>
-
-						<div class="card border-dark mb-3" style="width: 11rem;">
+				<section id="add-schedule">
+					<a href="../" >Go Back</a>
+					<hr>
+					<div class="card border-dark mb-3" style="width: 11rem;">
 						<h2 class="card-header"><b>ADD CLASS SCHEDULE</b></h2>
-					<div class="card-body">
-					<form action="php/functions.php" method="POST">
-						<p style="color:green;font-size: 18px;">Select schedule information here before adding schedule.</p>
-						<input type="hidden" name="add_schedule" id="add_schedule" value="1">
-						<label for="select-course" style="font-size: 20px;"><b>Course Code</b></label>
-						<select id="select-course" class="form-control form-control-md" required>
-						</select>
+						<div class="card-body">
+							<form action="php/functions.php" method="POST">
+								<p style="color:green;font-size: 18px;">Select schedule information here before adding schedule.</p>
+								<input type="hidden" name="add_schedule" id="add_schedule" value="1">
+								<label for="select-course" style="font-size: 20px;"><b>Course Code</b></label>
+								<select id="select-course" class="form-control form-control-md" required>
+								</select>
 
-						<label id="label-prof" style="font-size: 20px;"><b>Professor</b></label>
-						<select id="select-prof" class="form-control form-control-md" required></select>
+								<label id="label-prof" style="font-size: 20px;"><b>Professor</b></label>
+								<select id="select-prof" class="form-control form-control-md" required></select>
 
-						<label id="label-class" style="font-size: 20px;"><b>Class</b></label>
-						<select id="select-class" class="form-control form-control-md" required></select>
+								<label id="label-class" style="font-size: 20px;"><b>Class</b></label>
+								<select id="select-class" class="form-control form-control-md" required></select>
 
 
-						<label id="label-room" style="font-size: 20px;"><b>Room</b></label>
-						<select id="select-room" class="form-control form-control-md" required></select>
-						<div id="error_msg"></div>
-
-					</form>
-				</div>
+								<label id="label-room" style="font-size: 20px;"><b>Room</b></label>
+								<select id="select-room" class="form-control form-control-md" required></select>
+								<div id="error_msg"></div>
+							</form>
+						</div>
 					</div>
 				</section>
-
 			</div>
 			<div class="col-md-8">
 				<div class="h7" id="request-name"></div>
