@@ -30,7 +30,7 @@ else
   	<script type="text/javascript" src="../../global/js/bootstrap.min.js"></script>
 	<script src="../../global/js/daypilot-all.min.js?v=2018.2.232" type="text/javascript"></script>
 </head>
-<body>
+<body style="background: #DCDCDC">
 	<!-- NAVIGATION BAR -->
 	<nav class="navbar navbar-expand-md sticky-top navbar-light bg-light navbar-color">
 	  	<div class="navbar-brand" style="user-select: none">
@@ -58,33 +58,35 @@ else
 	<div class="container">
 		<div class="row">
 
-			<div class="col-md-2">
-				<header>
-					<a href="../" >Go Back</a>
-					<hr>
-					<h2>SELECT SCHEDULE</h2>
-				</header>
-				<p style="color:green; font-size: 15px;">Select the name of the professor/class to add schedule.</p>
-				<label>Select by Professor</label>
-				<select class="form-control form-control-sm" id="select-prof-view" class="form-control" required></select>
-				
-				<label>Select by Class</label>
-				<select class="form-control form-control-sm" id="select-class-view" class="form-control" required></select>
-				
-				<label>Select by Room</label>
-				<select class="form-control form-control-sm" id="select-room-view" class="form-control" required></select>
-			</div>	
+
 		
 			<div class="col-md-10">
-				<div class="h7" id="request-name"></div>
+				<a href="../" >Go Back</a>
+				<div class="h7" style="float: right" id="request-name"></div>
 				<hr>
 				<div class="h4" id="title_name"></div>
 				<div id="dp"></div>
 			</div>
+			<div class="col-md-2" style="margin-top: 90px;">
+					<div class="card border-dark mb-3" style="width: 16rem;">
+					<h2 class="card-header"><b>SELECT SCHEDULE</b></h2>
+					<div class="card-body">
+				<p style="color:green; font-size: 18px;">Select the name of the professor/class to add schedule.</p>
+				<label style="font-size: 20px;"><b>Select by Professor</b></label>
+				<select class="form-control form-control-md" id="select-prof-view" class="form-control" required></select>
+				
+				<label style="font-size: 20px;"><b>Select by Class</b></label>
+				<select class="form-control form-control-md" id="select-class-view" class="form-control" required></select>
+				
+				<label style="font-size: 20px;"><b>Select by Room</b></label>
+				<select class="form-control form-control-md" id="select-room-view" class="form-control" required></select>
+			</div>
+			</div>
+			</div>	
 
-			<div class="col-md-2"></div>
-			<div class="col-md-10">
-				<button class="form-control btn-success form-control-sm" id="btn-confirm" type="submit">Approve Schedule Request</button>
+			
+			<div class="col-md-10" style="margin-top: -40px;">
+				<button class="form-control btn-success form-control-md" id="btn-confirm" type="submit">Approve Schedule Request</button>
 				<div id="success_msg"></div>
 			</div>
 		</div>

@@ -30,7 +30,7 @@ else
   	<script type="text/javascript" src="../../global/js/bootstrap.min.js"></script>
 	<script src="../../global/js/daypilot-all.min.js?v=2018.2.232" type="text/javascript"></script>
 </head>
-<body>
+<body style="background: #DCDCDC">
 	<!-- NAVIGATION BAR -->
 	<nav class="navbar navbar-expand-md sticky-top navbar-light bg-light navbar-color">
 	  	<div class="navbar-brand" style="user-select: none">
@@ -57,41 +57,40 @@ else
 	</nav> <!-- END OF TNAVIGATION BAR -->
 	<div class="container">
 		<div class="row">
-			<div class="col-md-3">
-					<section id="add-schedule">
-						<a href="../">Go back</a>
-					<header>
-						<h2>VIEW SCHEDULE</h2>
-					</header>
-					<hr>
-					<form action="php/functions.php" method="POST">
-						<p>Filter Schedule </p>
-						<input type="hidden" name="add_schedule" id="add_schedule" value="1">
 
-						<b>By Professor</b>
-						<select multiple class="form-control" id="select-prof" class="form-control" required>
-							
-						</select>
-						<hr>
-						<b>By Class</b>
-						<select multiple class="form-control" id="select-class" class="form-control" required>
-							
-						</select>
-						<hr>
-						<b>By Room</b>
-						<select multiple class="form-control" id="select-room" class="form-control" required>
-						</select>
-						<div id="error_msg"></div>
-
-					</form>
-				</section>
-			</div>
 			<div class="col-md-9">
-				<div class="h7" id="request-status"></div>
+				<a href="../">Go back</a>
+				<div class="h7" style="float: right" id="request-status"></div>
 				<hr>
 				<div class="h4" id="title_name"></div>
 				<div id="dp"></div>
 				<a href="../../global/php/export.php" target="_blank"><button id="export">Export to Excel File</button></a>
+			</div>
+			
+			<div class="col-md-3">
+				<section id="add-schedule">
+					<div class="card border-dark mb-3" style="width: 17rem;">
+						<h2 class="card-header"><b>VIEW SCHEDULE</b></h2>
+						<div class="card-body">
+							<form action="php/functions.php" method="POST">
+								<p style="font-size: 20px;"><b>Filter Schedule</b> </p>
+								<input type="hidden" name="add_schedule" id="add_schedule" value="1">
+
+								<p style="font-size: 20px;"><b>By Professor</b></p>
+								<select multiple class="form-control" id="select-prof" class="form-control" required>
+								</select>
+								<p style="font-size: 20px;"><b>By Class</b></p>
+								<select multiple class="form-control" id="select-class" class="form-control" required>
+								</select>
+								<p style="font-size: 20px;"><b>By Room</b></p>
+								<select multiple class="form-control" id="select-room" class="form-control" required>
+								</select>
+								<div id="error_msg"></div>
+
+							</form>
+						</div>
+					</div>
+				</section>
 			</div>
 		</div>
 	</div>

@@ -36,7 +36,7 @@ $(document).ready(function() {
             var n = 0;
 
             for (var i = 0; i < Length; i++) {
-                var option = '<option  value="' + professor[n] + '"> ' + professor[n + 1] + ' </option>';
+                var option = '<option  value="' + professor[n] + '"><b> ' + professor[n + 1] + '</b> </option>';
                 n = n + 2;
                 $("#select-prof").append(option);
                 $("#select-prof-view").append(option);
@@ -109,20 +109,18 @@ $(document).ready(function() {
     });
     // start up display
 // for getting all schedule data and displays
-$("#select-prof").hide();
-$("#label-prof").hide();
+$("#select-prof").show();
+$("#label-prof").show();
 
-$("#select-class").show();
-$("#label-class").show();
+$("#select-class").hide();
+$("#label-class").hide();
 
 $("#select-room").show();
 $("#label-room").show();
 
-get_title("SELECT prof_lname FROM professor WHERE prof_id = 1 ","prof_lname",1,"professor");
 
-display_all_schedule("AND prof_id=1","prof",1);
-
-
+get_title("SELECT class_yr_blk FROM class WHERE class_id =1","class_yr_blk",1,"class");
+display_all_schedule("AND class_id=1","class",1);
 
 
 

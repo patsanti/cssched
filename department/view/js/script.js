@@ -94,8 +94,8 @@ $(document).ready(function() {
 
 
 
-get_title("SELECT prof_lname FROM professor WHERE prof_id = 1 ","prof_lname",1,"professor");
-display_all_schedule("AND prof_id=1");
+get_title("SELECT class_yr_blk FROM class WHERE class_id =1","class_yr_blk",1,"class");
+display_all_schedule("AND class_id=1");
 
 
 // display schedule when user chooses professor

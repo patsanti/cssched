@@ -59,13 +59,13 @@ else
 		</ul>
 	</nav> <!-- END OF TNAVIGATION BAR -->
 	<div class="container">
-		<h3><ins>Select Schedule Options</ins></h3>
+		<h3><b>Select Schedule Options</b></h3>
 			<hr>
 		<div class="row">
 
 			<div class="col-md-4 jumbotron" style="margin-top: 10px;">
 				<form class="form-horizontal" method="post" enctype="multipart/form-data">
-					<h2>Create Schedule Request</h2>
+					<h2><b><ins>Create Schedule Request</ins></b></h2>
 
 					    <div class="form-group">
 					    	<label>Year</label>
@@ -90,11 +90,11 @@ else
   				</form>
   			</div>
   			<div class="col-md-4 jumbotron" style="margin-top: 10px;">
-  				<h2>Open Unfinished Schedule Request</h2>
+  				<h2><b><ins>Open Unfinished Schedule Request</ins></b></h2>
 				<form class="form-horizontal" method="post" enctype="multipart/form-data">
 					    <div class="form-group">
 
-					       <select class="form-control" id="sched_name" style="margin-top: 75px;">
+					       <select class="form-control" id="sched_name" style="margin-top: 53px;">
 					       </select>
 					    </div>
 					    <div id="error_msg_open" style="position: absolute;"></div>
@@ -108,10 +108,10 @@ else
   			</div>
 
   			<div class="col-md-4 jumbotron" style="margin-top: 10px;"	>
-  				 <h2>Import Schedule data from cvs file </h2>
+  				 <h2><b><ins>Import Schedule data from cvs file</ins></b> </h2>
   				<form class="form-horizontal" action="../global/php/import.php" method="post" name="upload_excel" enctype="multipart/form-data">
                     <fieldset>
-                                <input type="file" name="file" id="file" class=" form-control input-large" style="margin-top: 65px;">
+                                <input type="file" name="file" id="file" class=" form-control input-large" style="margin-top: 44px;">
                                 
                                 <button type="submit" id="submit" name="Import" class="btn btn-primary button-loading" data-loading-text="Loading..." style="margin-top: 47px;">Import</button>
 
@@ -120,7 +120,7 @@ else
   			</div>
   			<div class="col-md-12"><hr></div>
   			<div class="col-md-6 jumbotron" style="margin-top: 10px;">
-  					<h2>View Pending Schedule Request</h2>
+  					<h2><b><ins>View Pending Schedule Request</ins></b></h2>
 				<form class="form-horizontal" method="post" enctype="multipart/form-data">
 					    <div class="form-group">
 
@@ -137,7 +137,7 @@ else
   				</form>
   			</div>
   				<div class="col-md-6 jumbotron" style="margin-top: 10px;">
-  					<h2>View Approved Schedules</h2>
+  					<h2><b><ins>View Approved Schedules</ins></b></h2>
 				<form class="form-horizontal" method="post" enctype="multipart/form-data">
 					    <div class="form-group">
 
@@ -157,7 +157,7 @@ else
 		</div>
 	<hr><hr>
 	<div id="subjects">
-	<h3 style="margin-top: 60px;"><ins>Manage Subjects</ins></h3>
+	<h3 style="margin-top: 60px;"><b>Manage Subjects</b></h3>
 	<hr>
 	<button class="btn-success form-control-sm" id="btn-confirm" type="submit" style="float: right">Add Subject</button>	
 	<div id="all-subjects-table"></div>
