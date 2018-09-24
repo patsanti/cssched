@@ -83,7 +83,8 @@ else
 
 			
 			<div class="col-md-10" style="margin-top: -40px;">
-				<button class="form-control btn-success form-control-md" id="btn-confirm" type="submit">Approve Schedule Request</button>
+				<button class=" btn-success form-control-sm" id="btn-confirm" type="submit">Approve Schedule Request</button>
+				<button class=" btn-danger form-control-sm" id="btn-confirm2" type="submit" style="float: right">Reject Schedule Request</button>
 				<div id="success_msg"></div>
 			</div>
 			
@@ -131,6 +132,30 @@ else
 	      <div class="modal-footer">
 	        <button type="button" class="btn btn-success" id="modal-btn-si">Submit</button>
 	        <button type="button" class="btn btn-default" id="modal-btn-no">Cancel</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal2">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	      	<h4 class="modal-title" id="myModalLabel">Reject Schedule Request</h4>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	      </div>
+	      <div class="modal-content">
+	      	<div class="modal-body">
+	      		<div><p>State here why you rejected the schedule request.<br>
+	      			<br>Reasons/Corrections:<br></p>
+	      			<textarea class="form-control" id="correction">Revise Schedule
+	      			</textarea>
+	      		</div>
+	      	</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" id="modal-btn-si2">Reject</button>
+	        <button type="button" class="btn btn-default" id="modal-btn-no2">Cancel</button>
 	      </div>
 	    </div>
 	  </div>

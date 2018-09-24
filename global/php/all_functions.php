@@ -123,6 +123,23 @@ class alter{
 		echo 1;
 	}
 
+	function alter_update(){
+		$global_use = new global_use;
+		$conn = $global_use->connect_db();
+
+		$id = $_SESSION['schedule_request'];
+
+		if(isset($_POST['correction'])){
+			$correction = $_POST['correction'];
+			$update = $conn->query("UPDATE schedule_request set request_status = 4,correction = '$correction' WHERE sched_req_no = '$id'");
+			echo "Sucess";
+		}
+		else{
+
+		}
+
+	}
+
 }
 
 class get_data{
@@ -397,6 +414,10 @@ class get_data{
 			$arr[0] = 2;
 			$arr[1] = '<p><b> '.$row['school_year'].' - '.$semester.'</b> status:  <b style="color:green;">APPOVED</b></p>';
 		}
+		elseif($row['request_status'] == 4){
+			$arr[0] = 4;
+			$arr[1] = '<p><b> '.$row['school_year'].' - '.$semester.'</b> status:  <b style="color:red;">REJECTED</b></p>';
+		}
 		$arr[2]= '		<a class="deactivate_btn" data-toggle="collapse" href="#collapse3" name="deactivate_btn" id="deactivate_btn"><button id="export-csv" class="btn btn-danger">Export This Schedule and delete</button></a>
 				<div id="collapse3" class="panel-collapse collapse">
 					<ul class="list-group">
@@ -447,7 +468,27 @@ class get_data{
 		else
 			$semester = "Summer";
 
-		echo '<p>Schedule: <b>'.$row['school_year'].' - '.$semester.'</b></p>';
+		if($row['request_status'] == 4)
+			$status = '<b style="color:red" > REJECTED</b> <a href="#correction">(Click here for more Info)</a>';
+		elseif($row['request_status'] == 1)
+			$status = '<b style="color:red" > Pending</b>';
+		echo '<p>Schedule: <b>'.$row['school_year'].' - '.$semester.': '.$status.'</b></p>';
+
+	}
+	function get_reasons(){
+		$global_use = new global_use;
+		$conn = $global_use->connect_db();
+		$id = $_SESSION['schedule_request'];
+
+		$result = $conn->query("SELECT * FROM schedule_request WHERE sched_req_no = '$id'");
+		$row = $result->fetch_assoc();
+
+		if($row['request_status'] == 4){
+		echo '<div class="card">
+                    <div class="card-header bg-danger text-white">Recommendation/Correction of College Dean</div>
+                    <div class="card-body" id="reasons">'.$row['correction'].'</div>
+                </div>';
+		}
 
 	}
 
@@ -500,4 +541,10 @@ elseif(isset($_POST['check_password']))
 	$check->check_password($_POST['pass']);
 elseif(isset($_POST['delete_schedule']))
 	$alter->alter_delete($_POST['delete_schedule']);
+elseif(isset($_POST['change_schedule_request']))
+	$alter->alter_update();
+elseif(isset($_POST['reasons']))
+	$get_data->get_reasons();
+
+
 ?>

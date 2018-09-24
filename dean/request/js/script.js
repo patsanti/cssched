@@ -192,6 +192,45 @@ modalConfirm(function(confirm){
 
 
 
+var modalConfirm2 = function(callback){
+  
+
+ $("#btn-confirm2").on("click", function(){
+    $("#mi-modal2").modal('show');
+  });
+
+  $("#modal-btn-si2").on("click", function(){
+    callback(true);
+    $("#mi-modal2").modal('hide');
+  });
+  
+    $("#modal-btn-no2").on("click", function(){
+    callback(false);
+    $("#mi-modal2").modal('hide');
+  });
+};
+
+modalConfirm2(function(confirm){
+  if(confirm){
+    $.ajax({
+        type: "POST",
+        url: "../../global/php/all_functions.php",
+        data: {
+            change_schedule_request: "1",
+            correction: $('#correction').val()
+        },
+        success: function (result) {
+            
+            $("#success_msg").css({ color: 'green' });
+            document.getElementById('success_msg').innerHTML = result;
+            window.setTimeout(function(){ window.location = "../index.php"; },1000);
+        }
+
+    });
+  }
+});
+
+
 
 
 function display_all_schedule(id){

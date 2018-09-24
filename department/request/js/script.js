@@ -101,12 +101,27 @@ $(document).ready(function() {
             get_name: "1"
         },
         success: function (result) {
-           document.getElementById('request-name').innerHTML = result;
+            $('#request-name').append(result);
         },
         error: function (result) {
 
         }
     });
+
+    $.ajax({
+        type: "POST",
+        url: "../../global/php/all_functions.php",
+        data: {
+            reasons: "1"
+        },
+        success: function (result) {
+            $('#correction').append(result);
+        },
+        error: function (result) {
+
+        }
+    });
+
     // start up display
 // for getting all schedule data and displays
 $("#select-prof").show();
@@ -243,6 +258,8 @@ var modalConfirm = function(callback){
     $("#mi-modal").modal('hide');
   });
 };
+
+
 
 modalConfirm(function(confirm){
   if(confirm){

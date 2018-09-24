@@ -5,15 +5,18 @@ if(session_status() == PHP_SESSION_NONE) {
 }
 
 if(isset($_SESSION['acc_type_id'])) {
-	if($_SESSION['acc_type_id'] == 2)
+
+	if ($_SESSION['acc_type_id'] == 2) 
 		header("Location: ../../");
-	elseif ($_SESSION['acc_type_id'] == 3) 
+	elseif ($_SESSION['acc_type_id'] == 4) 
 		header("Location: ../../");
 }
 else
 	header("Location: ../../");
 
+
 ?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -28,19 +31,19 @@ else
 	<link rel="stylesheet" href="../../global/css/footer.css">
 	<script type="text/javascript" src="../../global/js/jquery.min.js"></script>
   	<script type="text/javascript" src="../../global/js/bootstrap.min.js"></script>
-	<script type="text/javascript" src="js/script.js"></script>
+	<script src="js/daypilot-all.min.js?v=2018.2.232" type="text/javascript"></script>
 </head>
 <body>
 	<!-- NAVIGATION BAR -->
 	<nav class="navbar navbar-expand-md sticky-top navbar-light bg-light navbar-color">
 	  	<div class="navbar-brand" style="user-select: none">
 			<img src="../../global/img/logo.png" alt="CSIT departmental logo">
-			<h1>CLASS SCHEDULER ADMINISTRATOR</h1>
+			<h1>CLASS SCHEDULER</h1>
 		</div>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-		<div class="collapse navbar-collapse" id="navbarNav">
+	  	<div class="collapse navbar-collapse" id="navbarNav">
 
 	  	</div>
 	  	<ul class="nav navbar-nav navbar-right">
@@ -55,20 +58,49 @@ else
 			</li>
 		</ul>
 	</nav> <!-- END OF TNAVIGATION BAR -->
+	<div class="container">
 
-	
-<div class="container">
-  	<a href="../#manage-user">Go Back</a>
-  	<hr>
-  	<input type="hidden" id="id" value="<?php echo $_GET['id']; ?>">
+	    <ul class="breadcrumb">
+	        <li class="breadcrumb-item"><a href="../">Home</a></li>
+	        <li  class="breadcrumb-item active">Manage Database</li>
+	    </ul>
 
-  	<div id="data_here"></div>
-  	<button id="reset_pass" style="margin-top: 20px;" class="btn btn-success"> Reset Password </button>
-  	<hr>
-  	<div id="msg"></div>
-  	
+		<h3>Complete Information</h3>
+		<input type="hidden" id="id" value="<?php echo $_GET['id']; ?>">
+		<input type="hidden" id="type" value="<?php echo $_GET['type']; ?>">
 
-</div>
+		<div id="all-data"></div>
+		<button style="margin-top: 30px;" class="btn btn-danger" id="btn-confirm" type="submit">Delete </button>
+	</div>
 
+
+	<footer><i>Footer here (work in progress).</i></footer>
+
+		<div class="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
+	  <div class="modal-dialog modal-sm">
+	    <div class="modal-content">
+	      <div class="modal-header">
+	      	<h4 class="modal-title" id="myModalLabel">Delete Professor</h4>
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+	      </div>
+	      <div class="modal-content">
+	      	<div class="modal-body">
+	      		<div>
+	      			<p>Are you sure you want delete this Professor?<br>
+	      				<b style="color:red">Note: Deleting this might cause problems! It might affect
+	      				the current schedules data. Perform this action if necessary!</b>
+	      			</p>
+	      		</div>
+	      	</div>
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" id="modal-btn-si">Delete</button>
+	        <button type="button" class="btn btn-default" id="modal-btn-no">Cancel</button>
+	      </div>
+	    </div>
+	  </div>
+	</div>
+
+	<script type="text/javascript" src="js/script.js"></script>
 </body>
 </html>

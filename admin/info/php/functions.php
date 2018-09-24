@@ -27,19 +27,12 @@ class fetch_data{
 			$type = "Administrator";
 		if($row['acc_status'] == 1){
 			$status = '<b style="color:green">Active</b>';
-			$button = '<button id="deactivate" class="btn btn-danger"> Deactivate Account </button>
-';
 		}
 		elseif($row['acc_status'] == 2){
 			$status = '<b style="color:red">Deactivated</b>';
-			$button = '<button id="activate" class="btn btn-success"> Activate Account </button>
-';
-		}
-		elseif($row['acc_status'] == 3){
-			$button = '<button id="activate" class="btn btn-success"> Activate Account </button>
-';
 
 		}
+
 
 		echo '<h3 style="margin-bottom: 30px;"> Account Information </h3>
 
@@ -53,11 +46,20 @@ class fetch_data{
 		<label>Full Name</label>
 		<input class="form-control" type="text" id="fname" value="'.$row['acc_fname'].' '.$row['acc_mname'].' '.$row['acc_lname'].'" disabled>
 			
-		
-		'.$button.'
 			';
 
 
+	}
+
+	function reset_pass($id){
+		include "../../../global/php/encrypt.php";
+
+		$fetch_data = new fetch_data;
+		$conn = $fetch_data->connect_db();
+		$password = encrypt(encode("password"));
+
+		$result = $conn->query("UPDATE account set account_pass = '$password' WHERE account_id = '$id'");
+		echo 1;
 	}
 
 	
@@ -69,4 +71,6 @@ $fetch_data = new fetch_data;
 
 if(isset($_POST['user']))
 	$fetch_data->get_user($_POST['user']);
+elseif(isset($_POST['reset']))
+	$fetch_data->reset_pass($_POST['reset']);
 ?>

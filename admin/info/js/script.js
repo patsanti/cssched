@@ -1,11 +1,11 @@
 $(document).ready(function() {
 
 
-fetch_data($('#type').val(),$('#value').val());
+fetch_data($('#id').val());
 
 
 $("#reset_pass").click(function(){
-    alert("The paragraph was clicked.");
+    reset_pass($('#id').val());
 }); 
 
 });
@@ -14,29 +14,31 @@ $("#reset_pass").click(function(){
 
 
 
-function fetch_data(type,value){
-    if(type == "user"){
+function fetch_data(id){
+
         $.ajax({
             type: "POST",
             url: "php/functions.php",
             data: {
-                user: value
+                user: id
             },
             success: function(result) {
                 $("#data_here").append(result);
             }
         });
-    }
-    else if(type == "subject"){
+    
+
+}
+
+function reset_pass(id){
         $.ajax({
             type: "POST",
             url: "php/functions.php",
             data: {
-                subject: value
+                reset: id
             },
             success: function(result) {
-                $("#data_here").append(result);
+                $("#msg").append('<h3>New Password: <b style="border-style: solid;border-color:green;border-width: 2px;"> password</b></h3>');
             }
         });
-    }
 } 

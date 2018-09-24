@@ -62,7 +62,7 @@ else
 					<a href="../" >Go Back</a>
 					<hr>
 					<div class="card border-dark mb-3" style="width: 11rem;">
-						<h2 class="card-header"><b>ADD CLASS SCHEDULE</b></h2>
+						<h2 class="card-header" style="align-content: center"><b>ADD CLASS SCHEDULE</b></h2>
 						<div class="card-body">
 							<form action="php/functions.php" method="POST">
 								<p style="color:green;font-size: 18px;">Select schedule information here before adding schedule.</p>
@@ -93,31 +93,41 @@ else
 				<div id="dp"></div>
 			</div>
 			<div class="col-md-2">
-				
-					<div> &nbsp</div>
-					<hr>
-					<div class="card border-dark mb-3" style="width: 11rem;">
-					<h2 class="card-header"><b>SELECT SCHEDULE</b></h2>
-				<div class="card-body">
-					<p style="color:green; font-size: 16px;">Select the name of the professor,class or room to add schedule.</p>
-					<label style="font-size: 17px;"><b>Select by Professor</b></label>
-					<select class="form-control form-control-md" id="select-prof-view" class="form-control" required></select>
-					
-					<label style="font-size: 17px;"><b>Select by Class</b></label>
-					<select class="form-control form-control-md" id="select-class-view" class="form-control" required></select>
-					
-					<label style="font-size: 17px;"><b>Select by Room</b></label>
-					<select class="form-control form-control-md" id="select-room-view" class="form-control" required></select>
+				<div> &nbsp</div>
+				<hr>
+				<div class="card border-dark mb-3" style="width: 11rem;">
+					<h2 class="card-header" align="center"><b>SELECT SCHEDULE</b></h2>
+					<div class="card-body">
+						<p style="color:green; font-size: 16px;">Select the name of the professor,class or room to add schedule.</p>
+						<label style="font-size: 17px;"><b>Select by Professor</b></label>
+						<select class="form-control form-control-md" id="select-prof-view" class="form-control" required></select>
+						
+						<label style="font-size: 17px;"><b>Select by Class</b></label>
+						<select class="form-control form-control-md" id="select-class-view" class="form-control" required></select>
+						
+						<label style="font-size: 17px;"><b>Select by Room</b></label>
+						<select class="form-control form-control-md" id="select-room-view" class="form-control" required></select>
+				 	</div>
+				</div>
 			</div>
-			</div>
-		</div>
 			<div class="col-md-2"></div>
-			<div class="col-md-8" style="margin-top: -40px;">
+
+			<div class="col-md-8" style="margin-top: -64px;">
 				<button class="form-control btn-success form-control-md" id="btn-confirm" type="submit">Submit Schedule Request to College Dean</button>
 				<div id="success_msg"></div>
 			</div>
+
 			<div class="col-md-2"></div>
-		</div>
+
+			<div class="col-md-2"></div>
+
+			<div class="col-md-8" style="margin-top: 50px;">
+				<div id="correction"></div>
+			</div>
+			
+
+
+    </div>
 
 
 	</div>

@@ -49,7 +49,7 @@ class admin{
     		while($row = $result->fetch_assoc()) {
     			echo '
 				  			<tr>
-				  				<td><a href="info/index.php?user=1&id='.$row['account_id'].'">'.$row['acc_type_name'].'</a></td>
+				  				<td><a href="info/index.php?id='.$row['account_id'].'">'.$row['acc_type_name'].'</a></td>
 				  				<td>'.$row['account_usern'].'</td>
 				  				<td>'.$row['acc_fname'].' '.$row['acc_lname'].'</td>
 				  				';

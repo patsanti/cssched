@@ -64,7 +64,24 @@ all_subjects();
         }
     });
 
-   
+    $.ajax({
+        type: "POST",
+        url: "php/functions.php",
+        data: {
+            schedule_name: 1,
+            status: 4
+        },
+        success: function(result) {
+                var schedule = eval(result);
+                var Length = schedule.length / 2;
+                var n = 0;
+                for (var i = 0; i < Length; i++){
+                    var option = '<option  value="' + schedule[n] + '"> ' + schedule[n+1] + ' </option>';
+                    $("#sched_name_rejected").append(option);
+                    n = n + 2;
+                }
+        }
+    });   
 
 
 
@@ -125,6 +142,33 @@ function open_schedule(sched) {
     if (!stat)
         return false;
 }
+
+function open_schedule_rejected(sched) {
+    var stat = "";
+
+    if($('#sched_name_rejected').val() == 0){
+        $("#error_msg_rejected").css({ color: 'red' });
+        document.getElementById('error_msg_rejected').innerHTML = "Empty rejected schedule request.";
+        return false;
+    }
+    else{
+        $.ajax({
+            type: "POST",
+            url: "php/functions.php",
+            data: {
+                open: 1,
+                open_schedule_id: sched
+            },
+            success: function(result) {
+                window.location.href = "request/";
+
+            }
+        });
+    }
+    if (!stat)
+        return false;
+}
+
 
 
 function view_schedule(sched) {

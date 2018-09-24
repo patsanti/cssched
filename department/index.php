@@ -59,111 +59,154 @@ else
 		</ul>
 	</nav> <!-- END OF TNAVIGATION BAR -->
 	<div class="container">
-		<h3><b>Select Schedule Options</b></h3>
-			<hr>
-		<div class="row">
 
-			<div class="col-md-4 jumbotron" style="margin-top: 10px;">
-				<form class="form-horizontal" method="post" enctype="multipart/form-data">
-					<h2><b><ins>Create Schedule Request</ins></b></h2>
+		<h3 ><b>Select Schedule Options</b></h3>
+		<ul class="nav nav-tabs" role="tablist">
+		    <li class="nav-item">
+		      <a class="nav-link active" data-toggle="pill" href="#create"><b>Create Schedule</b></a>
+		    </li>
+		    <li class="nav-item">
+		      <a class="nav-link" data-toggle="pill" href="#open"><b>Unfinished Schedule</b></a>
+		    </li>
+		    <li class="nav-item">
+		      <a class="nav-link" data-toggle="pill" href="#import"><b>Import Schedule</b></a>
+		    </li>
+		    <li class="nav-item">
+		      <a class="nav-link" data-toggle="pill" href="#view"><b>Pending Schedule</b></a>
+		    </li>
+			<li class="nav-item">
+		      <a class="nav-link" data-toggle="pill" href="#approved"><b>Approved Schedule</b></a>
+		    </li>
+		    <li class="nav-item">
+		      <a class="nav-link" data-toggle="pill" href="#rejected"><b>Rejected Schedule</b></a>
+		    </li>
+		</ul>
+ 
+			<div class="tab-content">
+				<div class="col-md-12 jumbotron  tab-pane active" id="create">
+					<form class="form-horizontal" method="post" enctype="multipart/form-data">
+						<h3>Create Schedule Request</h3>
 
-					    <div class="form-group">
-					    	<label>Year</label>
-					          <select class="form-control" id="year">
-					          </select>
+						    <div class="form-group">
+						    	<label>Year</label>
+						          <select class="form-control" id="year">
+						          </select>
 
-					       <label>Semester</label>
-					          <select class="form-control" id="semester">
-					          	<option value="1">1st Semester</option>
-					          	<option value="2">2nd Semester</option>
-					          	<option value="3">Summer</option>
-					          </select>
+						       <label>Semester</label>
+						          <select class="form-control" id="semester">
+						          	<option value="1">1st Semester</option>
+						          	<option value="2">2nd Semester</option>
+						          	<option value="3">Summer</option>
+						          </select>
 
-					    </div>
-					    <div id="error_msg"></div>
-					    <div class="form-group">        
-					      <div class="col-sm-offset-2 col-sm-10">
-					        <button class="btn btn-primary" id="create" type="submit"
-							onclick="return(create_schedule());">Create Schedule Request</button>
-					      </div>
-					    </div>
-  				</form>
-  			</div>
-  			<div class="col-md-4 jumbotron" style="margin-top: 10px;">
-  				<h2><b><ins>Open Unfinished Schedule Request</ins></b></h2>
-				<form class="form-horizontal" method="post" enctype="multipart/form-data">
-					    <div class="form-group">
+						    </div>
+						    <div class="form-group">        
+						      <div class="col-sm-offset-2 col-sm-10">
+						        <button class="btn btn-primary" id="create" type="submit"
+								onclick="return(create_schedule());">Create Schedule Request</button>
+								<div id="error_msg"></div>
 
-					       <select class="form-control" id="sched_name" style="margin-top: 53px;">
-					       </select>
-					    </div>
-					    <div id="error_msg_open" style="position: absolute;"></div>
-					    <div class="form-group">        
-					      <div class="col-sm-offset-2 col-sm-10">
-					        <button class="btn btn-primary" style="margin-top: 35px;" id="profile" type="submit"
-							onclick="return(open_schedule(document.getElementById('sched_name').value));">Open Schedule Request</button>
-					      </div>
-					    </div>
-  				</form>
-  			</div>
+						      </div>
+						    </div>
+	  				</form>
+	  			</div>
+	  			<div class="col-md-12 jumbotron  tab-pane" id="open">
+	  				<h3>Open Unfinished Schedule Request</h3>
+					<form class="form-horizontal" method="post" enctype="multipart/form-data">
+						    <div class="form-group">
 
-  			<div class="col-md-4 jumbotron" style="margin-top: 10px;"	>
-  				 <h2><b><ins>Import Schedule data from cvs file</ins></b> </h2>
-  				<form class="form-horizontal" action="../global/php/import.php" method="post" name="upload_excel" enctype="multipart/form-data">
-                    <fieldset>
-                                <input type="file" name="file" id="file" class=" form-control input-large" style="margin-top: 44px;">
-                                
-                                <button type="submit" id="submit" name="Import" class="btn btn-primary button-loading" data-loading-text="Loading..." style="margin-top: 47px;">Import</button>
+						       <select class="form-control" id="sched_name" >
+						       </select>
+						    </div>
+						    <div class="form-group">        
+						      <div class="col-sm-offset-2 col-sm-10">
+						        <button class="btn btn-primary"  id="profile" type="submit"
+								onclick="return(open_schedule(document.getElementById('sched_name').value));">Open Schedule Request</button>
+								<div id="error_msg_open" style="position: absolute;"></div>
 
-                    </fieldset>
-                </form>
-  			</div>
-  			<div class="col-md-12"><hr></div>
-  			<div class="col-md-6 jumbotron" style="margin-top: 10px;">
-  					<h2><b><ins>View Pending Schedule Request</ins></b></h2>
-				<form class="form-horizontal" method="post" enctype="multipart/form-data">
-					    <div class="form-group">
+						      </div>
+						    </div>
+	  				</form>
+	  			</div>
 
-					       <select class="form-control" id="sched_name_view_pending" style="margin-top: 50px;">
-					       </select>
-					    </div>
-					    <div id="error_msg_view_pending" style="position: absolute;"></div>
-					    <div class="form-group">        
-					      <div class="col-sm-offset-2 col-sm-10">
-					        <button class="form-control btn btn-primary" style="margin-top: 35px;" id="view" type="submit"
-							onclick="return(view_schedule_pending(document.getElementById('sched_name_view_pending').value));">View</button>
-					      </div>
-					    </div>
-  				</form>
-  			</div>
-  				<div class="col-md-6 jumbotron" style="margin-top: 10px;">
-  					<h2><b><ins>View Approved Schedules</ins></b></h2>
-				<form class="form-horizontal" method="post" enctype="multipart/form-data">
-					    <div class="form-group">
+	  			<div class="col-md-12 jumbotron  tab-pane" id="import"	>
+	  				 <h3>Import Schedule data from cvs file </h3>
+	  				<form class="form-horizontal" action="../global/php/import.php" method="post" name="upload_excel" enctype="multipart/form-data">
+	                    <fieldset>
+		                    <input type="file" name="file" id="file" class=" form-control input-large">
+		                    
+		                    <button type="submit" id="submit" name="Import" class="btn btn-primary button-loading" data-loading-text="Loading...">Import</button>
+	                    </fieldset>
+	                </form>
+	  			</div>
 
-					       <select class="form-control" id="sched_name_view" style="margin-top: 50px;">
-					       </select>
-					    </div>
-					    <div id="error_msg_view" style="position: absolute;"></div>
-					    <div class="form-group">        
-					      <div class="col-sm-offset-2 col-sm-10">
-					        <button class="form-control btn btn-primary" style="margin-top: 35px;" id="view" type="submit"
-							onclick="return(view_schedule(document.getElementById('sched_name_view').value));">View</button>
-					      </div>
-					    </div>
-  				</form>
-  			</div>
+	  			<div class="jumbotron  tab-pane" id="view">
+	  					<h3>View Pending Schedule Request</h3>
+					<form class="form-horizontal" method="post" enctype="multipart/form-data">
+						    <div class="form-group">
 
+						       <select class="form-control" id="sched_name_view_pending" >
+						       </select>
+						    </div>
+						    <div class="form-group">        
+						      <div class="col-sm-offset-2 col-sm-10">
+						        <button class="btn btn-primary" id="view" type="submit"
+								onclick="return(view_schedule_pending(document.getElementById('sched_name_view_pending').value));">View Schedule</button>
+								<div id="error_msg_view_pending" style="position: absolute;"></div>
+
+						      </div>
+						    </div>
+	  				</form>
+	  			</div>
+	  			<div class="jumbotron  tab-pane" id="approved">
+	  					<h3>View Approved Schedules</h3>
+					<form class="form-horizontal" method="post" enctype="multipart/form-data">
+						    <div class="form-group">
+
+						       <select class="form-control" id="sched_name_view">
+						       </select>
+						    </div>
+						    <div class="form-group">        
+						      <div class="col-sm-offset-2 col-sm-10">
+						        <button class="btn btn-primary" id="view" type="submit"
+								onclick="return(view_schedule(document.getElementById('sched_name_view').value));">View Schedule</button>
+								<div id="error_msg_view" style="position: absolute;"></div>
+
+						      </div>
+						    </div>
+	  				</form>
+	  			</div>
+
+	  			<div class="jumbotron  tab-pane" id="rejected">
+	  					<h3>View Rejected Schedules</h3>
+					<form class="form-horizontal" method="post" enctype="multipart/form-data">
+						    <div class="form-group">
+
+						       <select class="form-control" id="sched_name_rejected">
+						       </select>
+						    </div>
+						    <div class="form-group">        
+						      <div class="col-sm-offset-2 col-sm-10">
+						        <button class="btn btn-primary" id="view" type="submit"
+								onclick="return(open_schedule_rejected(document.getElementById('sched_name_rejected').value));">View schedule</button>
+								<div id="error_msg_rejected" style="position: absolute;"></div>
+
+						      </div>
+						    </div>
+	  				</form>
+	  			</div>
 		</div>
-	<hr><hr>
+
 	<div id="subjects">
-	<h3 style="margin-top: 60px;"><b>Manage Subjects</b></h3>
-	<hr>
-	<button class="btn-success form-control-sm" id="btn-confirm" type="submit" style="float: right">Add Subject</button>	
-	<div id="all-subjects-table"></div>
+		<h3 style="margin-top: 60px;;"><b>Manage Subjects</b></h3>
+		<button class="btn-success form-control-sm" id="btn-confirm" type="submit" style="float: right">Add Subject</button>	
+		<div id="all-subjects-table"></div>
 	</div>
-	    <div class="footer-copyright text-center py-3" style="color:grey;">© 2018 Copyright:
-    </div>
+	
+
+
+	<div class="footer-copyright text-center py-3" style="color:grey;">© 2018 Copyright:</div>
+
 
 	<div class="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
 	  <div class="modal-dialog modal-sm">
