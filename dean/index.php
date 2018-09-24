@@ -59,12 +59,12 @@ else
 		</ul>
 	</nav> <!-- END OF TNAVIGATION BAR -->
 	<div class="container">
-		<h2>Select Schedule Options</h2>
+		<h3>Select Schedule Options</h3>
 			<hr>
 		<div class="row">
 
-  			<div class="col-md-5" style="margin-top: 30px;">
-  				<h2>Open Pending Schedule Request</h2>
+  			<div class="col-md-6 jumbotron" >
+  				<h2><b><ins>Open Pending Schedule Request</ins></b></h2>
 				<form class="form-horizontal" method="post" enctype="multipart/form-data">
 					    <div class="form-group">
 
@@ -80,9 +80,9 @@ else
 					    </div>
   				</form>
   			</div>
-  				<div class="col-md-2"></div>
-  				<div class="col-md-5" style="margin-top: 30px;">
-  					<h2>View Approved Schedules</h2>
+
+  				<div class="col-md-6 jumbotron" >
+  					<h2><b><ins>View Approved Schedules</ins></b></h2>
 				<form class="form-horizontal" method="post" enctype="multipart/form-data">
 					    <div class="form-group">
 
