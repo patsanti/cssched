@@ -63,6 +63,7 @@ else
 				<div class="h4" id="title_name"></div>
 				<div id="dp"></div>
 				<a href="../../global/php/export.php" target="_blank"><button id="export"  class="btn btn-success">Export to Excel File</button></a>
+				<div id="revise_button" style="margin-top: 0px;"></div>
 				<div style="margin-top: 10px;" id="export-cvs-display"></div>
 			</div>
 			

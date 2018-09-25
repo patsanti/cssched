@@ -21,6 +21,20 @@ $(document).ready(function() {
 
         }
     });
+
+    $.ajax({
+        type: "POST",
+        url: "../../global/php/all_functions.php",
+        data: {
+            reasons: "1"
+        },
+        success: function (result) {
+            $('#correction_revise').append(result);
+        },
+        error: function (result) {
+
+        }
+    });
     // get list of professors
     $.ajax({
         type: "POST",

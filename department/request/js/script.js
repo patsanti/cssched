@@ -1,5 +1,6 @@
 //////////////////////////////////////////////////////////////
 $(document).ready(function() {
+show_revise();
      // get list of courses
     $.ajax({
         type: "POST",
@@ -262,13 +263,20 @@ var modalConfirm = function(callback){
 
 
 modalConfirm(function(confirm){
+
+    if($('#revision_text').val() == null)
+        var revision_text = "none";
+    else
+        var revision_text = $('#revision_text').val();
+
   if(confirm){
     $.ajax({
         type: "POST",
         url: "../../global/php/all_functions.php",
         data: {
             submit_schedule: "1",
-            status: 1
+            status: 1,
+            revision_text: revision_text
         },
         success: function (result) {
             $("#success_msg").css({ color: 'green' });
@@ -289,7 +297,7 @@ function display_all_schedule(id,type,value){
     dp.headerDateFormat = "dddd";
     dp.init();
 
-          $.ajax({
+    $.ajax({
         type: "POST",
         url: "../../global/php/all_functions.php",
         data: {
@@ -431,4 +439,10 @@ function display_all_schedule(id,type,value){
             }
         });
     };
+}
+
+
+function show_revise(){
+    if($('#revise').val() == "true")
+        $('#revision').append('<p><b>State why you revise this schedule</b></p><textarea id="revision_text" class="form-control"></textarea>');
 }

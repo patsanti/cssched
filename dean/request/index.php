@@ -87,6 +87,11 @@ else
 				<button class=" btn-danger form-control-sm" id="btn-confirm2" type="submit" style="float: right">Reject Schedule Request</button>
 				<div id="success_msg"></div>
 			</div>
+
+			<div class="col-md-2"></div>
+
+			<div class="col-md-10" id="correction_revise"></div>
+
 			
 		</div>
 	</div>

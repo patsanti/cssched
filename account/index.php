@@ -92,7 +92,7 @@ if(!isset($_SESSION['acc_type_id']))
 			  </div>
 			  
 			  <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab">
-				  <form action="/action_page.php">
+				  
 				  	<h2>Account Settings</h2>
 				    <div class="form-group">
 				      <label for="email">Username:</label>
@@ -105,7 +105,7 @@ if(!isset($_SESSION['acc_type_id']))
 					    <div id="error_msg_acc"></div>
 
 				    <button type="submit" class="btn btn-primary" id="account" onclick="return(update_password());">Update Account</button>
-				  </form>
+				  
 				  <hr>
 				  <h2>Deactivate Account</h2>
 

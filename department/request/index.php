@@ -57,6 +57,7 @@ else
 	</nav> <!-- END OF TNAVIGATION BAR -->
 	<div class="container-fluid">
 		<div class="row">
+			<input type="hidden" id="revise" value="<?php echo $_GET['revise']; ?>">
 			<div class="col-md-2">
 				<section id="add-schedule">
 					<a href="../" >Go Back</a>
@@ -162,7 +163,7 @@ else
 	</div>
 	<!--another modal -->
 	<div class="modal fade" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
-	  <div class="modal-dialog modal-sm">
+	  <div class="modal-dialog modal-lg">
 	    <div class="modal-content">
 	      <div class="modal-header">
 	      	<h4 class="modal-title" id="myModalLabel">Schedule Request</h4>
@@ -170,10 +171,15 @@ else
 	      </div>
 	      <div class="modal-content">
 	      	<div class="modal-body">
-	      		<div><p>
+	      		<div>
+
+
+	      			<p>
 	      			Are you sure you want to submit schedule request to College Dean?<br><br></p>
-	      			<p style="color: red; font-size: 12px;"> Reminder: Make sure
-	      		    the schedule request you're submitting is FINAL. Submitted request CANNOT be cancelled!! </p>
+	      			<div id="revision"></div>
+	      			<p style="color: red; font-size: 21px;">
+	      			 Reminder: Make sure
+	      		    the schedule request you're submitting is FINAL.</p>
 	      		</div>
 	      	</div>
 	      </div>

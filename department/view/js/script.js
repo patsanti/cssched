@@ -84,6 +84,8 @@ $(document).ready(function() {
             else{
                 $("#export-cvs-display").append(result[2]);
                 document.getElementById('request-status').innerHTML = result[1];
+                $('#revise_button').append('<button class="btn" style="float:right"><a href="../request/index.php?revise=true">Click here to Revise</a></button>')
+
             }
         },
         error: function (result) {

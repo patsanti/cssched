@@ -55,30 +55,41 @@ function update_profile() {
 
 
 function update_password() {
-    var stat = "";
+    var stat = true;
     $("#account").val("Updating Account...");
-    $.ajax({
-        type: "POST",
-        url: "php/functions.php",
-        data: {
-            pass: $("#pass").val()
-        },
-        success: function(result) {
-            if (result == 1) {
-                $("#account").val("Updating...");
-                $("#error_msg_acc").css({ color: 'green' });
-                document.getElementById("error_msg_acc").innerHTML = "Account Updated";
-                window.setTimeout(function(){ window.location = "index.php"; },1000);
+    var pass = $('#pass').val();
+    
+    if(pass.length < 8){
+        $("#account").val("Update");
+        $("#error_msg_acc").css({ color: 'red' });
+        document.getElementById("error_msg_acc").innerHTML = "password must be atleast 8 characters long";
+        stat = false;
+    }
+    else{
+        $.ajax({
+            type: "POST",
+            url: "php/functions.php",
+            data: {
+                pass: $("#pass").val()
+            },
+            success: function(result) {
+                if (result == 1) {
+                    $("#account").val("Updating...");
+                    $("#error_msg_acc").css({ color: 'green' });
+                    document.getElementById("error_msg_acc").innerHTML = "Account Updated";
+                    //window.setTimeout(function(){ window.location = "index.php"; },1000);
 
+                }
+                else {
+                    $("#account").val("Update");
+                    $("#error_msg_acc").css({ color: 'red' });
+                    document.getElementById("error_msg_acc").innerHTML = "Update failed";
+                    stat = false;
+                }
             }
-            else {
-                $("#account").val("Update");
-                $("#error_msg_acc").css({ color: 'red' });
-                document.getElementById("error_msg_acc").innerHTML = "Update failed";
-                stat = false;
-            }
-        }
-    });
-    if (!stat)
-        return false;
+        });
+       
+    }
+     if (!stat)
+            return false;
 }

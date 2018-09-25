@@ -419,7 +419,7 @@ class get_data{
 			$arr[1] = '<p><b> '.$row['school_year'].' - '.$semester.'</b> status:  <b style="color:red;">REJECTED</b></p>';
 		}
 		$arr[2]= '		<a class="deactivate_btn" data-toggle="collapse" href="#collapse3" name="deactivate_btn" id="deactivate_btn"><button id="export-csv" class="btn btn-danger">Export This Schedule and delete</button></a>
-				<div id="collapse3" class="panel-collapse collapse">
+				<div id="collapse3" class="panel-collapse collapse jumbotron">
 					<ul class="list-group">
 						<li class="list-group-item">
 							<b style="color: red;">note: Make sure you download the CSV file!
@@ -448,8 +448,8 @@ class get_data{
 		$global_use = new global_use;
 		$conn = $global_use->connect_db();
 		$id =  $_SESSION['schedule_request'];
-
-		$result = $conn->query("UPDATE schedule_request set request_status = '$stat' WHERE sched_req_no = '$id'");
+		$revision_text = $_POST['revision_text'];
+		$result = $conn->query("UPDATE schedule_request set request_status = '$stat',correction = '$revision_text' WHERE sched_req_no = '$id'");
 		echo "Schedule Request Submitted!";
 	}
 	// returns the schedule name
@@ -486,6 +486,12 @@ class get_data{
 		if($row['request_status'] == 4){
 		echo '<div class="card">
                     <div class="card-header bg-danger text-white">Recommendation/Correction of College Dean</div>
+                    <div class="card-body" id="reasons">'.$row['correction'].'</div>
+                </div>';
+		}
+		elseif($row['request_status'] == 1){
+		echo '<div class="card">
+                    <div class="card-header bg-danger text-white">Revision/Past Recommendation</div>
                     <div class="card-body" id="reasons">'.$row['correction'].'</div>
                 </div>';
 		}
