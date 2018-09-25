@@ -14,7 +14,6 @@ class global_use {
 	}
 }
 
-
 class request{
 	function create_request($year,$semester){
 		$global_use = new global_use;
@@ -131,9 +130,4 @@ else if(isset($_POST['subjects']))
 
 else if(isset($_POST['addsubject']))
 	$request->add_subject($_POST['subcode'],$_POST['subdes'],$_POST['lecunit'],$_POST['labunit'],$_POST['creunit']);	
-
-
-
-
-
 ?>

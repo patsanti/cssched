@@ -1,6 +1,4 @@
 <?php
-
-
 class all{
 	function all_data_func($id,$type){
 		include "../../../global/php/connect.php";
@@ -78,6 +76,7 @@ $all = new all;
 
 if(isset($_POST['fetch_all']))
 	$all->all_data_func($_POST['id'],$_POST['type_data']);
+
 elseif(isset($_POST['update']))
 	$all->update_data($_POST['update'],$_POST['type_update']);
 ?>

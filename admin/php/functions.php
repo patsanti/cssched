@@ -102,8 +102,6 @@ class admin{
 		header("Location: ../index.php");
 	}		
 	
-	
-	
 }
 
 
@@ -111,8 +109,10 @@ $admin = new admin;
 
 if(isset($_POST['uname']) && isset($_POST['pass']) && isset($_POST['type']))
 	$admin->add_user($_POST['uname'],$_POST['pass'],$_POST['type']);
+
 elseif(isset($_POST['manage_user']))
 	$admin->get_user();
+
 elseif(isset($_POST['submit']))
 	$admin->upload_logo();
 ?>

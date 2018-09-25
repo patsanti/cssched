@@ -5,7 +5,6 @@ if(session_status() == PHP_SESSION_NONE) {
 }
 
 if(isset($_SESSION['acc_type_id'])) {
-
 	if ($_SESSION['acc_type_id'] == 3) 
 		header("Location: ../../");
 	elseif ($_SESSION['acc_type_id'] == 4) 
@@ -13,8 +12,6 @@ if(isset($_SESSION['acc_type_id'])) {
 }
 else
 	header("Location: ../../");
-
-
 ?>
 
 <!DOCTYPE html>
@@ -58,25 +55,25 @@ else
 			</li>
 		</ul>
 	</nav> <!-- END OF TNAVIGATION BAR -->
+
 	<div class="container">
 
-
-    <ul class="breadcrumb">
-        <li class="breadcrumb-item"><a href="../">Home</a></li>
-        <li  class="breadcrumb-item active">Manage Subject Info</li>
-    </ul>
-
+	    <ul class="breadcrumb">
+	        <li class="breadcrumb-item"><a href="../">Home</a></li>
+	        <li  class="breadcrumb-item active">Manage Subject Info</li>
+	    </ul>
 
 		<h3>Subject Info</h3>
 		<input type="hidden" id="id" value="<?php echo $_GET['id']; ?>">
 		<div id="subject-data"></div>
 		<button style="margin-top: 30px;" class="btn btn-danger" id="btn-confirm" type="submit">Delete Subject </button>
+
 	</div>
 
 
 	<footer><i>Footer here (work in progress).</i></footer>
 
-		<div class="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
+	<div class="modal" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true" id="mi-modal">
 	  <div class="modal-dialog modal-sm">
 	    <div class="modal-content">
 	      <div class="modal-header">

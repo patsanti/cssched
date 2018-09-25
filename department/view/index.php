@@ -5,7 +5,6 @@ if(session_status() == PHP_SESSION_NONE) {
 }
 
 if(isset($_SESSION['acc_type_id'])) {
-
 	if ($_SESSION['acc_type_id'] == 3) 
 		header("Location: ../../");
 	elseif ($_SESSION['acc_type_id'] == 4) 
@@ -53,6 +52,7 @@ else
 			</li>
 		</ul>
 	</nav> <!-- END OF TNAVIGATION BAR -->
+	
 	<div class="container">
 		<div class="row">
 

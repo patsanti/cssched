@@ -3,7 +3,6 @@
 if(session_status() == PHP_SESSION_NONE) {
     session_start();
 }
-
 if(isset($_SESSION['acc_type_id'])) {
 	if($_SESSION['acc_type_id'] == 2)
 		header("Location: ../../");
@@ -57,18 +56,17 @@ else
 	</nav> <!-- END OF TNAVIGATION BAR -->
 
 	
-<div class="container">
-  	<a href="../#manage-user">Go Back</a>
-  	<hr>
-  	<input type="hidden" id="id" value="<?php echo $_GET['id']; ?>">
+	<div class="container">
+		<a href="../#manage-user">Go Back</a>
+		<hr>
+		<input type="hidden" id="id" value="<?php echo $_GET['id']; ?>">
 
-  	<div id="data_here"></div>
-  	<button id="reset_pass" style="margin-top: 20px;" class="btn btn-success"> Reset Password </button>
-  	<hr>
-  	<div id="msg"></div>
-  	
+		<div id="data_here"></div>
+		<button id="reset_pass" style="margin-top: 20px;" class="btn btn-success"> Reset Password </button>
+		<hr>
+		<div id="msg"></div>
 
-</div>
+	</div>
 
 </body>
 </html>

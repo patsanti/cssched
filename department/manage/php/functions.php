@@ -1,7 +1,4 @@
 <?php
-
-
-
 function get_subject($id){
 	include "../../../global/php/connect.php";
 

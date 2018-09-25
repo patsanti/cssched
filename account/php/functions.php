@@ -1,7 +1,4 @@
 <?php
-
-
-
 class account_update{
 	function connect_db(){
 		//connect to the database
@@ -59,7 +56,9 @@ $account_update = new account_update;
 
 if(isset($_POST['info']))
 	$account_update->account_info($_SESSION['account_id']);
+
 else if(isset($_POST['profile']))
 	$account_update->profile_update($_SESSION['account_id'],$_POST['fname'],$_POST['lname']);
+
 else if(isset($_POST['pass']))
 	$account_update->profile_password($_SESSION['account_id'],$_POST['pass']);

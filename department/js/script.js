@@ -1,12 +1,13 @@
 $(document).ready(function() {
-all_subjects();
+    
+    all_subjects();
+    
     var Year = 2018;
     for (var i = 0; i < 50; i++) {
         var option = '<option  value="' + Year + '"> ' + Year + ' </option>';
         Year = Year + 1;
         $("#year").append(option);
     }
-
 
     $.ajax({
         type: "POST",
@@ -26,6 +27,7 @@ all_subjects();
                 }
         }
     });
+
     $.ajax({
         type: "POST",
         url: "php/functions.php",
@@ -82,8 +84,6 @@ all_subjects();
                 }
         }
     });   
-
-
 
 });
 
@@ -169,8 +169,6 @@ function open_schedule_rejected(sched) {
         return false;
 }
 
-
-
 function view_schedule(sched) {
     var stat = "";
 
@@ -198,7 +196,6 @@ function view_schedule(sched) {
         return false;
 }
 
-
 function view_schedule_pending(sched) {
     var stat = "";
 
@@ -225,9 +222,6 @@ function view_schedule_pending(sched) {
     if (!stat)
         return false;
 }
-
-
-
 
 var modalConfirm = function(callback){
   
@@ -270,7 +264,6 @@ modalConfirm(function(confirm){
     });
   }
 });
-
 
 function all_subjects(){
      $.ajax({

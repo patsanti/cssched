@@ -1,11 +1,9 @@
 <?php
-
 if(session_status() == PHP_SESSION_NONE) {
     session_start();
 }
 
 if(isset($_SESSION['acc_type_id'])) {
-
 	if ($_SESSION['acc_type_id'] == 2) 
 		header("Location: ../");
 	elseif ($_SESSION['acc_type_id'] == 4) 
@@ -13,8 +11,6 @@ if(isset($_SESSION['acc_type_id'])) {
 }
 else
 	header("Location: ../");
-
-
 ?>
 
 <!DOCTYPE html>
@@ -58,6 +54,7 @@ else
 			</li>
 		</ul>
 	</nav> <!-- END OF TNAVIGATION BAR -->
+
 	<div class="container">
 		<h3> <b>Select Schedule Options</b></h3>
 		<ul class="nav nav-tabs" role="tablist">
@@ -71,64 +68,65 @@ else
 		      <a class="nav-link" data-toggle="pill" href="#rejected"><b>Rejected Schedule</b></a>
 		    </li>
 		</ul>
-			<div class="tab-content">
-	  			<div class="col-md-12 jumbotron  tab-pane active" id="pending" >
-	  				<h3>Open Pending Schedule Request</h3>
-					<form class="form-horizontal" method="post" enctype="multipart/form-data">
-						    <div class="form-group">
+		<div class="tab-content">
+  			<div class="col-md-12 jumbotron  tab-pane active" id="pending" >
+  				<h3>Open Pending Schedule Request</h3>
+				<form class="form-horizontal" method="post" enctype="multipart/form-data">
+					    <div class="form-group">
 
-						       <select class="form-control" id="sched_name">
-						       </select>
-						    </div>
-						    <div class="form-group">        
-						      <div class="col-sm-offset-2 col-sm-10">
-						        <button class="btn btn-primary" id="profile" type="submit"
-								onclick="return(open_schedule(document.getElementById('sched_name').value));">Open Schedule Request</button>
-								<div id="error_msg_open" style="position: absolute;"></div>
+					       <select class="form-control" id="sched_name">
+					       </select>
+					    </div>
+					    <div class="form-group">        
+					      <div class="col-sm-offset-2 col-sm-10">
+					        <button class="btn btn-primary" id="profile" type="submit"
+							onclick="return(open_schedule(document.getElementById('sched_name').value));">Open Schedule Request</button>
+							<div id="error_msg_open" style="position: absolute;"></div>
 
-						      </div>
-						    </div>
-	  				</form>
-	  			</div>
+					      </div>
+					    </div>
+  				</form>
+  			</div>
 
-  				<div class="col-md-12 jumbotron  tab-pane" id="approved" >
-  					<h3>View Approved Schedules</h3>
-					<form class="form-horizontal" method="post" enctype="multipart/form-data">
-						    <div class="form-group">
+			<div class="col-md-12 jumbotron  tab-pane" id="approved" >
+				<h3>View Approved Schedules</h3>
+			<form class="form-horizontal" method="post" enctype="multipart/form-data">
+				    <div class="form-group">
 
-						       <select class="form-control" id="sched_name_view">
-						       </select>
-						    </div>
-						    <div class="form-group">        
-						      <div class="col-sm-offset-2 col-sm-10">
-						        <button class="btn btn-primary" id="view" type="submit"
-								onclick="return(view_schedule(document.getElementById('sched_name_view').value));">View Schedule</button>
-								<div id="error_msg_view" style="position: absolute;"></div>
+				       <select class="form-control" id="sched_name_view">
+				       </select>
+				    </div>
+				    <div class="form-group">        
+				      <div class="col-sm-offset-2 col-sm-10">
+				        <button class="btn btn-primary" id="view" type="submit"
+						onclick="return(view_schedule(document.getElementById('sched_name_view').value));">View Schedule</button>
+						<div id="error_msg_view" style="position: absolute;"></div>
 
-						      </div>
-						    </div>
-	  				</form>
-  				</div>
+				      </div>
+				    </div>
+				</form>
+			</div>
 
-  				<div class="col-md-12 jumbotron  tab-pane" id="rejected" >
-  					<h3>View Rejected Schedules</h3>
-					<form class="form-horizontal" method="post" enctype="multipart/form-data">
-						    <div class="form-group">
+			<div class="col-md-12 jumbotron  tab-pane" id="rejected" >
+				<h3>View Rejected Schedules</h3>
+			<form class="form-horizontal" method="post" enctype="multipart/form-data">
+				    <div class="form-group">
 
-						       <select class="form-control" id="sched_name_rejected">
-						       </select>
-						    </div>
-						    <div class="form-group">        
-						      <div class="col-sm-offset-2 col-sm-10">
-						        <button class="btn btn-primary"id="view" type="submit"
-								onclick="return(view_schedule_rejected(document.getElementById('sched_name_rejected').value));">View Schedule</button>
-								<div id="error_msg_rejected" style="position: absolute;"></div>
+				       <select class="form-control" id="sched_name_rejected">
+				       </select>
+				    </div>
+				    <div class="form-group">        
+				      <div class="col-sm-offset-2 col-sm-10">
+				        <button class="btn btn-primary"id="view" type="submit"
+						onclick="return(view_schedule_rejected(document.getElementById('sched_name_rejected').value));">View Schedule</button>
+						<div id="error_msg_rejected" style="position: absolute;"></div>
 
-						      </div>
-						    </div>
-	  				</form>
-  				</div>
-	  		</div>
+				      </div>
+				    </div>
+				</form>
+			</div>
+			
+	  	</div>
 
 
 	  	<div id="subjects">

@@ -53,7 +53,7 @@ if(!isset($_SESSION['acc_type_id']))
 
 	
 <div class="container">
-	<h2>Account Settings</h2>
+  <h2>Account Settings</h2>
   <div class="row">
   		<div class="col-md-2">
   			<div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">

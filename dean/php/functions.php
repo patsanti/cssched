@@ -201,10 +201,13 @@ else if(isset($_POST['open']))
 
 else if(isset($_POST['professor']))
 	$request->professor();
+
 else if(isset($_POST['class']))
 	$request->class();
+
 else if(isset($_POST['room']))
 	$request->room();
+
 else if(isset($_POST['type_add']))
 	$request->add_data($_POST['type_add']);
 ?>

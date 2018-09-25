@@ -5,7 +5,6 @@ if(session_status() == PHP_SESSION_NONE) {
 }
 
 if(isset($_SESSION['acc_type_id'])) {
-
 	if ($_SESSION['acc_type_id'] == 3) 
 		header("Location: ../../");
 	elseif ($_SESSION['acc_type_id'] == 4) 
@@ -55,6 +54,7 @@ else
 			</li>
 		</ul>
 	</nav> <!-- END OF TNAVIGATION BAR -->
+
 	<div class="container-fluid">
 		<div class="row">
 			<input type="hidden" id="revise" value="<?php echo $_GET['revise']; ?>">
@@ -78,7 +78,6 @@ else
 								<label id="label-class" style="font-size: 20px;"><b>Class</b></label>
 								<select id="select-class" class="form-control form-control-md" required></select>
 
-
 								<label id="label-room" style="font-size: 20px;"><b>Room</b></label>
 								<select id="select-room" class="form-control form-control-md" required></select>
 								<div id="error_msg"></div>
@@ -87,12 +86,14 @@ else
 					</div>
 				</section>
 			</div>
+
 			<div class="col-md-8">
 				<div class="h7" id="request-name"></div>
 				<hr>
 				<div class="h4" id="title_name">Schedule of professor</div>
 				<div id="dp"></div>
 			</div>
+
 			<div class="col-md-2">
 				<div> &nbsp</div>
 				<hr>
@@ -111,6 +112,7 @@ else
 				 	</div>
 				</div>
 			</div>
+
 			<div class="col-md-2"></div>
 
 			<div class="col-md-8" style="margin-top: -64px;">
@@ -126,11 +128,7 @@ else
 				<div id="correction"></div>
 			</div>
 			
-
-
-    </div>
-
-
+    	</div>
 	</div>
 
 	<div class="modal fade" id="myModal" role="dialog">
@@ -172,8 +170,6 @@ else
 	      <div class="modal-content">
 	      	<div class="modal-body">
 	      		<div>
-
-
 	      			<p>
 	      			Are you sure you want to submit schedule request to College Dean?<br><br></p>
 	      			<div id="revision"></div>
